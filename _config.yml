@@ -1,3 +1,11 @@
-theme: jekyll-theme-minimal
-title: Michael Albergo
-description: Hello
+title: Researcher
+url: "https://malbergo.me"
+baseurl: "/researcher"
+
+markdown: kramdown
+
+tracking_id: #
+
+sass:
+    style: compressed
+    sass_dir: _sass
