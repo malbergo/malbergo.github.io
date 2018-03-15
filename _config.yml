@@ -4,7 +4,7 @@ url: "https://malbergo.me"
 
 markdown: kramdown
 
-tracking_id: #
+tracking_id: UA-115821638-1
 
 sass:
     style: compressed
