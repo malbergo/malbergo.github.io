@@ -21,6 +21,4 @@ is_contact: true
 
 ## Social
 
-1. [Facebook](#)
-2. [Twitter](https://	www.twitter.com/msalbergo)
-3. [Google+](#)
+1. [Twitter](https://	www.twitter.com/msalbergo)
