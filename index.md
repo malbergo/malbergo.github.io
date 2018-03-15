@@ -19,5 +19,4 @@ I am generally interested in how machine learning can be used to inform physics 
 
 ## Typography
 
-This is a [link](http://google.com). Something *italics* and something **bold**.
 
