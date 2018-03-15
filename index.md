@@ -15,8 +15,3 @@ I am generally interested in how machine learning can be used to inform physics 
 
 
 ## Publications
-
-
-## Typography
-
-
