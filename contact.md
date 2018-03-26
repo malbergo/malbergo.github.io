@@ -22,4 +22,4 @@ is_contact: true
 ## Social
 
 1. [Twitter](https://	www.twitter.com/msalbergo)
-2. [LinkedIn](https:// https://www.linkedin.com/in/michael-albergo-08b34a76/)
+2. [LinkedIn](https://   www.linkedin.com/in/michael-albergo-08b34a76/)
