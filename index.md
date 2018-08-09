@@ -15,8 +15,11 @@ I am generally interested in how machine learning can be used to inform physics 
 
 
 
-## Autoencoding Independence with Coulomb GANs
+## Fun ML toys
+
+### Autoencoding Independence with Coulomb GANs
 
 Enforce independence in the latent space of autoencoder: 
 
 ![Independence Learning](CoulombAE_syntheticData_GIF_24BatchSize_2500Epochs_3LatentDim.gif)
+![Original Sources](OriginalSources.png)
