@@ -19,4 +19,4 @@ I am generally interested in how machine learning can be used to inform physics 
 
 Enforce independence in the latent space of autoencoder: 
 
-![Independence Learning](OriginalSources.png)
+<img src="OriginalSources.png">
