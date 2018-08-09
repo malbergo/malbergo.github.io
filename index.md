@@ -19,4 +19,4 @@ I am generally interested in how machine learning can be used to inform physics 
 
 Enforce independence in the latent space of autoencoder: 
 
-![Independence Learning](CoulombAE_syntheticData_GIF_24BatchSize_2500Epochs_3LatentDim.gif)
+![Independence Learning](OriginalSources.png)
