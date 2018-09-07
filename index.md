@@ -6,7 +6,7 @@ layout: default
 
 <img class="profile-picture" src="Michael.jpg">
 
-I am a master's student at the University of Cambridge studying physics and machine learning. 
+I am a master's student at the University of Cambridge studying physics and machine learning. I'll be moving to the Perimeter Institute as a graduate fellow in the coming months.
 
 
 <!-- ## Research Interest
@@ -24,4 +24,6 @@ Enforce independence in the latent space of autoencoder:
 ![Independence Learning](CoulombAE_syntheticData_GIF_24BatchSize_2500Epochs_3LatentDim.gif) ![Original Sources](OriginalSources.png)
 
 
+### Autoencoding Independence with d-Hilbert Schmidt Independence Criteria
 
+![Independence Learning HSIC](HSICICA_syntheticData_GIF_32BatchSize_200Epochs_3LatentDim.gif)

@@ -5,8 +5,8 @@ is_contact: true
 
 * Email: [michaelsalbergo@gmail.com](mailto:michaelsalbergo@gmail.com)
 
-* Phone: [+447712899587](tel:+447712899587)
-
+<!-- * Phone: [+447712899587](tel:+447712899587)
+ -->
 ---
 
 ## Mailing Address
