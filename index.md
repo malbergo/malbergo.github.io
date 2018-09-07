@@ -27,3 +27,4 @@ Enforce independence in the latent space of autoencoder:
 ### Autoencoding Independence with d-Hilbert Schmidt Independence Criteria
 
 ![Independence Learning HSIC](HSICICA_syntheticData_GIF_32BatchSize_200Epochs_3LatentDim.gif)
+![HSICICA Original Sources](HSICICAOriginalSources.png)
