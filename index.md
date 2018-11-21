@@ -4,7 +4,7 @@ layout: default
 
 ## About Me
 
-<img class="profile-picture" src="WebPhotoV2.jpg">
+<img class="profile-picture" src="WebPhotoCrop.png">
 
 I am a master's student at the University of Cambridge studying physics and machine learning. I'll be moving to the Perimeter Institute as a graduate fellow in the coming months.
 
