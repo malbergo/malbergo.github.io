@@ -4,7 +4,7 @@ layout: default
 
 ## About Me
 
-<img class="profile-picture" src="WebPhotoCrop.png">
+<img class="profile-picture" src="WebPhotoCrop_lowres.png">
 
 I am a master's student at the University of Cambridge studying physics and machine learning. I'll be moving to the Perimeter Institute as a graduate fellow in the coming months.
 
@@ -17,7 +17,7 @@ I am generally interested in how machine learning can be used to inform physics 
 
 ## Some Documents
 
-Here is a copy of my [master's thesis](https://github.com/malbergo/mastersthesis_final/blob/master/ThesisMichaelAlbergov_FINALRevised.pdf). 
+11/2018 Here is a copy of my [master's thesis](https://github.com/malbergo/mastersthesis_final/blob/master/ThesisMichaelAlbergov_FINALRevised.pdf). 
 
 
 ## Fun ML toys
