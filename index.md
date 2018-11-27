@@ -15,6 +15,11 @@ I am generally interested in how machine learning can be used to inform physics 
  -->
 
 
+## Some Documents
+
+Here is a copy of my [master's thesis](https://github.com/malbergo/mastersthesis_final/blob/master/ThesisMichaelAlbergov_FINALRevised.pdf). 
+
+
 ## Fun ML toys
 
 ### Autoencoding Independence with Coulomb GANs
