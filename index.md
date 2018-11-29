@@ -19,6 +19,8 @@ I am generally interested in how machine learning can be used to inform physics 
 
 11/2018 Here is a copy of my [master's thesis](https://github.com/malbergo/mastersthesis_final/blob/master/ThesisMichaelAlbergov_FINALRevised.pdf). 
 
+ * A brief and simplified overview of the work [can be found here](https://medium.com/@michaelsalbergo/toward-pragmatic-generative-modeling-of-particle-physics-calorimeter-signals-ad38579be2fa).
+
 
 ## Fun ML toys
 
