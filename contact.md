@@ -11,11 +11,11 @@ is_contact: true
 
 ## Mailing Address
 
-> Cavendish Laboratories, University of Cambridge
+> Perimeter Institute for Theoretical Physics
 >
-> Cambridge
+> Waterloo
 >
-> United Kingdom
+> Canada
 
 ---
 
