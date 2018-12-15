@@ -17,11 +17,11 @@ I am generally interested in how machine learning can be used to inform physics 
 
 ## Some Documents
 
-11/2018 Here is a copy of my [master's thesis](https://github.com/malbergo/mastersthesis_final/blob/master/ThesisMichaelAlbergov_FINALRevised.pdf). 
+11/2018: Here is a copy of my [master's thesis](https://github.com/malbergo/mastersthesis_final/blob/master/ThesisMichaelAlbergov_FINALRevised.pdf). 
 
  * A brief and simplified overview of the work [can be found here](https://medium.com/@michaelsalbergo/toward-pragmatic-generative-modeling-of-particle-physics-calorimeter-signals-ad38579be2fa).
 
- 09/2018 Slides for work on independence enforcement in latent spaces of autoencoders [can be found here](FinalPresentationMicrosoft.pptx)
+ 09/2018: Slides for work on independence enforcement in latent spaces of autoencoders [can be found here](FinalPresentationMicrosoft.pptx)
 
 
 ## Fun ML toys
