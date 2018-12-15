@@ -21,6 +21,8 @@ I am generally interested in how machine learning can be used to inform physics 
 
  * A brief and simplified overview of the work [can be found here](https://medium.com/@michaelsalbergo/toward-pragmatic-generative-modeling-of-particle-physics-calorimeter-signals-ad38579be2fa).
 
+ 09/2018 Slides for work on independence enforcement in latent spaces of autoencoders [can be found here](FinalPresentationMicrosoft.pptx)
+
 
 ## Fun ML toys
 
