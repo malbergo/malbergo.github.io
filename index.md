@@ -6,7 +6,6 @@ layout: default
 
 <img class="profile-picture" src="WebPhotoCrop_lowres.png">
 
-I am a master's student at the University of Cambridge studying physics and machine learning. I'll be moving to the Perimeter Institute as a graduate fellow in the coming months.
 
 
 <!-- ## Research Interest
@@ -17,7 +16,7 @@ I am generally interested in how machine learning can be used to inform physics 
 
 ## Some Documents
 
-01/2019: Here is a blog post overview of recent advances in generative modeling that [physicists care about](https://machine19.github.io/machine19.github.io/Blogs/Albergo_GenModels/GenModels.html)
+01/2019: Here is a blog post overview of recent advances in generative modeling that [physicists care about](https://machine19.github.io/machine19.github.io/Blogs/Albergo_GenModels/GenModels.html) as well as a link to a [corresponding talk at KITP](http://online.kitp.ucsb.edu/online/machine19/albergo/rm/jwvideo.html).
 
 11/2018: Here is a copy of my [master's thesis](https://github.com/malbergo/mastersthesis_final/blob/master/ThesisMichaelAlbergov_FINALRevised.pdf). 
 
