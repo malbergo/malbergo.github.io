@@ -1,11 +1,10 @@
-title: Michael Albergo
-url: "http://malbergo.me"
-
-
-markdown: kramdown
-
-tracking_id: UA-115821638-1
-
+title:            malbergo site
+description:      Michael Albergo
+url:              https://malbergo.me
+permalink:        pretty
+timezone:         Canada/New_York
 sass:
-    style: compressed
-    sass_dir: _sass
+  sass_dir: assets
+  style: :compressed
+collections:
+  - notes

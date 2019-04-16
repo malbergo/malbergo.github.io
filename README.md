@@ -1,35 +1,27 @@
-# Researcher
+# A blog
 
-### [Demo Website](http://ankitsultana.com/researcher)
+This is where Mu-An writes her stuff and messes around every once in a while. See the messes [here](https://github.com/muan/muan.github.com/releases).
 
-A clean, single column, monospace resume template built for jekyll
+## Development
 
-### Installation
-
-Simply fork the repository and edit away.
-
-### Customization
-
-* You can edit the `.md` (markdown) files as you see fit. You can also add some other markdown file, say `foo.md` in the root directory of the repository. It will then be accessible like so `{{ url of your website }}/foo`.
-
-* You can of course remove `contact.md` if you don't want it
-
-* To set the heading, edit the `title` variable in `_config.yml`
-
-* To edit the `links` mentioned on the navigation bar, edit the file `_data/nav.yml`
-
-* You can change the accent (color of hyperlinks) by editing the `accent` variable in `_sass/vars.scss`
-
-* You can setup google analytics, by setting `tracking_id` in `_config.yml`
-
-* To add a profile picture, make sure to give the image tag the class `profile-picture`. In other words,do it like so:
-
-```html
-<img class="profile-picture" src="sherlock.jpg">
+```
+$ gem install github-pages
+$ jekyll server -w --baseurl=''
 ```
 
-**Note:** Customizing the accent color might cause merge conflicts if you later try to merge from `bk2dcradle/researcher` to fetch updates/patches etc. (applicable only if you have forked).
+## License
 
-### License
+The following directories and their contents are Copyright Mu-An Chiou. You may not reuse anything therein without my permission:
 
-[GNU GPL v3](https://github.com/bk2dcradle/researcher/blob/gh-pages/LICENSE)
+```
+_data/
+_posts/
+images/
+```
+
+All other directories and files are MIT Licensed (where applicable).
+
+## Me
+
+:wave: [@muanchiou](http://twitter.com/muanchiou)
+:panda_face:
