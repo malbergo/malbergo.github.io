@@ -3,6 +3,7 @@ description:      Michael Albergo
 url:              https://malbergo.me
 permalink:        pretty
 timezone:         Canada/New_York
+tracking_id: UA-115821638-1
 sass:
   sass_dir: assets
   style: :compressed
