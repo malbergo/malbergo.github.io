@@ -29,11 +29,7 @@ pre code {
   word-wrap: initial;
   background: transparent;
 }
-/* 
-img.animated-gif{
-  width: 900px;
-  height: auto;
-} */
+  
 
 .hll { background-color: #ffffcc }
 .c { color: #999988; font-style: italic } /* Comment */
