@@ -227,11 +227,13 @@ article img:not(.emoji) {
   li {
     padding: 0;
     margin-bottom: 15px;
+    width: 50em;
 
     &:before {
       content: '•';
       position: absolute;
       margin-left: -1.5em;
+      width: 50em;
     }
   }
   
