@@ -24,9 +24,7 @@ modes:
 
     a {
       color: {{ page.modes.dark.link_foreground }};
-      link P{
-        text-decoration: none;
-      }};
+    
 
       &:hover {
         background: {{ page.modes.dark.foreground }};
