@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+    <head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Michael Albergo</title>
+        <meta name="Author" content="Michael">
+        <meta name="Description" content="about | research | presentations">
+        <meta name="Keywords" content="michael albergo">
+        
+        <!--Blueprint CSS Framework-->
+        <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">    
+        <!–[if IE]><link rel="stylesheet" href="css/blueprint/lib/ie.css" type="text/css" media="screen, projection"><![endif]–>
+        
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    	
+    </head>
+    
+    <body>
+	
+	<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+        
+        <div class="container">
+            
+            <!--the header spans the entire width of the page, which is 24 columns, so that it shows up as a single row on top-->
+            <div class="header span-18 prepend-3 append-3 last">
+            <div class="contact_information_box span-9">
+                <h1>Michael S Albergo</h1>
+                <p>michaelsalbergo [at] gmail <br> albergo [at] nyu</p>
+		<p>Publications: <a href="https://scholar.google.com/citations?user=GQyCZ4kAAAAJ&hl=en" target="_blank">google scholar</a></p>
+		<p>CV: Available upon request.</p>
+		<p><a target="_blank" href="https://twitter.com/msalbergo?lang=en">
+            <img src="docs/twitter.png" width="30">
+           </a></p>
+	
+			</div>
+                
+                <div class="span-8 last">
+                   <img src="docs/michael.png" width="200">
+                </div>
+            </div>
+            
+            <div class="navbar span-19 prepend-3 append-3 last">
+				<br>
+				<div align="right" class="span-6">
+					<a href="index.html"><i>About</i></a>
+				</div>
+				<div align="center" class="span-5">
+					<a href="papers.html">Papers</a>
+				</div>
+	   			<div align="left" class="span-1">
+					<a href="potpourri.html">Potpourri</a>
+				</div>
+
+		    <br>
+                   <hr>
+            </div>
+            
+           <!--this is a main content block, which is centered on the page-->
+            <div class="span-18 prepend-3 append-3 last">
+	
+			<div class="research_project_description span-18 prepend-3 append-3 last">
+		                        <div class="span-18">
+		             		<h2>Sampling using SU(N) gauge equivariant flows</h2>
+		                        </div>
+		                    	<p>with Denis Boyda, Gurtej Kanwar, Sébastien Racanière, Danilo Jimenez Rezende, Kyle Cranmer, Daniel C. Hackett, and Phiala E. Shanahan</p>
+
+		                        <div class="span-18">
+		                             <img src="docs/papers/su_N_flows.png" width="580">
+		                        </div>
+		                        <div class="span-18">
+					   <p><br>We develop a flow-based sampling algorithm for SU(N) lattice gauge theories that is gauge-invariant by construction. Our key contribution is constructing a class of flows on an SU(N) variable (or on a U(N) variable by a simple alternative) that respect matrix conjugation symmetry. We apply this technique to sample distributions of single SU(N) variables and to construct flow-based samplers for SU(2) and SU(3) lattice gauge theory in two dimensions.</p>
+					   <p>Preprint: <a href = "https://arxiv.org/abs/2008.05456">ArXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2008.05456'></div></p>		
+					   
+</div></div>
+
+
+
+			<div class="research_project_description span-18 prepend-3 append-3 last">
+						
+				<div class="span-18">
+					<h2>Equivariant flow-based sampling for lattice gauge theory</h2>
+				</div>
+				<p>Gurtej Kanwar, Denis Boyda, Kyle Cranmer, Daniel C. Hackett, Sébastien Racanière, Danilo Jimenez Rezende, and Phiala E. Shanahan</p>
+
+				<div class="span-18">
+					<img src="docs/papers/equiv-flow.png" width="500">
+				</div>
+				<div class="span-18">
+			<br>
+			<p> We define a class of machine-learned flow-based sampling algorithms for lattice gauge theories that are gauge invariant by construction. We demonstrate the application of this framework to U(1) gauge theory in two spacetime dimensions, and find that, at small bare coupling, the approach is orders of magnitude more efficient at sampling topological quantities than more traditional sampling procedures such as hybrid Monte Carlo and heat bath.</p>
+			<p>Published: <a href = "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.121601">Physical Review Letters</a>
+				<div class='altmetric-embed' data-badge-type='donut' data-doi='10.1103/physrevlett.125.121601'></div></p>
+		</div>
+		<br>
+		</div>
+
+
+		<div class="research_project_description span-18 prepend-3 append-3 last">
+			
+	                        <div class="span-18">
+	                            <h2>Normalizing Flows on Tori and Spheres</h2>
+	                        </div>
+	                    	<p>with Danilo Jimenez Rezende, George Papamakarios, Sébastien Racanière, Gurtej Kanwar, Phiala E. Shanahan, Kyle Cranmer</p>
+
+	                        <div class="span-18">
+	                             <img src="docs/papers/globe.png" width="550">
+	                        </div>
+	                        <div class="span-18">
+				   <br>
+				   <p>Normalizing flows are a powerful tool for building expressive distributions in high dimensions. So far, most of the literature has concentrated on learning flows on Euclidean spaces. Some problems however, such as those involving angles, are defined on spaces with more complex geometries, such as tori or spheres. In this paper, we propose and compare expressive and numerically stable flows on such spaces. Our flows are built recursively on the dimension of the space, starting from flows on circles, closed intervals or spheres.</p>
+				</p>
+				   <p>Published: <a href = "https://arxiv.org/abs/2002.02428">ICML 2020</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2002.02428'></div></p>
+				  
+				</div>
+	                        <br>
+		          </div>
+
+				<div class="research_project_description span-18 prepend-3 append-3 last">
+					
+			                        <div class="span-18">
+			             		<h2>Learnability scaling of quantum states: Restricted Boltzmann machines</h2>
+			                        </div>
+			                    	<p>with Dan Sehayek, Anna Golubeva, Bohdan Kulchytskyy, Giacomo Torlai, and Roger G. Melko</p>
+
+						  <div class="span-18">
+				                             <img src="docs/papers/WeightDecay.png" width="400">
+				                        </div>
+
+			                        <div class="span-18">
+						   <p>Generative modeling with machine learning has provided a new perspective on the data-driven task of reconstructing quantum states from a set of qubit measurements. As increasingly large experimental quantum devices are built in laboratories, the question of how these machine learning techniques scale with the number of qubits is becoming crucial. We empirically study the scaling of restricted Boltzmann machines (RBMs) applied to reconstruct ground-state wavefunctions of the one-dimensional transverse-field Ising model from projective measurement data. We define a learning criterion via a threshold on the relative error in the energy estimator of the machine. With this criterion, we observe that the number of RBM weight parameters required for accurate representation of the ground state in the worst case - near criticality - scales quadratically with the number of qubits. By pruning small parameters of the trained model, we find that the number of weights can be significantly reduced while still retaining an accurate reconstruction. This provides evidence that over-parametrization of the RBM is required to facilitate the learning process.</p>
+						
+						<p>Published: <a href = "https://doi.org/10.1103/PhysRevB.100.195125"> Physical Review B -- Editor's Suggestions</a></p>   
+						<p>Preprint: <a href = "https://arxiv.org/abs/1908.07532">ArXiv</a> <div class='altmetric-embed' data-badge-type='donut' data-doi='10.1103/PhysRevB.100.195125'></div></p>
+
+						</div>
+			                        <br>
+				          </div>
+				
+				<div class="research_project_description span-18 prepend-3 append-3 last">
+
+										<div class="span-18">
+									<h2>Flow-based generative models for Markov chain Monte Carlo in lattice field theory</h2>
+										</div>
+										<p>with G. Kanwar, and P. E. Shanahan</p>
+								<div class="span-18">
+													<img src="docs/papers/flows_first_paper.png" width="650">
+											</div>
+
+										<div class="span-18">
+								<p>A Markov chain update scheme using a machine-learned flow-based generative model is proposed for Monte Carlo sampling in lattice field theories. The generative model may be optimized (trained) to produce samples from a distribution approximating the desired Boltzmann distribution determined by the lattice action of the theory being studied. Training the model systematically improves autocorrelation times in the Markov chain, even in regions of parameter space where standard Markov chain Monte Carlo algorithms exhibit critical slowing down in producing decorrelated updates. Moreover, the model may be trained without existing samples from the desired distribution. The algorithm is compared with HMC and local Metropolis sampling for 
+									ϕ<sup>4</sup> theory in two dimensions.</p>
+								<p>Published: <a href = "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.100.034515">Physical Review D</a></p><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='1904.12072'></div>
+							</div>
+										<br><br>
+								</div>
+					<br>
+
+	
+            
+        </div>
+        
+    </body>
+    
+</html>
