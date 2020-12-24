@@ -22,3 +22,8 @@ p {margin-left: 0px; }
 .presentation_description h2 {color:#000000; }
 .presentation_description p {font-size:10pt; }
 .presentation_description a {font-size:20pt; color:#339933; font-weight:normal; }
+
+/* figure figcaption {
+    border: 1px dotted blue;
+    text-align: center;
+} */
