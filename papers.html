@@ -62,18 +62,43 @@
            <!--this is a main content block, which is centered on the page-->
             <div class="span-18 prepend-3 append-3 last">
 
+
 			<div class="research_project_description span-18 prepend-3 append-3 last">
 					<div class="span-18">
-				 <h2>Flow-based sampling for fermionic lattice field theories</h2>
+				 <h2>Non-Hertz-Millis scaling of the antiferromagnetic quantum critical metal via scalable Hybrid Monte Carlo</h2>
 					</div>
-					<p>with Gurtej Kanwar, Sébastien Racanière, Danilo Jimenez Rezende, Julian M. Urban, Denis Boyda Kyle Cranmer, Daniel C. Hackett, and Phiala E. Shanahan</p>
+					<p>with Peter Lunts and Michael Lindsey</p>
+					
+					<div class="row">
+						<div class="column">
+						  <img src="docs/papers/occ_func_nesting_2_L_80_Nt_200.png" alt="Snow" style="width:100%">
+						</div>
+						<div class="column">
+						  <img src="docs/papers/occ_func_nesting_6_L_80_Nt_200.png" alt="Forest" style="width:100%">
+						</div>
+					</div>
+					<!-- <div class="span-18">
+						 <img src="docs/papers/occ_func_nesting_2_L_80_Nt_200.png" width="400">
+						 <img src="docs/papers/occ_func_nesting_6_L_80_Nt_200.png" width="400">
+					</div> -->
+					<div class="span-18">
+		   <p><br>We numerically study the O(3) spin-fermion model, a minimal model of the onset of antiferromagnetic spin-density wave (SDW) order in a two-dimensional metal. We employ a Hybrid Monte Carlo (HMC) algorithm with a novel auto-tuning procedure, which learns the optimal HMC hyperparameters in an initial warmup phase. This allows us to study unprecedentedly large systems, even at criticality. At the quantum critical point, we find a critical scaling of the dynamical spin susceptibility χ(ω,q ) that strongly violates the Hertz-Millis form, which is the first demonstrated instance of such a phenomenon in this model. The form that we do observe provides strong evidence that the universal scaling is actually governed by the fixed point near perfect hot-spot nesting of Schlief, Lunts, and Lee [Phys. Rev. X 7, 021010 (2017)], even away from perfect nesting. Our work provides a concrete link between controlled calculations of SDW metallic criticality in the long-wavelength and small nesting angle limits and a microscopic finite-size model at realistic appreciable values of the nesting angle. Additionally, the HMC method we introduce is generic and can be used to study other fermionic models of quantum criticality, where there is a strong need to simulate large systems.</p>
+		   <p>Preprint: <a href = "https://arxiv.org/abs/2204.14241">ArXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2204.14241'></div></p>		
+		   
+</div></div>
+
+			<div class="research_project_description span-18 prepend-3 append-3 last">
+					<div class="span-18">
+				 <h2>Flow-based sampling in the lattice Schwinger model at criticality</h2>
+					</div>
+					<p>with Denis Boyda Kyle Cranmer, Daniel C. Hackett, Gurtej Kanwar, Sébastien Racanière, Danilo J Rezende, Fernando Romero-López, Phiala E. Shanahan, and Julian M Urban</p>
 
 					<div class="span-18">
-						 <img src="docs/papers/samplers.png" width="700">
+						<img src="docs/papers/Chi-Q.png" width="400">
 					</div>
 					<div class="span-18">
-		   <p><br>Algorithms based on normalizing flows are emerging as promising machine learning approaches to sampling complicated probability distributions in a way that can be made asymptotically exact. In the context of lattice field theory, proof-of-principle studies have demonstrated the effectiveness of this approach for scalar theories, gauge theories, and statistical systems. This work develops approaches that enable flow-based sampling of theories with dynamical fermions, which is necessary for the technique to be applied to lattice field theory studies of the Standard Model of particle physics and many condensed matter systems. As a practical demonstration, these methods are applied to the sampling of field configurations for a two-dimensional theory of massless staggered fermions coupled to a scalar field via a Yukawa interaction.</p>
-		   <p>Preprint: <a href = "https://arxiv.org/abs/2106.05934">ArXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2106.05934'></div></p>		
+		   <p><br>Recent results suggest that flow-based algorithms may provide efficient sampling of field distributions for lattice field theory applications, such as studies of quantum chromodynamics and the Schwinger model. In this work, we provide a numerical demonstration of robust flow-based sampling in the Schwinger model at the critical value of the fermion mass. In contrast, at the same parameters, conventional methods fail to sample all parts of configuration space, leading to severely underestimated uncertainties.</p>
+		   <p>Preprint: <a href = "https://arxiv.org/abs/2202.11712">ArXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2202.11712'></div></p>		
 		   
 </div></div>
 
@@ -92,6 +117,23 @@
 					   <p>Published: <a href = "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.103.074504">Physical Review D</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2008.05456'></div></p>		
 					   
 </div></div>
+
+			<div class="research_project_description span-18 prepend-3 append-3 last">
+					<div class="span-18">
+				 <h2>Flow-based sampling for fermionic lattice field theories</h2>
+					</div>
+					<p>with Gurtej Kanwar, Sébastien Racanière, Danilo Jimenez Rezende, Julian M. Urban, Denis Boyda Kyle Cranmer, Daniel C. Hackett, and Phiala E. Shanahan</p>
+
+					<div class="span-18">
+						 <img src="docs/papers/samplers.png" width="700">
+					</div>
+					<div class="span-18">
+		   <p><br>Algorithms based on normalizing flows are emerging as promising machine learning approaches to sampling complicated probability distributions in a way that can be made asymptotically exact. In the context of lattice field theory, proof-of-principle studies have demonstrated the effectiveness of this approach for scalar theories, gauge theories, and statistical systems. This work develops approaches that enable flow-based sampling of theories with dynamical fermions, which is necessary for the technique to be applied to lattice field theory studies of the Standard Model of particle physics and many condensed matter systems. As a practical demonstration, these methods are applied to the sampling of field configurations for a two-dimensional theory of massless staggered fermions coupled to a scalar field via a Yukawa interaction.</p>
+		   <p>Preprint: <a href = "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.104.114507">Ohysical Review D</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2106.05934'></div></p>		
+		   
+</div></div>
+
+
 
 
 
