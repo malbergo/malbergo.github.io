@@ -46,10 +46,10 @@
             <div class="navbar span-19 prepend-3 append-3 last">
 				<br>
 				<div align="right" class="span-6">
-					<a href="index.html"><i>About</i></a>
+					<a href="index.html">About</a>
 				</div>
 				<div align="center" class="span-5">
-					<a href="papers.html">Papers</a>
+					<a href="papers.html"><i>Papers</i></a>
 				</div>
 	   			<div align="left" class="span-1">
 					<a href="potpourri.html">Potpourri</a>
@@ -61,6 +61,37 @@
             
 		<!--this is a main content block, which is centered on the page-->
 		<div class="span-18 prepend-3 append-3 last">
+
+
+		<div class="research_project_description span-18 prepend-3 append-3 last">
+			<div class="span-18">
+			<h2>Flow Map Matching </h2>
+			</div>
+			<p>with Nicholas Boffi and Eric Vanden-Eijnden</p>
+			
+			<div class="row">
+				<div class="column">
+					<img src="docs/papers/mapmatch.png" alt="Snow" style="width:200%">
+				</div>
+			</div>
+			
+			<div class="span-18">
+	<p><br>Generative models based on dynamical transport of measure, such as diffusion models, flow matching models, and stochastic interpolants, 
+		learn an ordinary or stochastic differential equation whose trajectories push initial conditions from a known base distribution onto the target. 
+		While training is cheap, samples are generated via simulation, which is more expensive than one-step models like GANs. To close this gap, 
+		we introduce flow map matching -- an algorithm that learns the two-time flow map of an underlying ordinary differential equation. 
+		The approach leads to an efficient few-step generative model whose step count can be chosen a-posteriori to smoothly trade off accuracy 
+		for computational expense. Leveraging the stochastic interpolant framework, we introduce losses for both direct training of flow maps and 
+		distillation from pre-trained (or otherwise known) velocity fields. Theoretically, we show that our approach unifies many existing few-step generative models, 
+		including consistency models, consistency trajectory models, progressive distillation, and neural operator approaches, which can be obtained as particular cases of our formalism. 
+		With experiments on CIFAR-10 and ImageNet 32x32, we show that flow map matching leads to high-quality samples with significantly reduced sampling cost compared to diffusion or stochastic interpolant methods. </p>
+	<!-- <p>ICML 2024</p> -->
+	<p><a href = "https://arxiv.org/abs/2406.07507">arXiv</a></p>	
+		
+</div></div>
+
+
+<hr>
 
 
 		<div class="research_project_description span-18 prepend-3 append-3 last">
@@ -112,7 +143,7 @@
 	and deploying a deterministic or stochastic sampler. By carefully introducing the above ingredients, SiT surpasses DiT uniformly across model sizes on the conditional ImageNet 256x256 
 	benchmark using the exact same backbone, number of parameters, and GFLOPs. By exploring various diffusion coefficients, which can be tuned separately from learning, SiT achieves an FID-50K score of 2.06. </p>
 	<p>Submitted, 2023</p>
-	<p><a href = "https://arxiv.org/abs/2401.08740">ArXiv</a></p>
+	<p><a href = "https://arxiv.org/abs/2401.08740">ECCV 2024</a></p>
 	<p><a href = "https://github.com/willisma/SiT">Code</a></p>	
 
 </div></div>
