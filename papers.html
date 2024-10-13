@@ -61,7 +61,37 @@
             
 		<!--this is a main content block, which is centered on the page-->
 		<div class="span-18 prepend-3 append-3 last">
+		
 
+		<div class="research_project_description span-18 prepend-3 append-3 last">
+			<div class="span-18">
+			<h2>NETS: A Non-equilibrium Transport Sampler </h2>
+			</div>
+			<p>with Eric Vanden-Eijnden</p>
+			
+			<div class="row">
+				<div class="column">
+					<img src="docs/papers/NETS.png" alt="Snow" style="width:200%">
+				</div>
+			</div>
+			
+			<div class="span-18">
+	<p><br>We propose an algorithm, termed the Non-Equilibrium Transport Sampler (NETS), to sample from unnormalized probability distributions. 
+		NETS can be viewed as a variant of annealed importance sampling (AIS) based on Jarzynski's equality, in which the stochastic differential 
+		equation used to perform the non-equilibrium sampling is augmented with an additional learned drift term that lowers the impact of the 
+		unbiasing weights used in AIS. We show that this drift is the minimizer of a variety of objective functions, which can all be estimated 
+		in an unbiased fashion without backpropagating through solutions of the stochastic differential equations governing the sampling. We also 
+		prove that some these objectives control the Kullback-Leibler divergence of the estimated distribution from its target. NETS is shown to 
+		be unbiased and, in addition, has a tunable diffusion coefficient which can be adjusted post-training to maximize the effective sample size. 
+		We demonstrate the efficacy of the method on standard benchmarks, high-dimensional Gaussian mixture distributions, and a model from statistical 
+		lattice field theory, for which it surpasses the performances of related work and existing baselines. </p>
+	<!-- <p>ICML 2024</p> -->
+	<p><a href = "https://arxiv.org/abs/2410.02711">arXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2410.02711'></div></p>	
+		
+</div></div>
+
+
+<hr>
 
 		<div class="research_project_description span-18 prepend-3 append-3 last">
 			<div class="span-18">
@@ -116,7 +146,7 @@
 		We show that the drift and the diffusion coefficients of this SDE can be adjusted after training, and that a specific choice that minimizes the impact of the estimation error gives a Föllmer process.
 		We highlight the utility of our approach on several complex, high-dimensional forecasting problems, including stochastically forced Navier-Stokes and video prediction on the KTH and CLEVRER datasets. </p>
 	<!-- <p>ICML 2024</p> -->
-	<p><a href = "https://arxiv.org/abs/2403.13724">ICML 2024</a></p>	
+	<p><a href = "https://arxiv.org/abs/2403.13724">ICML 2024</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2403.13724'></div></p>	
 		
 </div></div>
 
@@ -144,7 +174,7 @@
 	benchmark using the exact same backbone, number of parameters, and GFLOPs. By exploring various diffusion coefficients, which can be tuned separately from learning, SiT achieves an FID-50K score of 2.06. </p>
 	<p>Submitted, 2023</p>
 	<p><a href = "https://arxiv.org/abs/2401.08740">ECCV 2024</a></p>
-	<p><a href = "https://github.com/willisma/SiT">Code</a></p>	
+	<p><a href = "https://github.com/willisma/SiT">Code</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2401.08740'></div></p>	
 
 </div></div>
 
