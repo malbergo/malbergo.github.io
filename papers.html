@@ -65,6 +65,66 @@
 
 		<div class="research_project_description span-18 prepend-3 append-3 last">
 			<div class="span-18">
+			<h2>LEAPS: A discrete neural sampler via locally equivariant networks
+			</h2>
+			</div>
+			<p>with Peter Holderrieth and Tommi Jaakkola</p>
+			
+			<div class="row">
+				<div class="column">
+					<img src="docs/papers/leaps.png" alt="Snow" style="width:200%">
+				</div>
+			</div>
+			
+			<div class="span-18">
+	<p><br>We propose LEAPS, an algorithm to sample from discrete distributions known up to normalization by learning a rate matrix of a continuous-time Markov chain (CTMC).
+		LEAPS can be seen as a continuous-time formulation of annealed importance sampling and sequential Monte Carlo methods, extended so that the variance of the importance 
+		weights is offset by the inclusion of the CTMC. To derive these importance weights, we introduce a set of Radon-Nikodym derivatives of CTMCs over their path measures. 
+		Because the computation of these weights is intractable with standard neural network parameterizations of rate matrices, we devise a new compact representation for rate 
+		matrices via what we call locally equivariant functions. To parameterize them, we introduce a family of locally equivariant multilayer perceptrons, attention layers, 
+		and convolutional networks, and provide an approach to make deep networks that preserve the local equivariance. This property allows us to propose a scalable training 
+		algorithm for the rate matrix such that the variance of the importance weights associated to the CTMC are minimal. We demonstrate the efficacy of LEAPS on problems in 
+		statistical physics. </p>
+	<!-- <p>ICML 2024</p> -->
+	<p>Best Paper Award <a href = "https://sites.google.com/view/fpiworkshop/">Frontiers of Probabilistic Inference</a> workshop, ICLR 2025</p>
+	<p><a href = "https://arxiv.org/abs/2502.10843">arXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2502.10843'></div></p>	
+		
+</div></div>
+
+
+<hr>
+
+
+		<div class="research_project_description span-18 prepend-3 append-3 last">
+			<div class="span-18">
+			<h2>Debiasing Guidance for Discrete Diffusion with Sequential Monte Carlo </h2>
+			</div>
+			<p>with Brian Lee, Paul Jeha, Jes Frellsen, Pietro Liò, and Francisco Vargas</p>
+			
+			<div class="row">
+				<div class="column">
+					<img src="docs/papers/discrete_smc.png" alt="Snow" style="width:200%">
+				</div>
+			</div>
+			
+			<div class="span-18">
+	<p><br>Discrete diffusion models are a class of generative models that produce samples from an approximated data distribution within a discrete state space. 
+		Often, there is a need to target specific regions of the data distribution. Current guidance methods aim to sample from a distribution with mass proportional 
+		to p0(x0)p(ζ|x0)^α but fail to achieve this in practice. We introduce a Sequential Monte Carlo algorithm that generates unbiasedly from this target distribution, 
+		utilising the learnt unconditional and guided process. We validate our approach on low-dimensional distributions, controlled images and text generations. 
+		For text generation, our method provides strong control while maintaining low perplexity compared to guidance-based approaches. </p>
+	<!-- <p>ICML 2024</p> -->
+	<p>Oral Presentation at <a href = "https://sites.google.com/view/fpiworkshop/">Frontiers of Probabilistic Inference</a> workshop, ICLR 2025</p>
+	<p><a href = "https://arxiv.org/abs/2502.06079">arXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2502.06079'></div></p>	
+		
+</div></div>
+
+
+<hr>
+
+
+		<div class="research_project_description span-18 prepend-3 append-3 last">
+			<div class="span-18">
 			<h2>Strange metals and planckian transport in a gapless phase from spatially random interactions </h2>
 			</div>
 			<p>with Aavishkar Patel and Peter Lunts</p>
