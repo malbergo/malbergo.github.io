@@ -39,13 +39,56 @@
 
             <!-- Placeholder sections for you to fill in -->
             <section class="bio-section" style="margin-bottom: var(--space-lg);">
-                <h2>Theme 1</h2>
-                <p>Description coming soon...</p>
+                <h2>Dynamical Measure Transport</h2>
+
+                <div class="animation-embed" style="margin: var(--space-lg) 0; text-align: center;">
+                    <iframe
+                        src="animations/measure_transport.html"
+                        width="800"
+                        height="500"
+                        style="border: 2px solid var(--color-accent); max-width: 100%; display: block; margin: 0 auto;"
+                        title="Dynamical Measure Transport Animation">
+                    </iframe>
+                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: var(--space-sm); font-style: italic;">
+                        Interactive visualization: Probability flow ODE (left) vs. continuous-time Markov chain (right)
+                    </p>
+                </div>
+
+                <p>Dynamical measure transport, continuous-in-time maps between distributions,
+                    has become a central topic of contemporary large-scale generative modeling.
+                    Part of my work focuses on fleshing out the mathematics of this topic in relation
+                    to generative modeling, with special emphasis on how this helps us build performant, controllable tools. We have devised
+                    new algorithms, most notably what is known as flow matching^{CITE, CITE} and, more broadly, a unifying framework for connecting
+                    flows and diffusions which we call stochastic interpolants. We are now making progress on completing the picture of this topic,
+                    deriving the equations and algorithms that allow us to make these models more efficient, but also how to make them controllable
+                    via principled approaches to fine-tuning that relate these dynamical systems to reinforcement learning algorithms. Along the way,
+                    we have been building on the theory of measure transport to arbitrary spaces, e.g. between distributions defined on a finite (discrete)
+                    state space,  with important outlooks for more efficient language modeling and new notions of reasoning.</p>
             </section>
 
             <section class="bio-section" style="margin-bottom: var(--space-lg);">
-                <h2>Theme 2</h2>
-                <p>Description coming soon...</p>
+                <h2>Sampling and Probabilistic Inference</h2>
+
+                <div class="animation-embed" style="margin: var(--space-lg) 0; text-align: center;">
+                    <iframe
+                        src="animations/annealed_langevin.html"
+                        width="600"
+                        height="500"
+                        style="border: 2px solid var(--color-accent); max-width: 100%; display: block; margin: 0 auto;"
+                        title="Annealed Langevin Dynamics Animation">
+                    </iframe>
+                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: var(--space-sm); font-style: italic;">
+                        Interactive visualization: Annealed Langevin dynamics sampling from a Gaussian mixture model
+                    </p>
+                </div>
+
+                <p>Algorithmic advances in generative modeling have largely been dependent on assumptions of access to an abundance of
+                    samples from target distributions of interest that we want to model. In the case of language or image generation,
+                    we learn from the endless stream of textual and visual data available to us. In the sciences, however, an opposite
+                    circumstance is often encountered, where data is scarce and hard to obtain, but inductive structure in a learning
+                    problem is available from the theory. Another branch of our work is to figure out how to learn a generative model
+                    for problems in the sciences where little to no data is available, but maybe an energy function defining a molecule
+                    or physical theory is. How do we adapt our learning algorithms to effectively utilize this information?</p>
             </section>
 
             <section class="bio-section">
