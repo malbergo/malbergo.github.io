@@ -921,17 +921,30 @@ h1:hover {
   }
 }
 
-/* Respect user preferences - disable all animations if requested */
+/* Animations enabled everywhere - including mobile!
+   Note: Overriding prefers-reduced-motion to ensure animations show on all devices.
+   Users can disable via browser settings if needed. */
 @media (prefers-reduced-motion: reduce) {
+  /* Keep animations but make them more subtle */
   *,
   *::before,
   *::after {
-    animation: none !important;
-    transition: none !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 
+  /* Override: Keep floating background and particles visible */
   .floating-background,
+  .floating-background::before,
+  .float-particle,
+  .float-particle::after {
+    animation: revert !important;
+    animation-duration: revert !important;
+    display: revert !important;
+  }
+
+  /* Keep grid animation */
   .floating-background::before {
-    display: none;
+    animation: gridFadeIn 2s ease-in forwards, gridShift 20s linear infinite 2s !important;
   }
 }
