@@ -820,6 +820,7 @@ h1:hover {
   left: -120px;
   animation: floatRight 40s linear infinite;
   animation-delay: 0s;
+  will-change: transform;
 }
 
 /* Particle 2: Small circle - quantum state */
@@ -830,7 +831,8 @@ h1:hover {
   top: 25%;
   right: -60px;
   animation: floatLeft 30s linear infinite;
-  animation-delay: 3s;
+  animation-delay: 1s;
+  will-change: transform;
 }
 
 /* Particle 3: Tall rectangle - data column */
@@ -840,7 +842,8 @@ h1:hover {
   top: 50%;
   left: -40px;
   animation: floatDiagonal 45s linear infinite;
-  animation-delay: 6s;
+  animation-delay: 2s;
+  will-change: transform;
 }
 
 /* Particle 4: Medium square rotated - network node */
@@ -851,7 +854,8 @@ h1:hover {
   right: -80px;
   transform: rotate(45deg);
   animation: floatLeftRotate 35s linear infinite;
-  animation-delay: 9s;
+  animation-delay: 3s;
+  will-change: transform;
 }
 
 /* Particle 5: Small horizontal line - gradient vector */
@@ -863,8 +867,9 @@ h1:hover {
   top: 40%;
   left: -100px;
   animation: floatRight 32s linear infinite;
-  animation-delay: 12s;
+  animation-delay: 4s;
   opacity: 0.25;
+  will-change: transform;
 }
 
 /* Particle 6: Medium circle - probability distribution */
@@ -875,7 +880,8 @@ h1:hover {
   top: 80%;
   left: -90px;
   animation: floatDiagonal 42s linear infinite;
-  animation-delay: 15s;
+  animation-delay: 5s;
+  will-change: transform;
 }
 
 /* Animation: Float from left to right */
@@ -925,26 +931,38 @@ h1:hover {
    Note: Overriding prefers-reduced-motion to ensure animations show on all devices.
    Users can disable via browser settings if needed. */
 @media (prefers-reduced-motion: reduce) {
-  /* Keep animations but make them more subtle */
-  *,
-  *::before,
-  *::after {
+  /* Disable most animations but keep our floating particles */
+  *:not(.floating-background):not(.floating-background::before):not(.float-particle):not(.float-particle::after) {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
 
-  /* Override: Keep floating background and particles visible */
-  .floating-background,
-  .floating-background::before,
-  .float-particle,
-  .float-particle::after {
-    animation: revert !important;
-    animation-duration: revert !important;
-    display: revert !important;
+  /* Force enable floating background and particles - critical for mobile */
+  .floating-background {
+    display: block !important;
+    opacity: 1 !important;
   }
 
-  /* Keep grid animation */
   .floating-background::before {
+    display: block !important;
     animation: gridFadeIn 2s ease-in forwards, gridShift 20s linear infinite 2s !important;
+  }
+
+  .float-particle {
+    display: block !important;
+    opacity: 0.15 !important;
+  }
+
+  /* Explicitly enable each particle animation */
+  .particle-1 { animation: floatRight 40s linear infinite 0s !important; }
+  .particle-2 { animation: floatLeft 30s linear infinite 1s !important; }
+  .particle-3 { animation: floatDiagonal 45s linear infinite 2s !important; }
+  .particle-4 { animation: floatLeftRotate 35s linear infinite 3s !important; }
+  .particle-5 { animation: floatRight 32s linear infinite 4s !important; }
+  .particle-6 { animation: floatDiagonal 42s linear infinite 5s !important; }
+
+  /* Keep collision pulses */
+  .float-particle::after {
+    animation: collisionPulse 8s ease-in-out infinite !important;
   }
 }
