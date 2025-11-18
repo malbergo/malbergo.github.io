@@ -1,711 +1,512 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Michael Albergo</title>
-        <meta name="Author" content="Michael">
-        <meta name="Description" content="about | research | presentations">
-        <meta name="Keywords" content="michael albergo">
-        
-        <!--Blueprint CSS Framework-->
-        <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
-        <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">    
-        <!–[if IE]><link rel="stylesheet" href="css/blueprint/lib/ie.css" type="text/css" media="screen, projection"><![endif]–>
-        
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    	
-    </head>
-    
-    <body>
-	
-	<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-        
-        <div class="container">
-            
-            <!--the header spans the entire width of the page, which is 24 columns, so that it shows up as a single row on top-->
-            <div class="header span-18 prepend-3 append-3 last">
-            <div class="contact_information_box span-9">
-                <h1>Michael S Albergo</h1>
-                <p>michaelsalbergo [at] gmail <br> malbergo [at] fas.harvard.edu </p>
-		<p>Publications: <a href="https://scholar.google.com/citations?user=GQyCZ4kAAAAJ&hl=en" target="_blank">google scholar</a></p>
-		<p>CV: Available upon request.</p>
-		<p><a target="_blank" href="https://twitter.com/msalbergo?lang=en">
-            <img src="docs/twitter.png" width="30">
-           </a></p>
-	
-			</div>
-                
-			<div class="span-8 last">
-                <img src="docs/faculty_photo_from_tara.jpeg" width="250">
-                <figcaption>PC: Tara (2024)</figcaption>
-            </div>
-            </div>
-            
-            <div class="navbar span-19 prepend-3 append-3 last">
-				<br>
-				<div align="right" class="span-6">
-					<a href="index.html">About</a>
-				</div>
-				<div align="center" class="span-5">
-					<a href="papers.html"><i>Papers</i></a>
-				</div>
-	   			<div align="left" class="span-1">
-					<a href="potpourri.html">Potpourri</a>
-				</div>
-
-		    <br>
-                   <hr>
-            </div>
-            
-		<!--this is a main content block, which is centered on the page-->
-		<div class="span-18 prepend-3 append-3 last">
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>Any-order flexible length masked diffusion
-			</h2>
-			</div>
-			<p>with Jaeyeon Kim, Lee Cheuk-Kit, Carles Domingo-Enrich, Yilun Du, Sham Kakade, Timothy Ngotiaoco, and Sitan Chen</p>
-			
-			<div class="row">
-				<div class="column">
-					<video autoplay loop muted playsinline style="width:200%" poster="docs/papers/flexmdm_image.png"> <source src="docs/papers/flexmdm_animation.mp4" type="video/mp4"> <img src="docs/papers/self-distillation.png" alt="Self distillation animation"> </video>				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>Masked diffusion models (MDMs) have recently emerged as a promising alternative to autoregressive models over discrete domains. 
-		MDMs generate sequences in an any-order, parallel fashion, enabling fast inference and strong performance on non-causal tasks. However, 
-		a crucial limitation is that they do not support token insertions and are thus limited to fixed-length generations. To this end, we 
-		introduce Flexible Masked Diffusion Models (FlexMDMs), a discrete diffusion paradigm that simultaneously can model sequences of flexible 
-		length while provably retaining MDMs' flexibility of any-order inference. Grounded in an extension of the stochastic interpolant framework, 
-		FlexMDMs generate sequences by inserting mask tokens and unmasking them. Empirically, we show that FlexMDMs match MDMs in perplexity while 
-		modeling length statistics with much higher fidelity. On a synthetic maze planning task, they achieve ≈60% higher success rate than MDM 
-		baselines. Finally, we show pretrained MDMs can easily be retrofitted into FlexMDMs: on 16 H100s, it takes only three days to fine-tune 
-		LLaDA-8B into a FlexMDM, achieving superior performance on math (GSM8K, 58%→67%) and code infilling performance (52%→65%) </p>
-	<p><a href = "https://arxiv.org/abs/2509.01025">arXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2509.01025'></div></p>	
-		
-</div></div>
-
-
-<hr>
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>Multitask Learning with Stochastic Interpolants
-			</h2>
-			</div>
-			<p>with Hugo Negrel, Florentin Coeurdoux, and Eric Vanden-Eijnden</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/multitask.png" alt="Snow" style="width:200%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-		<p><br>We propose a framework for learning maps between probability distributions that broadly generalizes the time dynamics 
-			of flow and diffusion models. To enable this, we generalize stochastic interpolants by replacing the scalar time variable 
-			with vectors, matrices, or linear operators, allowing us to bridge probability distributions across multiple dimensional 
-			spaces. This approach enables the construction of versatile generative models capable of fulfilling multiple tasks without 
-			task-specific training. Our operator-based interpolants not only provide a unifying theoretical perspective for existing 
-			generative models but also extend their capabilities. Through numerical experiments, we demonstrate the zero-shot efficacy 
-			of our method on conditional generation and inpainting, fine-tuning and posterior sampling, and multiscale modeling, 
-			suggesting its potential as a generic task-agnostic alternative to specialized models. </p>
-		<p><a href = "https://arxiv.org/abs/2508.04605">NeurIPS 2025 (Spotlight)</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2508.04605'></div></p>	
-
-		</div></div>
-
-
-<hr>
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>How to build a consistency model: Learning flow maps via self-distillation
-			</h2>
-			</div>
-			<p>with Nicholas Boffi and Eric Vanden-Eijnden</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/self-distillation.png" alt="Snow" style="width:200%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>We propose Building on the framework proposed in Boffi et al. (2024), we present a systematic
-		approach for learning flow maps associated with flow and diffusion models. Flow
-		map-based models, commonly known as consistency models, encompass recent
-		efforts to improve the efficiency of generative models based on solutions to differential equations. 
-		By exploiting a relationship between the velocity field underlying
-		a continuous-time flow and the instantaneous rate of change of the flow map, we
-		show how to convert existing distillation schemes into direct training algorithms
-		via self-distillation, eliminating the need for pre-trained models. We empirically
-		evaluate several instantiations of our framework, finding that high-dimensional
-		tasks like image synthesis benefit from objective functions that avoid temporal and
-		spatial derivatives of the flow map, while lower-dimensional tasks can benefit from
-		objectives incorporating higher-order derivatives to capture sharp features. </p>
-	<p><a href = "https://arxiv.org/abs/2505.18825">NeurIPS 2025</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2505.18825'></div></p>	
-		
-</div></div>
-
-
-<hr>
-
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>LEAPS: A discrete neural sampler via locally equivariant networks
-			</h2>
-			</div>
-			<p>with Peter Holderrieth and Tommi Jaakkola</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/leaps.png" alt="Snow" style="width:200%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>We propose LEAPS, an algorithm to sample from discrete distributions known up to normalization by learning a rate matrix of a continuous-time Markov chain (CTMC).
-		LEAPS can be seen as a continuous-time formulation of annealed importance sampling and sequential Monte Carlo methods, extended so that the variance of the importance 
-		weights is offset by the inclusion of the CTMC. To derive these importance weights, we introduce a set of Radon-Nikodym derivatives of CTMCs over their path measures. 
-		Because the computation of these weights is intractable with standard neural network parameterizations of rate matrices, we devise a new compact representation for rate 
-		matrices via what we call locally equivariant functions. To parameterize them, we introduce a family of locally equivariant multilayer perceptrons, attention layers, 
-		and convolutional networks, and provide an approach to make deep networks that preserve the local equivariance. This property allows us to propose a scalable training 
-		algorithm for the rate matrix such that the variance of the importance weights associated to the CTMC are minimal. We demonstrate the efficacy of LEAPS on problems in 
-		statistical physics. </p>
-	<!-- <p>ICML 2024</p> -->
-	<p>Best Paper Award <a href = "https://sites.google.com/view/fpiworkshop/">Frontiers of Probabilistic Inference</a> workshop, ICLR 2025</p>
-	<p><a href = "https://github.com/malbergo/leaps">Code</a></p>
-	<p><a href = "https://arxiv.org/abs/2502.10843">ICML 2025</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2502.10843'></div></p>	
-		
-</div></div>
-
-
-<hr>
-
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>Debiasing Guidance for Discrete Diffusion with Sequential Monte Carlo </h2>
-			</div>
-			<p>with Brian Lee, Paul Jeha, Jes Frellsen, Pietro Liò, and Francisco Vargas</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/discrete_smc.png" alt="Snow" style="width:200%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>Discrete diffusion models are a class of generative models that produce samples from an approximated data distribution within a discrete state space. 
-		Often, there is a need to target specific regions of the data distribution. Current guidance methods aim to sample from a distribution with mass proportional 
-		to p0(x0)p(ζ|x0)^α but fail to achieve this in practice. We introduce a Sequential Monte Carlo algorithm that generates unbiasedly from this target distribution, 
-		utilising the learnt unconditional and guided process. We validate our approach on low-dimensional distributions, controlled images and text generations. 
-		For text generation, our method provides strong control while maintaining low perplexity compared to guidance-based approaches. </p>
-	<!-- <p>ICML 2024</p> -->
-	<p>Oral Presentation at <a href = "https://sites.google.com/view/fpiworkshop/">Frontiers of Probabilistic Inference</a> workshop, ICLR 2025</p>
-	<p><a href = "https://arxiv.org/abs/2502.06079">arXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2502.06079'></div></p>	
-		
-</div></div>
-
-
-<hr>
-
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>Strange metals and planckian transport in a gapless phase from spatially random interactions </h2>
-			</div>
-			<p>with Aavishkar Patel and Peter Lunts</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/strange.png" alt="Snow" style="width:200%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>'Strange' metals that do not follow the predictions of Fermi liquid theory are prevalent in materials that feature superconductivity arising from electron interactions. 
-		In recent years, it has been hypothesized that spatial randomness in electron interactions must play a crucial role in strange metals for their hallmark linear-in-temperature 
-		(T) resistivity to survive down to low temperatures where phonon and Umklapp processes are ineffective, as is observed in experiments. However, a clear picture of how this 
-		happens has not yet been provided in a realistic model free from artificial constructions such as large-N limits and replica tricks. We study a realistic model of 
-		two-dimensional metals with spatially random antiferromagnetic interactions in a non-perturbative regime, using numerically exact high-performance large-scale hybrid Monte 
-		Carlo and exact averages over the quenched spatial randomness. Our simulations reproduce strange metals' key experimental signature of linear-in-T resistivity with a 
-		'planckian' transport scattering rate Γtr∼kBT/ℏ that is independent of coupling constants. We further find that strange metallicity in these systems is not associated with a 
-		quantum critical point, and instead arises from a phase of matter with gapless order parameter fluctuations that lacks long-range correlations and spans an extended region of 
-		parameter space: a feature that is also observed in several experiments. Our work paves the way for an eventual microscopic understanding of the role of spatial disorder in 
-		determining important properties of correlated electron materials. </p>
-	<!-- <p>ICML 2024</p> -->
-	<p><a href = "https://arxiv.org/abs/2410.05365">arXiv</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2410.05365'></div></p>	
-		
-</div></div>
-
-
-<hr>
-		
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>NETS: A Non-equilibrium Transport Sampler </h2>
-			</div>
-			<p>with Eric Vanden-Eijnden</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/NETS.png" alt="Snow" style="width:200%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>We propose an algorithm, termed the Non-Equilibrium Transport Sampler (NETS), to sample from unnormalized probability distributions. 
-		NETS can be viewed as a variant of annealed importance sampling (AIS) based on Jarzynski's equality, in which the stochastic differential 
-		equation used to perform the non-equilibrium sampling is augmented with an additional learned drift term that lowers the impact of the 
-		unbiasing weights used in AIS. We show that this drift is the minimizer of a variety of objective functions, which can all be estimated 
-		in an unbiased fashion without backpropagating through solutions of the stochastic differential equations governing the sampling. We also 
-		prove that some these objectives control the Kullback-Leibler divergence of the estimated distribution from its target. NETS is shown to 
-		be unbiased and, in addition, has a tunable diffusion coefficient which can be adjusted post-training to maximize the effective sample size. 
-		We demonstrate the efficacy of the method on standard benchmarks, high-dimensional Gaussian mixture distributions, and a model from statistical 
-		lattice field theory, for which it surpasses the performances of related work and existing baselines. </p>
-	<!-- <p>ICML 2024</p> -->
-	<p><a href = "https://arxiv.org/abs/2410.02711">ICML 2025</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2410.02711'></div></p>	
-		
-</div></div>
-
-
-<hr>
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>Flow Map Matching </h2>
-			</div>
-			<p>with Nicholas Boffi and Eric Vanden-Eijnden</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/mapmatch.png" alt="Snow" style="width:200%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>Generative models based on dynamical transport of measure, such as diffusion models, flow matching models, and stochastic interpolants, 
-		learn an ordinary or stochastic differential equation whose trajectories push initial conditions from a known base distribution onto the target. 
-		While training is cheap, samples are generated via simulation, which is more expensive than one-step models like GANs. To close this gap, 
-		we introduce flow map matching -- an algorithm that learns the two-time flow map of an underlying ordinary differential equation. 
-		The approach leads to an efficient few-step generative model whose step count can be chosen a-posteriori to smoothly trade off accuracy 
-		for computational expense. Leveraging the stochastic interpolant framework, we introduce losses for both direct training of flow maps and 
-		distillation from pre-trained (or otherwise known) velocity fields. Theoretically, we show that our approach unifies many existing few-step generative models, 
-		including consistency models, consistency trajectory models, progressive distillation, and neural operator approaches, which can be obtained as particular cases of our formalism. 
-		With experiments on CIFAR-10 and ImageNet 32x32, we show that flow map matching leads to high-quality samples with significantly reduced sampling cost compared to diffusion or stochastic interpolant methods. </p>
-	<!-- <p>ICML 2024</p> -->
-	<p><a href = "https://arxiv.org/abs/2406.07507">arXiv</a></p>	
-		
-</div></div>
-
-
-<hr>
-
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-			<h2>Probabilistic Forecasting with Stochastic Interpolants and Föllmer Processes </h2>
-			</div>
-			<p>with Yifan Chen, Mark Goldstein, Mengjian Hua, Nicholas Boffi, and Eric Vanden-Eijnden</p>
-			
-			<div class="row">
-				<div class="column">
-					<img src="docs/papers/forecasting.png" alt="Snow" style="width:175%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-	<p><br>We propose a framework for probabilistic forecasting of dynamical systems based on generative modeling.
-		Given observations of the system state over time, we formulate the forecasting problem as sampling from the conditional distribution of the future system state given its current state.
-		To this end, we leverage the framework of stochastic interpolants, which facilitates the construction of a generative model between an arbitrary base distribution and the target. 
-		We design a fictitious, non-physical stochastic dynamics that takes as initial condition the current system state and produces as output a sample from the target conditional distribution in finite time and without bias. 
-		This process therefore maps a point mass centered at the current state onto a probabilistic ensemble of forecasts. 
-		We prove that the drift coefficient entering the stochastic differential equation  (SDE) achieving this task is non-singular, and that it can be learned efficiently by quadratic regression over the time-series data.
-		We show that the drift and the diffusion coefficients of this SDE can be adjusted after training, and that a specific choice that minimizes the impact of the estimation error gives a Föllmer process.
-		We highlight the utility of our approach on several complex, high-dimensional forecasting problems, including stochastically forced Navier-Stokes and video prediction on the KTH and CLEVRER datasets. </p>
-	<!-- <p>ICML 2024</p> -->
-	<p><a href = "https://arxiv.org/abs/2403.13724">ICML 2024</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2403.13724'></div></p>	
-		
-</div></div>
-
-
-<hr>
-
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			<div class="span-18">
-		 <h2>SiT: Exploring Flow and Diffusion-based Generative Models with Scalable Interpolant Transformers </h2>
-			</div>
-			<p>with Nanye (Willis) Ma, Mark Goldstein, Nicholas Boffi, Eric Vanden-Eijnden, and Saining Xie</p>
-			
-			<div class="row">
-				<div class="column">
-				  <img src="docs/papers/SiT.png" alt="Snow" style="width:175%">
-				</div>
-			</div>
-			
-			<div class="span-18">
-   <p><br>We present Scalable Interpolant Transformers (SiT), a family of generative models built on the backbone of Diffusion Transformers (DiT). The interpolant framework, which
-	allows for connecting two distributions in a more flexible way than standard diffusion models, makes possible a modular study of various design choices impacting generative
-	models built on dynamical transport: using discrete vs. continuous time learning, deciding the objective for the model to learn, choosing the interpolant connecting the distributions, 
-	and deploying a deterministic or stochastic sampler. By carefully introducing the above ingredients, SiT surpasses DiT uniformly across model sizes on the conditional ImageNet 256x256 
-	benchmark using the exact same backbone, number of parameters, and GFLOPs. By exploring various diffusion coefficients, which can be tuned separately from learning, SiT achieves an FID-50K score of 2.06. </p>
-	<p>Submitted, 2023</p>
-	<p><a href = "https://arxiv.org/abs/2401.08740">ECCV 2024</a></p>
-	<p><a href = "https://github.com/willisma/SiT">Code</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2401.08740'></div></p>	
-
-</div></div>
-
-
-<hr>
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-				<div class="span-18">
-			<h2>Learning to Sample Better</h2>
-				</div>
-				<p>with Eric Vanden-Eijnden</p>
-				<div class="span-18">
-			<p><br>These lecture notes provide an introduction to recent advances in generative modeling methods based on the dynamical transportation of measures, 
-			by means of which samples from a simple base measure are mapped to samples from a target measure of interest. Special emphasis is put on the applications 
-			of these methods to Monte-Carlo (MC) sampling techniques, such as importance sampling  and Markov Chain Monte-Carlo (MCMC) schemes.  In this context, 
-			it is shown how the maps can be learned variationally using data generated by MC sampling, and how they can in turn be used to improve such sampling in a positive feedback loop. </p>
-			<!-- <p>Submitted, 2023</p> -->
-			<p><a href = "https://arxiv.org/abs/2310.11232">Lecture Notes from the 2022 Les Houches Summer School on Statistical Physics</a></p>	
-
-			</div></div>
-
-
-			<hr>
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Stochastic Interpolants with Data-Dependent Couplings</h2>
-					</div>
-					<p>with Mark Goldstein, Nicholas M. Boffi, Rajesh Ranganath, and Eric Vanden-Eijnden</p>
-					
-					<div class="row">
-						<div class="column">
-						  <img src="docs/papers/conditional-interp.png" alt="Snow" style="width:150%">
-						</div>
-					</div>
-
-					<div class="span-18">
-		   <p><br>Generative models inspired by dynamical transport of measure -- such as flows and diffusions -- construct a continuous-time map between two probability densities. 
-			Conventionally, one of these is the target density, only accessible through samples, while the other is taken as a simple base density that is data-agnostic.
-			In this work, using the framework of stochastic interpolants, we formalize how to \textit{couple} the base and the target densities.
-			This enables us to incorporate information about class labels or continuous embeddings to construct dynamical transport maps  that serve as conditional generative models.
-			We show that these transport maps can be learned by solving a simple square loss regression problem analogous to the standard independent setting.
-			We demonstrate the usefulness of constructing dependent couplings in practice through experiments in super-resolution and in-painting.  </p>
-			<!-- <p>Submitted, 2023</p> -->
-			<p><a href = "https://arxiv.org/abs/2310.03725">ICML 2024 (Spotlight)</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2310.03725'></div></p>	
-</div></div>
-
-
-<hr>
-			
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Multimarginal Generative Modeling with Stochastic Interpolants</h2>
-					</div>
-					<p>with Nicholas M. Boffi, Michael Lindsey, and Eric Vanden-Eijnden</p>
-					
-					<div class="row">
-						<div class="column">
-						  <img src="docs/papers/multi-marginal.png" alt="Snow" style="width:200%">
-						</div>
-					</div>
-
-					<div class="span-18">
-		   <p><br>Given a set of $K$ probability densities, we consider the multimarginal generative modeling problem of learning a joint distribution that recovers these densities as marginals. The structure of this joint distribution should identify multi-way correspondences among the prescribed marginals.
-			We formalize an approach to this task within a generalization of the stochastic interpolant framework, leading to efficient learning algorithms built upon dynamical transport of measure.
-			Our generative models are defined by velocity and score fields that can be characterized as the minimizers of simple quadratic objectives, and they are defined on a simplex that generalizes the time variable in the usual dynamical transport framework.
-			The resulting transport on the simplex is influenced by all marginals, and we show that multi-way correspondences can be extracted.
-			The identification of such correspondences has applications to style transfer, algorithmic fairness, and data decorruption. 
-			In addition, the multimarginal perspective enables an efficient algorithm for reducing the dynamical transport cost in the ordinary two-marginal setting.
-			We demonstrate these capacities with several numerical examples. </p>
-			<!-- <p>Submitted, 2023</p> -->
-			<!-- <p>Preprint: <a href = "https://arxiv.org/abs/2310.03725">ArXiv Preprint</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2310.03725'></div></p>		 -->
-			<p><a href = "https://arxiv.org/abs/2310.03695">ICLR 2024</a></p>		
-		   
-</div></div>
-<hr>
-
-			
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Normalizing flows for lattice gauge theory in arbitrary space-time dimension</h2>
-					</div>
-					<p>with Ryan Abbott, Alex Botev, Denis Boyda, Kyle Cranmer, Daniel C. Hackett, Gurtej Kanwar, Alexander G.D.G Matthews, Sébastien Racanière, Danilo J. Rezende, Fernando Romero-López, Phiala E. Shanahan, and Julian M. Urban</p>
-					
-					<div class="row">
-						<div class="column">
-						  <img src="docs/papers/frozen_loops.png" alt="Snow" style="width:200%">
-						</div>
-					</div>
-
-					<div class="span-18">
-		   <p><br>Applications of normalizing flows to the sampling of field configurations in lattice gauge theory have so far been explored almost exclusively in two space-time dimensions. We report new algorithmic developments of gauge-equivariant flow architectures 
-			      facilitating the generalization to higher-dimensional lattice geometries. Specifically, we discuss masked autoregressive transformations with tractable and unbiased Jacobian determinants, a key ingredient for scalable and asymptotically exact flow-based 
-				  sampling algorithms. For concreteness, results from a proof-of-principle application to SU(3) lattice gauge theory in four space-time dimensions are reported.</p>
-		   <p>Published: <a href = "https://arxiv.org/abs/2305.02402">ArXiv Preprint</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2305.02402'></div></p>		
-		   
-</div></div>
-<hr>
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Stochastic Interpolants: A Unifying Framework for Flows and Diffusions</h2>
-					</div>
-					<p>with Nicholas M. Boffi and Eric Vanden-Eijnden</p>
-					
-					<div class="row">
-						<div class="column">
-						  <img src="docs/papers/ode_v_sde.png" alt="Snow" style="width:200%">
-						</div>
-					</div>
-
-					<div class="span-18">
-		   <p><br>We introduce a class of generative models based on the stochastic interpolant framework proposed in Albergo & Vanden-Eijnden (2023) that unifies flow-based and diffusion-based methods. We first show how to construct a broad class of continuous-time stochastic processes whose time-dependent probability density function bridges two arbitrary densities exactly in finite time. 
-			These `stochastic interpolants' are built by combining data from the two densities with an additional latent variable, and the specific details of the construction can be leveraged to shape the resulting time-dependent density in a flexible way. We then show that the time-dependent density of the stochastic interpolant satisfies a first-order transport equation as well as a family of 
-			forward and backward Fokker-Planck equations with tunable diffusion; upon consideration of the time evolution of an individual sample, this viewpoint immediately leads to both deterministic and stochastic generative models based on probability flow equations or stochastic differential equations with a tunable level of noise. The drift coefficients entering these models are time-dependent 
-			velocity fields characterized as the unique minimizers of simple quadratic objective functions, one of which is a new objective for the score of the interpolant density. Remarkably, we show that minimization of these quadratic objectives leads to control of the likelihood for generative models built upon stochastic dynamics; by contrast, we show that generative models based upon a deterministic dynamics must, in addition, 
-			control the Fisher divergence between the target and the model. Finally, we construct estimators for the likelihood and the cross-entropy of interpolant-based generative models, and demonstrate that such models recover the Schrödinger bridge between the two target densities when explicitly optimizing over the interpolant.</p>
-		   <p>Published: <a href = "https://arxiv.org/abs/2303.08797">JMLR</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2303.08797'></div></p>		
-		   
-</div></div>			
-<hr>
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Building Normalizing Flows with Stochastic Interpolants</h2>
-					</div>
-					<p>with Eric Vanden-Eijnden</p>
-					
-					<div class="row">
-						<div class="column">
-						  <img src="docs/papers/probflow6.png" alt="Snow" style="width:100%">
-						</div>
-						<div class="column">
-							<img src="docs/papers/flowers.gif" alt="Snow" style="width:80%">
-						  </div>
-					</div>
-
-					<div class="span-18">
-		   <p><br>A generative model based on a continuous-time normalizing flow between any pair of base and target probability densities is proposed. The velocity field of this flow is inferred from the probability current of a time-dependent density that interpolates between the base and the target in finite time. Unlike conventional normalizing flow inference methods based the maximum likelihood principle, which require costly backpropagation through ODE solvers, our interpolant approach leads to a simple quadratic loss for the velocity itself which is expressed in terms of expectations that are readily amenable to empirical estimation. The flow can be used to generate samples from either the base or target, and to estimate the likelihood at any time along the interpolant. In addition, the flow can be optimized to minimize the path length of the interpolant density, thereby paving the way for building optimal transport maps. 
-			In situations where the base is a Gaussian density, we also show that the velocity of our normalizing flow can also be used to construct a diffusion model to sample the target as well as estimate its score. However, our approach shows that we can bypass this diffusion completely and work at the level of the probability flow with greater simplicity, opening an avenue for methods based solely on ordinary differential equations as an alternative to those based on stochastic differential equations.
-			Benchmarking on density estimation tasks illustrates that the learned flow can match and surpass maximum likelihood continuous flows at a fraction of the conventional ODE training costs, and compares with diffusions on image generation on CIFAR-10 and ImageNet 32x32. The method scales ab-initio ODE flows to previously unreachable image resolutions.</p>
-		   <p>Published: <a href = "https://arxiv.org/abs/2209.15571">ICLR 2023</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2209.15571'></div></p>		
-		   
-</div></div>
-<hr>
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Sampling QCD field configurations with gauge-equivariant flow models</h2>
-					</div>
-					<p>with Ryan Abbott, Aleksandar Botev, Denis Boyda, Kyle Cranmer, Daniel C Hackett, Gurtej Kanwar, Alexander GDG Matthews, Sébastien Racanière, Ali Razavi, Dailo J Rezende, Fernando Romero-López, Phiala E Shanahan, and Julian M Urban</p>
-					
-					<div class="row">
-						<div class="column">
-						  <img src="docs/papers/qcd.png" alt="Snow" style="width:200%">
-						</div>
-					</div>
-
-					<div class="span-18">
-		   <p><br>Machine learning methods based on normalizing flows have been shown to address important challenges, such as critical slowing-down and topological freezing, in the sampling of gauge field configurations in simple lattice field theories. A critical question is whether this success will translate to studies of QCD. This Proceedings presents a status update on advances in this area. In particular, it is illustrated how recently developed algorithmic components may be combined to construct flow-based sampling algorithms for QCD in four dimensions. The prospects and challenges for future use of this approach in at-scale applications are summarized.</p>
-		   <p>Published: <a href = "https://arxiv.org/abs/2208.03832">Lattice 2022</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2208.03832'></div></p>		
-		   
-</div></div>
-<hr>
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Non-Hertz-Millis scaling of the antiferromagnetic quantum critical metal via scalable Hybrid Monte Carlo</h2>
-					</div>
-					<p>with Peter Lunts and Michael Lindsey</p>
-					
-					<div class="row">
-						<div class="column">
-						  <img src="docs/papers/occ_func_nesting_2_L_80_Nt_200.png" alt="Snow" style="width:100%">
-						</div>
-						<div class="column">
-						  <img src="docs/papers/occ_func_nesting_6_L_80_Nt_200.png" alt="Forest" style="width:100%">
-						</div>
-					</div>
-					<!-- <div class="span-18">
-						 <img src="docs/papers/occ_func_nesting_2_L_80_Nt_200.png" width="400">
-						 <img src="docs/papers/occ_func_nesting_6_L_80_Nt_200.png" width="400">
-					</div> -->
-					<div class="span-18">
-		   <p><br>We numerically study the O(3) spin-fermion model, a minimal model of the onset of antiferromagnetic spin-density wave (SDW) order in a two-dimensional metal. We employ a Hybrid Monte Carlo (HMC) algorithm with a novel auto-tuning procedure, which learns the optimal HMC hyperparameters in an initial warmup phase. This allows us to study unprecedentedly large systems, even at criticality. At the quantum critical point, we find a critical scaling of the dynamical spin susceptibility χ(ω,q ) that strongly violates the Hertz-Millis form, which is the first demonstrated instance of such a phenomenon in this model. The form that we do observe provides strong evidence that the universal scaling is actually governed by the fixed point near perfect hot-spot nesting of Schlief, Lunts, and Lee [Phys. Rev. X 7, 021010 (2017)], even away from perfect nesting. Our work provides a concrete link between controlled calculations of SDW metallic criticality in the long-wavelength and small nesting angle limits and a microscopic finite-size model at realistic appreciable values of the nesting angle. Additionally, the HMC method we introduce is generic and can be used to study other fermionic models of quantum criticality, where there is a strong need to simulate large systems.</p>
-		   <p>Published: <a href = "https://rdcu.be/dbhGh">Nature Communications</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2204.14241'></div></p>		
-		   
-</div></div>
-<hr>
-
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Flow-based sampling in the lattice Schwinger model at criticality</h2>
-					</div>
-					<p>with Denis Boyda Kyle Cranmer, Daniel C. Hackett, Gurtej Kanwar, Sébastien Racanière, Danilo J Rezende, Fernando Romero-López, Phiala E. Shanahan, and Julian M Urban</p>
-
-					<div class="span-18">
-						<img src="docs/papers/Chi-Q.png" width="400">
-					</div>
-					<div class="span-18">
-		   <p><br>Recent results suggest that flow-based algorithms may provide efficient sampling of field distributions for lattice field theory applications, such as studies of quantum chromodynamics and the Schwinger model. In this work, we provide a numerical demonstration of robust flow-based sampling in the Schwinger model at the critical value of the fermion mass. In contrast, at the same parameters, conventional methods fail to sample all parts of configuration space, leading to severely underestimated uncertainties.</p>
-		   <p>Published: <a href = "https://arxiv.org/abs/2202.11712">Physical Review D</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2202.11712'></div></p>		
-		   
-</div></div>
-<hr>
-
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-		                        <div class="span-18">
-		             		<h2>Sampling using SU(N) gauge equivariant flows</h2>
-		                        </div>
-		                    	<p>with Denis Boyda, Gurtej Kanwar, Sébastien Racanière, Danilo Jimenez Rezende, Kyle Cranmer, Daniel C. Hackett, and Phiala E. Shanahan</p>
-
-		                        <div class="span-18">
-		                             <img src="docs/papers/su_N_flows.png" width="580">
-		                        </div>
-		                        <div class="span-18">
-					   <p><br>We develop a flow-based sampling algorithm for SU(N) lattice gauge theories that is gauge-invariant by construction. Our key contribution is constructing a class of flows on an SU(N) variable (or on a U(N) variable by a simple alternative) that respect matrix conjugation symmetry. We apply this technique to sample distributions of single SU(N) variables and to construct flow-based samplers for SU(2) and SU(3) lattice gauge theory in two dimensions.</p>
-					   <p>Published: <a href = "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.103.074504">Physical Review D</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2008.05456'></div></p>		
-					   
-</div></div>
-<hr>
-
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-					<div class="span-18">
-				 <h2>Flow-based sampling for fermionic lattice field theories</h2>
-					</div>
-					<p>with Gurtej Kanwar, Sébastien Racanière, Danilo Jimenez Rezende, Julian M. Urban, Denis Boyda Kyle Cranmer, Daniel C. Hackett, and Phiala E. Shanahan</p>
-
-					<div class="span-18">
-						 <img src="docs/papers/samplers.png" width="700">
-					</div>
-					<div class="span-18">
-		   <p><br>Algorithms based on normalizing flows are emerging as promising machine learning approaches to sampling complicated probability distributions in a way that can be made asymptotically exact. In the context of lattice field theory, proof-of-principle studies have demonstrated the effectiveness of this approach for scalar theories, gauge theories, and statistical systems. This work develops approaches that enable flow-based sampling of theories with dynamical fermions, which is necessary for the technique to be applied to lattice field theory studies of the Standard Model of particle physics and many condensed matter systems. As a practical demonstration, these methods are applied to the sampling of field configurations for a two-dimensional theory of massless staggered fermions coupled to a scalar field via a Yukawa interaction.</p>
-		   <p>Published: <a href = "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.104.114507">Physical Review D</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2106.05934'></div></p>		
-		   
-</div></div>
-<hr>
-
-
-
-			<div class="research_project_description span-18 prepend-3 append-3 last">
-						
-				<div class="span-18">
-					<h2>Equivariant flow-based sampling for lattice gauge theory</h2>
-				</div>
-				<p>with Gurtej Kanwar, Denis Boyda, Kyle Cranmer, Daniel C. Hackett, Sébastien Racanière, Danilo Jimenez Rezende, and Phiala E. Shanahan</p>
-
-				<div class="span-18">
-					<img src="docs/papers/equiv-flow.png" width="500">
-				</div>
-				<div class="span-18">
-			<br>
-			<p> We define a class of machine-learned flow-based sampling algorithms for lattice gauge theories that are gauge invariant by construction. We demonstrate the application of this framework to U(1) gauge theory in two spacetime dimensions, and find that, at small bare coupling, the approach is orders of magnitude more efficient at sampling topological quantities than more traditional sampling procedures such as hybrid Monte Carlo and heat bath.</p>
-			<p>Published: <a href = "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.121601">Physical Review Letters</a>
-				<div class='altmetric-embed' data-badge-type='donut' data-doi='10.1103/physrevlett.125.121601'></div></p>
-		</div>
-		<br>
-		</div>
-		<hr>
-
-		<div class="research_project_description span-18 prepend-3 append-3 last">
-			
-	                        <div class="span-18">
-	                            <h2>Normalizing Flows on Tori and Spheres</h2>
-	                        </div>
-	                    	<p>with Danilo Jimenez Rezende, George Papamakarios, Sébastien Racanière, Gurtej Kanwar, Phiala E. Shanahan, Kyle Cranmer</p>
-
-	                        <div class="span-18">
-	                             <img src="docs/papers/globe.png" width="550">
-	                        </div>
-	                        <div class="span-18">
-				   <br>
-				   <p>Normalizing flows are a powerful tool for building expressive distributions in high dimensions. So far, most of the literature has concentrated on learning flows on Euclidean spaces. Some problems however, such as those involving angles, are defined on spaces with more complex geometries, such as tori or spheres. In this paper, we propose and compare expressive and numerically stable flows on such spaces. Our flows are built recursively on the dimension of the space, starting from flows on circles, closed intervals or spheres.</p>
-				</p>
-				   <p>Published: <a href = "https://arxiv.org/abs/2002.02428">ICML 2020</a><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2002.02428'></div></p>
-				  
-				</div>
-	                        <br>
-		          </div>
-				  <hr>
-
-
-				<div class="research_project_description span-18 prepend-3 append-3 last">
-					
-			                        <div class="span-18">
-			             		<h2>Learnability scaling of quantum states: Restricted Boltzmann machines</h2>
-			                        </div>
-			                    	<p>with Dan Sehayek, Anna Golubeva, Bohdan Kulchytskyy, Giacomo Torlai, and Roger G. Melko</p>
-
-						  <div class="span-18">
-				                             <img src="docs/papers/WeightDecay.png" width="400">
-				                        </div>
-
-			                        <div class="span-18">
-						   <p>Generative modeling with machine learning has provided a new perspective on the data-driven task of reconstructing quantum states from a set of qubit measurements. As increasingly large experimental quantum devices are built in laboratories, the question of how these machine learning techniques scale with the number of qubits is becoming crucial. We empirically study the scaling of restricted Boltzmann machines (RBMs) applied to reconstruct ground-state wavefunctions of the one-dimensional transverse-field Ising model from projective measurement data. We define a learning criterion via a threshold on the relative error in the energy estimator of the machine. With this criterion, we observe that the number of RBM weight parameters required for accurate representation of the ground state in the worst case - near criticality - scales quadratically with the number of qubits. By pruning small parameters of the trained model, we find that the number of weights can be significantly reduced while still retaining an accurate reconstruction. This provides evidence that over-parametrization of the RBM is required to facilitate the learning process.</p>
-						
-						<p>Published: <a href = "https://doi.org/10.1103/PhysRevB.100.195125"> Physical Review B -- Editor's Suggestions</a></p>   
-						<p>Preprint: <a href = "https://arxiv.org/abs/1908.07532">ArXiv</a> <div class='altmetric-embed' data-badge-type='donut' data-doi='10.1103/PhysRevB.100.195125'></div></p>
-
-						</div>
-			                        <br>
-				          </div>
-				
-
-<hr>
-				<div class="research_project_description span-18 prepend-3 append-3 last">
-
-										<div class="span-18">
-									<h2>Flow-based generative models for Markov chain Monte Carlo in lattice field theory</h2>
-										</div>
-										<p>with G. Kanwar, and P. E. Shanahan</p>
-								<div class="span-18">
-													<img src="docs/papers/flows_first_paper.png" width="650">
-											</div>
-
-										<div class="span-18">
-								<p>A Markov chain update scheme using a machine-learned flow-based generative model is proposed for Monte Carlo sampling in lattice field theories. The generative model may be optimized (trained) to produce samples from a distribution approximating the desired Boltzmann distribution determined by the lattice action of the theory being studied. Training the model systematically improves autocorrelation times in the Markov chain, even in regions of parameter space where standard Markov chain Monte Carlo algorithms exhibit critical slowing down in producing decorrelated updates. Moreover, the model may be trained without existing samples from the desired distribution. The algorithm is compared with HMC and local Metropolis sampling for 
-									ϕ<sup>4</sup> theory in two dimensions.</p>
-								<p>Published: <a href = "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.100.034515">Physical Review D</a></p><div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='1904.12072'></div>
-							</div>
-										<br><br>
-								</div>
-					<br>
-
-	
-            
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Research Papers - Michael S Albergo">
+    <meta name="author" content="Michael S Albergo">
+    <meta name="keywords" content="Michael Albergo, research papers, machine learning, generative models">
+
+    <title>Papers - Michael S Albergo</title>
+
+    <!-- Brutalist Stylesheet -->
+    <link rel="stylesheet" href="css/brutalist.css">
+
+    <!-- IBM Plex Mono Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html">About</a>
+            <a href="research-themes.html">Research Themes</a>
+            <a href="papers.html" class="active" aria-current="page">Papers</a>
+            <a href="potpourri.html">Potpourri</a>
         </div>
-		
-		
+    </nav>
 
-	
-	<!-- Default Statcounter code for Personal Website http://malbergo.me -->
-	<script type="text/javascript">
-	var sc_project=12432432; 
-	var sc_invisible=1; 
-	var sc_security="7949d3cb"; 
-	var sc_https=1; 
-	</script>
-	<script type="text/javascript"
-	src="https://www.statcounter.com/counter/counter.js" async></script>
-	<noscript><div class="statcounter"><a title="hit counter"
-	href="https://statcounter.com/" target="_blank"><img class="statcounter"
-	src="https://c.statcounter.com/12432432/0/7949d3cb/1/" alt="hit
-	counter"></a></div></noscript>
-	<!-- End of Statcounter Code -->
-    </body>
-    
+    <!-- Main Content -->
+    <main class="container">
+        <div class="content">
+            <h1 class="section-header">Research Papers</h1>
+
+            <!-- Paper 1 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Any-order flexible length masked diffusion</h2>
+                <p class="paper-authors">with Jaeyeon Kim, Lee Cheuk-Kit, Carles Domingo-Enrich, Yilun Du, Sham Kakade, Timothy Ngotiaoco, and Sitan Chen</p>
+
+                <div class="paper-media">
+                    <video autoplay loop muted playsinline poster="docs/papers/flexmdm_image.png">
+                        <source src="docs/papers/flexmdm_animation.mp4" type="video/mp4">
+                        <img src="docs/papers/flexmdm_image.png" alt="FlexMDM visualization">
+                    </video>
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Masked diffusion models (MDMs) have recently emerged as a promising alternative to autoregressive models over discrete domains. MDMs generate sequences in an any-order, parallel fashion, enabling fast inference and strong performance on non-causal tasks. However, a crucial limitation is that they do not support token insertions and are thus limited to fixed-length generations. To this end, we introduce Flexible Masked Diffusion Models (FlexMDMs), a discrete diffusion paradigm that simultaneously can model sequences of flexible length while provably retaining MDMs' flexibility of any-order inference. Grounded in an extension of the stochastic interpolant framework, FlexMDMs generate sequences by inserting mask tokens and unmasking them. Empirically, we show that FlexMDMs match MDMs in perplexity while modeling length statistics with much higher fidelity. On a synthetic maze planning task, they achieve H60% higher success rate than MDM baselines. Finally, we show pretrained MDMs can easily be retrofitted into FlexMDMs: on 16 H100s, it takes only three days to fine-tune LLaDA-8B into a FlexMDM, achieving superior performance on math (GSM8K, 58%�67%) and code infilling performance (52%�65%).</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2509.01025" target="_blank" rel="noopener noreferrer">arXiv</a>
+                </div>
+            </article>
+
+            <!-- Paper 2 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Multitask Learning with Stochastic Interpolants</h2>
+                <p class="paper-authors">with Hugo Negrel, Florentin Coeurdoux, and Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/multitask.png" alt="Multitask learning visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We propose a framework for learning maps between probability distributions that broadly generalizes the time dynamics of flow and diffusion models. To enable this, we generalize stochastic interpolants by replacing the scalar time variable with vectors, matrices, or linear operators, allowing us to bridge probability distributions across multiple dimensional spaces. This approach enables the construction of versatile generative models capable of fulfilling multiple tasks without task-specific training. Our operator-based interpolants not only provide a unifying theoretical perspective for existing generative models but also extend their capabilities. Through numerical experiments, we demonstrate the zero-shot efficacy of our method on conditional generation and inpainting, fine-tuning and posterior sampling, and multiscale modeling, suggesting its potential as a generic task-agnostic alternative to specialized models.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2508.04605" target="_blank" rel="noopener noreferrer">NeurIPS 2025 (Spotlight)</a>
+                </div>
+            </article>
+
+            <!-- Paper 3 -->
+            <article class="paper-item">
+                <h2 class="paper-title">How to build a consistency model: Learning flow maps via self-distillation</h2>
+                <p class="paper-authors">with Nicholas Boffi and Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/self-distillation.png" alt="Self-distillation visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Building on the framework proposed in Boffi et al. (2024), we present a systematic approach for learning flow maps associated with flow and diffusion models. Flow map-based models, commonly known as consistency models, encompass recent efforts to improve the efficiency of generative models based on solutions to differential equations. By exploiting a relationship between the velocity field underlying a continuous-time flow and the instantaneous rate of change of the flow map, we show how to convert existing distillation schemes into direct training algorithms via self-distillation, eliminating the need for pre-trained models. We empirically evaluate several instantiations of our framework, finding that high-dimensional tasks like image synthesis benefit from objective functions that avoid temporal and spatial derivatives of the flow map, while lower-dimensional tasks can benefit from objectives incorporating higher-order derivatives to capture sharp features.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2505.18825" target="_blank" rel="noopener noreferrer">NeurIPS 2025</a>
+                </div>
+            </article>
+
+            <!-- Paper 4 -->
+            <article class="paper-item">
+                <h2 class="paper-title">LEAPS: A discrete neural sampler via locally equivariant networks</h2>
+                <p class="paper-authors">with Peter Holderrieth and Tommi Jaakkola</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/leaps.png" alt="LEAPS visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We propose LEAPS, an algorithm to sample from discrete distributions known up to normalization by learning a rate matrix of a continuous-time Markov chain (CTMC). LEAPS can be seen as a continuous-time formulation of annealed importance sampling and sequential Monte Carlo methods, extended so that the variance of the importance weights is offset by the inclusion of the CTMC. To derive these importance weights, we introduce a set of Radon-Nikodym derivatives of CTMCs over their path measures. Because the computation of these weights is intractable with standard neural network parameterizations of rate matrices, we devise a new compact representation for rate matrices via what we call locally equivariant functions. To parameterize them, we introduce a family of locally equivariant multilayer perceptrons, attention layers, and convolutional networks, and provide an approach to make deep networks that preserve the local equivariance. This property allows us to propose a scalable training algorithm for the rate matrix such that the variance of the importance weights associated to the CTMC are minimal. We demonstrate the efficacy of LEAPS on problems in statistical physics.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2502.10843" target="_blank" rel="noopener noreferrer">ICML 2025</a>
+                    <a href="https://github.com/malbergo/leaps" target="_blank" rel="noopener noreferrer">Code</a>
+                </div>
+            </article>
+
+            <!-- Paper 5 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Debiasing Guidance for Discrete Diffusion with Sequential Monte Carlo</h2>
+                <p class="paper-authors">with Brian Lee, Paul Jeha, Jes Frellsen, Pietro Li�, and Francisco Vargas</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/discrete_smc.png" alt="Discrete SMC visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Discrete diffusion models are a class of generative models that produce samples from an approximated data distribution within a discrete state space. Often, there is a need to target specific regions of the data distribution. Current guidance methods aim to sample from a distribution with mass proportional to p0(x0)p(�|x0)^� but fail to achieve this in practice. We introduce a Sequential Monte Carlo algorithm that generates unbiasedly from this target distribution, utilising the learnt unconditional and guided process. We validate our approach on low-dimensional distributions, controlled images and text generations. For text generation, our method provides strong control while maintaining low perplexity compared to guidance-based approaches.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2502.06079" target="_blank" rel="noopener noreferrer">arXiv</a>
+                </div>
+            </article>
+
+            <!-- Paper 6 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Strange metals and planckian transport in a gapless phase from spatially random interactions</h2>
+                <p class="paper-authors">with Aavishkar Patel and Peter Lunts</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/strange.png" alt="Strange metals visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>'Strange' metals that do not follow the predictions of Fermi liquid theory are prevalent in materials that feature superconductivity arising from electron interactions. In recent years, it has been hypothesized that spatial randomness in electron interactions must play a crucial role in strange metals for their hallmark linear-in-temperature (T) resistivity to survive down to low temperatures where phonon and Umklapp processes are ineffective, as is observed in experiments. However, a clear picture of how this happens has not yet been provided in a realistic model free from artificial constructions such as large-N limits and replica tricks. We study a realistic model of two-dimensional metals with spatially random antiferromagnetic interactions in a non-perturbative regime, using numerically exact high-performance large-scale hybrid Monte Carlo and exact averages over the quenched spatial randomness. Our simulations reproduce strange metals' key experimental signature of linear-in-T resistivity with a 'planckian' transport scattering rate �tr<kBT/ that is independent of coupling constants.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2410.05365" target="_blank" rel="noopener noreferrer">arXiv</a>
+                </div>
+            </article>
+
+            <!-- Paper 7 -->
+            <article class="paper-item">
+                <h2 class="paper-title">NETS: A Non-equilibrium Transport Sampler</h2>
+                <p class="paper-authors">with Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/NETS.png" alt="NETS visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We propose an algorithm, termed the Non-Equilibrium Transport Sampler (NETS), to sample from unnormalized probability distributions. NETS can be viewed as a variant of annealed importance sampling (AIS) based on Jarzynski's equality, in which the stochastic differential equation used to perform the non-equilibrium sampling is augmented with an additional learned drift term that lowers the impact of the unbiasing weights used in AIS. We show that this drift is the minimizer of a variety of objective functions, which can all be estimated in an unbiased fashion without backpropagating through solutions of the stochastic differential equations governing the sampling. We also prove that some these objectives control the Kullback-Leibler divergence of the estimated distribution from its target. NETS is shown to be unbiased and, in addition, has a tunable diffusion coefficient which can be adjusted post-training to maximize the effective sample size.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2410.02711" target="_blank" rel="noopener noreferrer">ICML 2025</a>
+                </div>
+            </article>
+
+            <!-- Paper 8 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Flow Map Matching</h2>
+                <p class="paper-authors">with Nicholas Boffi and Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/mapmatch.png" alt="Flow map matching visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Generative models based on dynamical transport of measure, such as diffusion models, flow matching models, and stochastic interpolants, learn an ordinary or stochastic differential equation whose trajectories push initial conditions from a known base distribution onto the target. While training is cheap, samples are generated via simulation, which is more expensive than one-step models like GANs. To close this gap, we introduce flow map matching -- an algorithm that learns the two-time flow map of an underlying ordinary differential equation. The approach leads to an efficient few-step generative model whose step count can be chosen a-posteriori to smoothly trade off accuracy for computational expense. Leveraging the stochastic interpolant framework, we introduce losses for both direct training of flow maps and distillation from pre-trained (or otherwise known) velocity fields.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2406.07507" target="_blank" rel="noopener noreferrer">arXiv</a>
+                </div>
+            </article>
+
+            <!-- Paper 9 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Probabilistic Forecasting with Stochastic Interpolants and F�llmer Processes</h2>
+                <p class="paper-authors">with Yifan Chen, Mark Goldstein, Mengjian Hua, Nicholas Boffi, and Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/forecasting.png" alt="Forecasting visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We propose a framework for probabilistic forecasting of dynamical systems based on generative modeling. Given observations of the system state over time, we formulate the forecasting problem as sampling from the conditional distribution of the future system state given its current state. To this end, we leverage the framework of stochastic interpolants, which facilitates the construction of a generative model between an arbitrary base distribution and the target. We design a fictitious, non-physical stochastic dynamics that takes as initial condition the current system state and produces as output a sample from the target conditional distribution in finite time and without bias.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2403.13724" target="_blank" rel="noopener noreferrer">ICML 2024</a>
+                </div>
+            </article>
+
+            <!-- Paper 10 -->
+            <article class="paper-item">
+                <h2 class="paper-title">SiT: Exploring Flow and Diffusion-based Generative Models with Scalable Interpolant Transformers</h2>
+                <p class="paper-authors">with Nanye (Willis) Ma, Mark Goldstein, Nicholas Boffi, Eric Vanden-Eijnden, and Saining Xie</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/SiT.png" alt="SiT visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We present Scalable Interpolant Transformers (SiT), a family of generative models built on the backbone of Diffusion Transformers (DiT). The interpolant framework, which allows for connecting two distributions in a more flexible way than standard diffusion models, makes possible a modular study of various design choices impacting generative models built on dynamical transport: using discrete vs. continuous time learning, deciding the objective for the model to learn, choosing the interpolant connecting the distributions, and deploying a deterministic or stochastic sampler. By carefully introducing the above ingredients, SiT surpasses DiT uniformly across model sizes on the conditional ImageNet 256x256 benchmark using the exact same backbone, number of parameters, and GFLOPs.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2401.08740" target="_blank" rel="noopener noreferrer">ECCV 2024</a>
+                    <a href="https://github.com/willisma/SiT" target="_blank" rel="noopener noreferrer">Code</a>
+                </div>
+            </article>
+
+            <!-- Paper 11 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Learning to Sample Better</h2>
+                <p class="paper-authors">with Eric Vanden-Eijnden</p>
+
+                <div class="paper-abstract">
+                    <p>These lecture notes provide an introduction to recent advances in generative modeling methods based on the dynamical transportation of measures, by means of which samples from a simple base measure are mapped to samples from a target measure of interest. Special emphasis is put on the applications of these methods to Monte-Carlo (MC) sampling techniques, such as importance sampling and Markov Chain Monte-Carlo (MCMC) schemes. In this context, it is shown how the maps can be learned variationally using data generated by MC sampling, and how they can in turn be used to improve such sampling in a positive feedback loop.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2310.11232" target="_blank" rel="noopener noreferrer">Les Houches Lecture Notes</a>
+                </div>
+            </article>
+
+            <!-- Paper 12 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Stochastic Interpolants with Data-Dependent Couplings</h2>
+                <p class="paper-authors">with Mark Goldstein, Nicholas M. Boffi, Rajesh Ranganath, and Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/conditional-interp.png" alt="Conditional interpolants visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Generative models inspired by dynamical transport of measure -- such as flows and diffusions -- construct a continuous-time map between two probability densities. Conventionally, one of these is the target density, only accessible through samples, while the other is taken as a simple base density that is data-agnostic. In this work, using the framework of stochastic interpolants, we formalize how to couple the base and the target densities. This enables us to incorporate information about class labels or continuous embeddings to construct dynamical transport maps that serve as conditional generative models.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2310.03725" target="_blank" rel="noopener noreferrer">ICML 2024 (Spotlight)</a>
+                </div>
+            </article>
+
+            <!-- Paper 13 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Multimarginal Generative Modeling with Stochastic Interpolants</h2>
+                <p class="paper-authors">with Nicholas M. Boffi, Michael Lindsey, and Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/multi-marginal.png" alt="Multimarginal visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Given a set of K probability densities, we consider the multimarginal generative modeling problem of learning a joint distribution that recovers these densities as marginals. The structure of this joint distribution should identify multi-way correspondences among the prescribed marginals. We formalize an approach to this task within a generalization of the stochastic interpolant framework, leading to efficient learning algorithms built upon dynamical transport of measure. Our generative models are defined by velocity and score fields that can be characterized as the minimizers of simple quadratic objectives, and they are defined on a simplex that generalizes the time variable in the usual dynamical transport framework.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2310.03695" target="_blank" rel="noopener noreferrer">ICLR 2024</a>
+                </div>
+            </article>
+
+            <!-- Paper 14 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Normalizing flows for lattice gauge theory in arbitrary space-time dimension</h2>
+                <p class="paper-authors">with Ryan Abbott, Alex Botev, Denis Boyda, Kyle Cranmer, Daniel C. Hackett, Gurtej Kanwar, Alexander G.D.G Matthews, S�bastien Racani�re, Danilo J. Rezende, Fernando Romero-L�pez, Phiala E. Shanahan, and Julian M. Urban</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/frozen_loops.png" alt="Lattice gauge theory visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Applications of normalizing flows to the sampling of field configurations in lattice gauge theory have so far been explored almost exclusively in two space-time dimensions. We report new algorithmic developments of gauge-equivariant flow architectures facilitating the generalization to higher-dimensional lattice geometries. Specifically, we discuss masked autoregressive transformations with tractable and unbiased Jacobian determinants, a key ingredient for scalable and asymptotically exact flow-based sampling algorithms. For concreteness, results from a proof-of-principle application to SU(3) lattice gauge theory in four space-time dimensions are reported.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2305.02402" target="_blank" rel="noopener noreferrer">arXiv</a>
+                </div>
+            </article>
+
+            <!-- Paper 15 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Stochastic Interpolants: A Unifying Framework for Flows and Diffusions</h2>
+                <p class="paper-authors">with Nicholas M. Boffi and Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/ode_v_sde.png" alt="Stochastic interpolants visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We introduce a class of generative models based on the stochastic interpolant framework proposed in Albergo & Vanden-Eijnden (2023) that unifies flow-based and diffusion-based methods. We first show how to construct a broad class of continuous-time stochastic processes whose time-dependent probability density function bridges two arbitrary densities exactly in finite time. These 'stochastic interpolants' are built by combining data from the two densities with an additional latent variable, and the specific details of the construction can be leveraged to shape the resulting time-dependent density in a flexible way.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2303.08797" target="_blank" rel="noopener noreferrer">JMLR</a>
+                </div>
+            </article>
+
+            <!-- Paper 16 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Building Normalizing Flows with Stochastic Interpolants</h2>
+                <p class="paper-authors">with Eric Vanden-Eijnden</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/probflow6.png" alt="Normalizing flows visualization" style="width: 50%; margin-right: 1rem;">
+                    <img src="docs/papers/flowers.gif" alt="Flowers animation" style="width: 40%;">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>A generative model based on a continuous-time normalizing flow between any pair of base and target probability densities is proposed. The velocity field of this flow is inferred from the probability current of a time-dependent density that interpolates between the base and the target in finite time. Unlike conventional normalizing flow inference methods based the maximum likelihood principle, which require costly backpropagation through ODE solvers, our interpolant approach leads to a simple quadratic loss for the velocity itself which is expressed in terms of expectations that are readily amenable to empirical estimation.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2209.15571" target="_blank" rel="noopener noreferrer">ICLR 2023</a>
+                </div>
+            </article>
+
+            <!-- Paper 17 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Sampling QCD field configurations with gauge-equivariant flow models</h2>
+                <p class="paper-authors">with Ryan Abbott, Aleksandar Botev, Denis Boyda, Kyle Cranmer, Daniel C Hackett, Gurtej Kanwar, Alexander GDG Matthews, S�bastien Racani�re, Ali Razavi, Dailo J Rezende, Fernando Romero-L�pez, Phiala E Shanahan, and Julian M Urban</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/qcd.png" alt="QCD sampling visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Machine learning methods based on normalizing flows have been shown to address important challenges, such as critical slowing-down and topological freezing, in the sampling of gauge field configurations in simple lattice field theories. A critical question is whether this success will translate to studies of QCD. This Proceedings presents a status update on advances in this area. In particular, it is illustrated how recently developed algorithmic components may be combined to construct flow-based sampling algorithms for QCD in four dimensions.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2208.03832" target="_blank" rel="noopener noreferrer">Lattice 2022</a>
+                </div>
+            </article>
+
+            <!-- Paper 18 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Non-Hertz-Millis scaling of the antiferromagnetic quantum critical metal via scalable Hybrid Monte Carlo</h2>
+                <p class="paper-authors">with Peter Lunts and Michael Lindsey</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/occ_func_nesting_2_L_80_Nt_200.png" alt="Occupation function nesting 2" style="width: 48%; margin-right: 2%;">
+                    <img src="docs/papers/occ_func_nesting_6_L_80_Nt_200.png" alt="Occupation function nesting 6" style="width: 48%;">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We numerically study the O(3) spin-fermion model, a minimal model of the onset of antiferromagnetic spin-density wave (SDW) order in a two-dimensional metal. We employ a Hybrid Monte Carlo (HMC) algorithm with a novel auto-tuning procedure, which learns the optimal HMC hyperparameters in an initial warmup phase. This allows us to study unprecedentedly large systems, even at criticality. At the quantum critical point, we find a critical scaling of the dynamical spin susceptibility �(�,q) that strongly violates the Hertz-Millis form, which is the first demonstrated instance of such a phenomenon in this model.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://rdcu.be/dbhGh" target="_blank" rel="noopener noreferrer">Nature Communications</a>
+                </div>
+            </article>
+
+            <!-- Paper 19 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Flow-based sampling in the lattice Schwinger model at criticality</h2>
+                <p class="paper-authors">with Denis Boyda, Kyle Cranmer, Daniel C. Hackett, Gurtej Kanwar, S�bastien Racani�re, Danilo J Rezende, Fernando Romero-L�pez, Phiala E. Shanahan, and Julian M Urban</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/Chi-Q.png" alt="Schwinger model visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Recent results suggest that flow-based algorithms may provide efficient sampling of field distributions for lattice field theory applications, such as studies of quantum chromodynamics and the Schwinger model. In this work, we provide a numerical demonstration of robust flow-based sampling in the Schwinger model at the critical value of the fermion mass. In contrast, at the same parameters, conventional methods fail to sample all parts of configuration space, leading to severely underestimated uncertainties.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2202.11712" target="_blank" rel="noopener noreferrer">Physical Review D</a>
+                </div>
+            </article>
+
+            <!-- Paper 20 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Sampling using SU(N) gauge equivariant flows</h2>
+                <p class="paper-authors">with Denis Boyda, Gurtej Kanwar, S�bastien Racani�re, Danilo Jimenez Rezende, Kyle Cranmer, Daniel C. Hackett, and Phiala E. Shanahan</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/su_N_flows.png" alt="SU(N) flows visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We develop a flow-based sampling algorithm for SU(N) lattice gauge theories that is gauge-invariant by construction. Our key contribution is constructing a class of flows on an SU(N) variable (or on a U(N) variable by a simple alternative) that respect matrix conjugation symmetry. We apply this technique to sample distributions of single SU(N) variables and to construct flow-based samplers for SU(2) and SU(3) lattice gauge theory in two dimensions.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.103.074504" target="_blank" rel="noopener noreferrer">Physical Review D</a>
+                </div>
+            </article>
+
+            <!-- Paper 21 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Flow-based sampling for fermionic lattice field theories</h2>
+                <p class="paper-authors">with Gurtej Kanwar, S�bastien Racani�re, Danilo Jimenez Rezende, Julian M. Urban, Denis Boyda, Kyle Cranmer, Daniel C. Hackett, and Phiala E. Shanahan</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/samplers.png" alt="Fermionic samplers visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Algorithms based on normalizing flows are emerging as promising machine learning approaches to sampling complicated probability distributions in a way that can be made asymptotically exact. In the context of lattice field theory, proof-of-principle studies have demonstrated the effectiveness of this approach for scalar theories, gauge theories, and statistical systems. This work develops approaches that enable flow-based sampling of theories with dynamical fermions, which is necessary for the technique to be applied to lattice field theory studies of the Standard Model of particle physics and many condensed matter systems.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.104.114507" target="_blank" rel="noopener noreferrer">Physical Review D</a>
+                </div>
+            </article>
+
+            <!-- Paper 22 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Equivariant flow-based sampling for lattice gauge theory</h2>
+                <p class="paper-authors">with Gurtej Kanwar, Denis Boyda, Kyle Cranmer, Daniel C. Hackett, S�bastien Racani�re, Danilo Jimenez Rezende, and Phiala E. Shanahan</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/equiv-flow.png" alt="Equivariant flow visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>We define a class of machine-learned flow-based sampling algorithms for lattice gauge theories that are gauge invariant by construction. We demonstrate the application of this framework to U(1) gauge theory in two spacetime dimensions, and find that, at small bare coupling, the approach is orders of magnitude more efficient at sampling topological quantities than more traditional sampling procedures such as hybrid Monte Carlo and heat bath.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.121601" target="_blank" rel="noopener noreferrer">Physical Review Letters</a>
+                </div>
+            </article>
+
+            <!-- Paper 23 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Normalizing Flows on Tori and Spheres</h2>
+                <p class="paper-authors">with Danilo Jimenez Rezende, George Papamakarios, S�bastien Racani�re, Gurtej Kanwar, Phiala E. Shanahan, Kyle Cranmer</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/globe.png" alt="Globe visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Normalizing flows are a powerful tool for building expressive distributions in high dimensions. So far, most of the literature has concentrated on learning flows on Euclidean spaces. Some problems however, such as those involving angles, are defined on spaces with more complex geometries, such as tori or spheres. In this paper, we propose and compare expressive and numerically stable flows on such spaces. Our flows are built recursively on the dimension of the space, starting from flows on circles, closed intervals or spheres.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2002.02428" target="_blank" rel="noopener noreferrer">ICML 2020</a>
+                </div>
+            </article>
+
+            <!-- Paper 24 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Learnability scaling of quantum states: Restricted Boltzmann machines</h2>
+                <p class="paper-authors">with Dan Sehayek, Anna Golubeva, Bohdan Kulchytskyy, Giacomo Torlai, and Roger G. Melko</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/WeightDecay.png" alt="Weight decay visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Generative modeling with machine learning has provided a new perspective on the data-driven task of reconstructing quantum states from a set of qubit measurements. As increasingly large experimental quantum devices are built in laboratories, the question of how these machine learning techniques scale with the number of qubits is becoming crucial. We empirically study the scaling of restricted Boltzmann machines (RBMs) applied to reconstruct ground-state wavefunctions of the one-dimensional transverse-field Ising model from projective measurement data.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://doi.org/10.1103/PhysRevB.100.195125" target="_blank" rel="noopener noreferrer">Physical Review B</a>
+                    <a href="https://arxiv.org/abs/1908.07532" target="_blank" rel="noopener noreferrer">arXiv</a>
+                </div>
+            </article>
+
+            <!-- Paper 25 -->
+            <article class="paper-item">
+                <h2 class="paper-title">Flow-based generative models for Markov chain Monte Carlo in lattice field theory</h2>
+                <p class="paper-authors">with G. Kanwar, and P. E. Shanahan</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/flows_first_paper.png" alt="Flow-based MCMC visualization">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>A Markov chain update scheme using a machine-learned flow-based generative model is proposed for Monte Carlo sampling in lattice field theories. The generative model may be optimized (trained) to produce samples from a distribution approximating the desired Boltzmann distribution determined by the lattice action of the theory being studied. Training the model systematically improves autocorrelation times in the Markov chain, even in regions of parameter space where standard Markov chain Monte Carlo algorithms exhibit critical slowing down in producing decorrelated updates. Moreover, the model may be trained without existing samples from the desired distribution.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.100.034515" target="_blank" rel="noopener noreferrer">Physical Review D</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Analytics -->
+    <script type="text/javascript">
+    var sc_project=12432432;
+    var sc_invisible=1;
+    var sc_security="7949d3cb";
+    var sc_https=1;
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript>
+        <div class="statcounter">
+            <a title="hit counter" href="https://statcounter.com/" target="_blank" rel="noopener noreferrer">
+                <img class="statcounter" src="https://c.statcounter.com/12432432/0/7949d3cb/1/" alt="hit counter">
+            </a>
+        </div>
+    </noscript>
+
+    <!-- Altmetric Badge Script -->
+    <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</body>
 </html>
