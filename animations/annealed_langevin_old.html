@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annealed Langevin Dynamics</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #fafafa;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        #canvas-container {
+            border: 2px solid #da532c;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Annealed Langevin Dynamics Visualization
+        let particles = [];
+        let gaussians = [];
+        let frame_count = 0;
+        let max_frames = 600;
+        let temperature;
+        let canvasWidth = 600;
+        let canvasHeight = 500;
+
+        function setup() {
+            let canvas = createCanvas(canvasWidth, canvasHeight);
+            canvas.parent(document.body);
+
+            // Initialize Gaussian mixture components (means and covariances)
+            gaussians = [
+                {
+                    initial: createVector(150, 300),
+                    final: createVector(180, 250),
+                    current: createVector(150, 300),
+                    color: color(65, 105, 225, 60)  // Royal blue
+                },
+                {
+                    initial: createVector(450, 350),
+                    final: createVector(400, 300),
+                    current: createVector(450, 350),
+                    color: color(50, 205, 50, 60)   // Lime green
+                },
+                {
+                    initial: createVector(300, 150),
+                    final: createVector(320, 200),
+                    current: createVector(300, 150),
+                    color: color(147, 112, 219, 60) // Medium purple
+                }
+            ];
+
+            // Initialize particles randomly
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    pos: createVector(random(50, width-50), random(50, height-50)),
+                    vel: createVector(0, 0)
+                });
+            }
+
+            temperature = 2.0;
+        }
+
+        function draw() {
+            background(250, 250, 250);
+
+            // Update temperature (annealing schedule)
+            temperature = max(0.05, 2.0 * (1 - frame_count / max_frames));
+
+            // Interpolate Gaussian means
+            let alpha = frame_count / max_frames;
+            for (let g of gaussians) {
+                g.current = p5.Vector.lerp(g.initial, g.final, alpha);
+            }
+
+            // Draw Gaussians
+            for (let g of gaussians) {
+                let radius = 80 * (1 + temperature / 2);
+                fill(g.color);
+                noStroke();
+                ellipse(g.current.x, g.current.y, radius * 2);
+
+                // Draw boundary
+                stroke(red(g.color), green(g.color), blue(g.color), 150);
+                strokeWeight(2);
+                noFill();
+                ellipse(g.current.x, g.current.y, radius * 2);
+            }
+
+            // Update and draw particles
+            for (let p of particles) {
+                // Compute energy gradient
+                let grad = createVector(0, 0);
+                let total_weight = 0;
+
+                for (let g of gaussians) {
+                    let diff = p5.Vector.sub(p.pos, g.current);
+                    let dist_sq = diff.magSq();
+                    let sigma_sq = 1600; // variance
+                    let weight = exp(-dist_sq / (2 * sigma_sq));
+
+                    grad.add(p5.Vector.mult(diff, weight / sigma_sq));
+                    total_weight += weight;
+                }
+
+                if (total_weight > 1e-10) {
+                    grad.mult(-temperature / total_weight);
+                }
+
+                // Langevin dynamics update
+                let dt = 0.5;
+                let noise = createVector(
+                    randomGaussian(0, sqrt(2 * temperature * dt)),
+                    randomGaussian(0, sqrt(2 * temperature * dt))
+                );
+
+                // Update position: x_new = x_old - ∇U * dt + noise
+                p.pos.sub(p5.Vector.mult(grad, dt));
+                p.pos.add(noise);
+
+                // Boundary reflection
+                if (p.pos.x < 30) p.pos.x = 30;
+                if (p.pos.x > width - 30) p.pos.x = width - 30;
+                if (p.pos.y < 30) p.pos.y = 30;
+                if (p.pos.y > height - 30) p.pos.y = height - 30;
+
+                // Draw particle with color based on temperature
+                let particleColor = lerpColor(
+                    color(218, 83, 44),  // Hot (red)
+                    color(65, 105, 225),  // Cold (blue)
+                    1 - temperature / 2
+                );
+                fill(particleColor);
+                noStroke();
+                ellipse(p.pos.x, p.pos.y, 8);
+            }
+
+            // Draw UI
+            drawUI();
+
+            // Increment frame
+            if (frame_count < max_frames) {
+                frame_count++;
+            } else {
+                // Loop animation
+                frame_count = 0;
+            }
+        }
+
+        function drawUI() {
+            // Title
+            fill(50);
+            noStroke();
+            textSize(20);
+            textAlign(LEFT, TOP);
+            text('Annealed Langevin Dynamics', 15, 15);
+
+            // Temperature indicator
+            textSize(16);
+            fill(218, 83, 44);
+            text(`Temperature: ${temperature.toFixed(3)}`, 15, 45);
+
+            // Progress bar
+            stroke(200);
+            strokeWeight(1);
+            noFill();
+            rect(15, 70, 200, 10);
+
+            fill(218, 83, 44);
+            noStroke();
+            rect(15, 70, 200 * (frame_count / max_frames), 10);
+
+            // Phase indicator
+            textSize(14);
+            fill(100);
+            if (temperature > 1.5) {
+                text('Phase: Exploration (High T)', 15, 95);
+            } else if (temperature > 0.5) {
+                text('Phase: Annealing', 15, 95);
+            } else {
+                text('Phase: Convergence (Low T)', 15, 95);
+            }
+
+            // Legend
+            textSize(12);
+            fill(100);
+            text('Particles sample from GMM via gradient descent + noise', 15, height - 20);
+        }
+    </script>
+</body>
+</html>
