@@ -9,6 +9,14 @@
 
     <title>Michael S Albergo</title>
 
+    <!-- Prevent flash of light theme -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
     <!-- Brutalist Stylesheet -->
     <link rel="stylesheet" href="css/brutalist.css">
 
@@ -32,6 +40,23 @@
         <div class="float-particle particle-5"></div>
         <div class="float-particle particle-6"></div>
     </div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <div class="theme-icon">
+            <!-- Grid icon for light mode (order/structure) -->
+            <div class="theme-icon-light">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <!-- Scattered particles for dark mode (entropy/chaos) -->
+            <div class="theme-icon-dark">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </button>
 
     <!-- Navigation -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
@@ -93,6 +118,41 @@
             </ul>
         </section>
     </main>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+
+    <!-- Scroll-reactive molecules -->
+    <script>
+        // Send scroll events to background molecules iframe
+        let moleculeIframe = document.querySelector('iframe[src="animations/background_molecules.html"]');
+
+        window.addEventListener('scroll', function() {
+            if (moleculeIframe && moleculeIframe.contentWindow) {
+                moleculeIframe.contentWindow.postMessage({
+                    type: 'scroll',
+                    scrollY: window.scrollY,
+                    timestamp: Date.now()
+                }, '*');
+            }
+        }, { passive: true });
+    </script>
 
     <!-- Analytics -->
     <script type="text/javascript">

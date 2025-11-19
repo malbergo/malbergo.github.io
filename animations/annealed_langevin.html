@@ -7,6 +7,7 @@
         :root {
             --text: #0a0a0a;
             --accent: #da532c;
+            --particle-dark: rgba(10, 10, 10, 180);
         }
 
         body {
@@ -16,6 +17,12 @@
             background-color: transparent;
             font-family: 'IBM Plex Mono', 'Courier New', monospace;
             color: var(--text);
+        }
+
+        /* Listen for theme changes from parent */
+        body.dark-theme {
+            --text: #f5f5f5;
+            --particle-dark: rgba(245, 245, 245, 180);
         }
 
         canvas {
@@ -43,6 +50,31 @@
     </div>
 
     <script>
+        // Listen for theme changes from parent window
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'theme') {
+                if (event.data.theme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                }
+                // Update molecule colors
+                updateColorsForTheme();
+            }
+        });
+
+        // Check parent theme on load
+        if (window.parent !== window) {
+            try {
+                const parentTheme = window.parent.document.documentElement.getAttribute('data-theme');
+                if (parentTheme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                }
+            } catch (e) {
+                // Cross-origin restrictions, ignore
+            }
+        }
+
         // Molecular system configuration
         const numMolecules = 12;
         const numAtoms = 5; // Atoms per molecule
@@ -60,6 +92,16 @@
             // Initialize molecules
             for (let i = 0; i < numMolecules; i++) {
                 molecules.push(new Molecule());
+            }
+        }
+
+        function updateColorsForTheme() {
+            let isDark = document.body.classList.contains('dark-theme');
+            for (let mol of molecules) {
+                // Only update non-accent colors
+                if (mol.col.levels[0] !== 218) { // Not the orange accent
+                    mol.col = isDark ? color(245, 245, 245, 180) : color(10, 10, 10, 180);
+                }
             }
         }
 
@@ -128,7 +170,9 @@
                 if (random(1) < 0.25) {
                     this.col = color(218, 83, 44, 200); // Accent
                 } else {
-                    this.col = color(10, 10, 10, 180); // Dark
+                    // Use theme-aware color
+                    let isDark = document.body.classList.contains('dark-theme');
+                    this.col = isDark ? color(245, 245, 245, 180) : color(10, 10, 10, 180);
                 }
             }
 

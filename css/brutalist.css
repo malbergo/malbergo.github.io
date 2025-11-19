@@ -5,7 +5,7 @@
 
 /* ========== CSS Custom Properties ========== */
 :root {
-  /* Color Palette - Near monochrome with red accents */
+  /* Light Mode - Near monochrome with red accents */
   --color-bg: #fafafa;
   --color-text: #0a0a0a;
   --color-text-secondary: #4a4a4a;
@@ -42,6 +42,18 @@
   --line-height-tight: 1.2;
   --line-height-normal: 1.6;
   --line-height-relaxed: 1.8;
+}
+
+/* Dark Mode - Inverted brutalist palette */
+[data-theme="dark"] {
+  --color-bg: #0a0a0a;
+  --color-text: #f5f5f5;
+  --color-text-secondary: #b0b0b0;
+  --color-border: #d0d0d0;
+  --color-accent: #ff6b3d; /* Brighter orange for dark bg */
+  --color-accent-light: rgba(255, 107, 61, 0.15);
+  --color-link: #f5f5f5;
+  --color-link-hover: #ff6b3d;
 }
 
 /* ========== Reset & Base ========== */
@@ -139,13 +151,20 @@ em, i {
 .nav {
   position: sticky;
   top: 0;
-  background-color: var(--color-bg);
   border-bottom: var(--border-width) solid var(--color-border);
   padding: var(--space-sm) 0;
   margin-bottom: var(--space-xl);
   z-index: 100;
   backdrop-filter: blur(8px);
+}
+
+/* Dynamic nav background based on theme */
+:root .nav {
   background-color: rgba(250, 250, 250, 0.95);
+}
+
+[data-theme="dark"] .nav {
+  background-color: rgba(10, 10, 10, 0.95);
 }
 
 .nav-inner {
@@ -1103,5 +1122,126 @@ h1:hover {
   /* Keep collision pulses */
   .float-particle::after {
     animation: collisionPulse 8s ease-in-out infinite !important;
+  }
+}
+
+/* ========== Dark Mode Toggle ========== */
+.theme-toggle {
+  position: fixed;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 1000;
+  background: var(--color-bg);
+  border: 3px solid var(--color-text);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 6px 6px 0 var(--color-text);
+  transform: translate(-2px, -2px);
+}
+
+.theme-toggle:active {
+  box-shadow: 2px 2px 0 var(--color-text);
+  transform: translate(2px, 2px);
+}
+
+/* Brutalist icon - geometric abstraction */
+.theme-icon {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Light mode icon: Grid/lattice (order) */
+.theme-icon-light {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+}
+
+.theme-icon-light span {
+  background: var(--color-text);
+  display: block;
+}
+
+.theme-icon-light span:nth-child(5) {
+  background: var(--color-accent);
+}
+
+/* Dark mode icon: Scattered particles (chaos) */
+.theme-icon-dark {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: none;
+}
+
+.theme-icon-dark span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-text);
+  border-radius: 50%;
+}
+
+.theme-icon-dark span:nth-child(1) { top: 20%; left: 15%; }
+.theme-icon-dark span:nth-child(2) { top: 40%; left: 70%; }
+.theme-icon-dark span:nth-child(3) { top: 65%; left: 25%; }
+.theme-icon-dark span:nth-child(4) { top: 75%; left: 80%; }
+.theme-icon-dark span:nth-child(5) { top: 30%; left: 45%; width: 6px; height: 6px; background: var(--color-accent); }
+.theme-icon-dark span:nth-child(6) { top: 50%; left: 10%; }
+.theme-icon-dark span:nth-child(7) { top: 10%; left: 60%; }
+
+/* Show appropriate icon based on theme */
+[data-theme="dark"] .theme-icon-light {
+  display: none;
+}
+
+[data-theme="dark"] .theme-icon-dark {
+  display: block;
+}
+
+.theme-toggle:hover .theme-icon {
+  transform: rotate(15deg);
+}
+
+/* Smooth color transitions for theme switch */
+body,
+.nav,
+.bio-section,
+.header-section,
+.news-section,
+.paper-item,
+.join-border,
+.join-option {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-icon {
+    width: 24px;
+    height: 24px;
   }
 }

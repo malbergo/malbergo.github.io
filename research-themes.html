@@ -9,6 +9,14 @@
 
     <title>Research Themes - Michael S Albergo</title>
 
+    <!-- Prevent flash of light theme -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
     <!-- Brutalist Stylesheet -->
     <link rel="stylesheet" href="css/brutalist.css">
 
@@ -18,6 +26,23 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <div class="theme-icon">
+            <!-- Grid icon for light mode (order/structure) -->
+            <div class="theme-icon-light">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+            <!-- Scattered particles for dark mode (entropy/chaos) -->
+            <div class="theme-icon-dark">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </button>
+
     <!-- Navigation -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
@@ -66,7 +91,7 @@
             <section class="bio-section" style="margin-bottom: var(--space-lg);">
                 <h2>Sampling and Probabilistic Inference</h2>
 
-                <div class="animation-embed" style="margin: var(--space-lg) auto; text-align: center; max-width: 500px;">
+                <div class="animation-embed" style="margin: var(--space-md) auto var(--space-md) auto; text-align: center; max-width: 500px;">
                     <iframe
                         src="animations/annealed_langevin.html"
                         width="500"
@@ -142,5 +167,45 @@
             </a>
         </div>
     </noscript>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        // Notify iframes of initial theme
+        function notifyIframesOfTheme(theme) {
+            const iframes = document.querySelectorAll('iframe');
+            iframes.forEach(iframe => {
+                if (iframe.contentWindow) {
+                    iframe.contentWindow.postMessage({
+                        type: 'theme',
+                        theme: theme
+                    }, '*');
+                }
+            });
+        }
+
+        // Wait for iframes to load, then notify them
+        window.addEventListener('load', function() {
+            setTimeout(() => notifyIframesOfTheme(currentTheme), 500);
+        });
+
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Notify iframes of theme change
+            notifyIframesOfTheme(newTheme);
+        });
+    </script>
 </body>
 </html>

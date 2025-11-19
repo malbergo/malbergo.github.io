@@ -7,6 +7,11 @@
         :root {
             --text: #0a0a0a;
             --accent: #da532c;
+            --particle-dark: rgba(10, 10, 10, 120);
+            --particle-light: rgba(245, 245, 245, 120);
+            --divider: rgba(10, 10, 10, 40);
+            --grid-outline: rgba(10, 10, 10, 30);
+            --mask-fill: rgba(40, 40, 45, 120);
         }
 
         body {
@@ -16,6 +21,16 @@
             background-color: transparent;
             font-family: 'IBM Plex Mono', 'Courier New', monospace;
             color: var(--text);
+        }
+
+        /* Listen for theme changes from parent */
+        body.dark-theme {
+            --text: #f5f5f5;
+            --particle-dark: rgba(245, 245, 245, 120);
+            --particle-light: rgba(10, 10, 10, 120);
+            --divider: rgba(245, 245, 245, 40);
+            --grid-outline: rgba(245, 245, 245, 30);
+            --mask-fill: rgba(220, 220, 225, 120);
         }
 
         canvas {
@@ -46,6 +61,31 @@
     </div>
 
     <script>
+        // Listen for theme changes from parent window
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'theme') {
+                if (event.data.theme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                }
+                // Regenerate GMMs with new colors
+                updateColorsForTheme();
+            }
+        });
+
+        // Check parent theme on load
+        if (window.parent !== window) {
+            try {
+                const parentTheme = window.parent.document.documentElement.getAttribute('data-theme');
+                if (parentTheme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                }
+            } catch (e) {
+                // Cross-origin restrictions, ignore
+            }
+        }
+
         // --- CONFIGURATION ---
         const numParticles = 3000;
         const sigma = 60;
@@ -76,7 +116,7 @@
             pixelDensity(2);
 
             // Left side: continuous GMM
-            let leftWidth = width * 0.44;
+            let leftWidth = width * 0.42;
             gmm0 = generateRandomGMM(numComp0, leftWidth * 0.1, leftWidth * 0.4);
             gmm1 = generateRandomGMM(numComp1, leftWidth * 0.6, leftWidth * 0.9);
 
@@ -86,6 +126,27 @@
 
             // Right side: discrete sequence
             initializeSequence();
+        }
+
+        function updateColorsForTheme() {
+            // Update GMM colors
+            let isDark = document.body.classList.contains('dark-theme');
+            for (let gmm of [gmm0, gmm1]) {
+                for (let comp of gmm) {
+                    // Only update non-accent colors
+                    if (comp.col.levels[0] !== 218) { // Not the orange accent
+                        comp.col = isDark ? color(245, 245, 245, 120) : color(10, 10, 10, 120);
+                    }
+                }
+            }
+
+            // Update particle colors
+            for (let particle of particles) {
+                // Find matching component color
+                if (particle.col.levels[0] !== 218) { // Not the orange accent
+                    particle.col = isDark ? color(245, 245, 245, 120) : color(10, 10, 10, 120);
+                }
+            }
         }
 
         function draw() {
@@ -107,7 +168,8 @@
             }
 
             // Draw divider line
-            stroke(10, 10, 10, 40);
+            let isDark = document.body.classList.contains('dark-theme');
+            stroke(isDark ? 245 : 10, isDark ? 245 : 10, isDark ? 245 : 10, 40);
             strokeWeight(2);
             line(width/2, 0, width/2, height);
 
@@ -144,7 +206,9 @@
                 if (random(1) < 0.2) {
                     col = color(218, 83, 44, 140);
                 } else {
-                    col = color(10, 10, 10, 120);
+                    // Use theme-aware color
+                    let isDark = document.body.classList.contains('dark-theme');
+                    col = isDark ? color(245, 245, 245, 120) : color(10, 10, 10, 120);
                 }
 
                 components.push({
@@ -218,9 +282,143 @@
         }
 
         function drawContinuous() {
+            // Draw contour plots of GMMs
+            drawGMMContours(gmm0, 0.15);  // Initial distribution (more transparent)
+            drawGMMContours(gmm1, 0.15);  // Terminal distribution (more transparent)
+
+            // Draw particles on top
             strokeWeight(1.5);
             for (let p of particles) {
                 p.render(t);
+            }
+        }
+
+        function drawGMMContours(gmm, alpha) {
+            // Draw composite contour lines for the entire GMM
+            let leftWidth = width * 0.42;
+            let gridResolution = 40; // Grid resolution for density evaluation
+
+            push();
+            noFill();
+
+            // Create a 2D grid to evaluate density
+            let xMin = 0;
+            let xMax = leftWidth;
+            let yMin = 0;
+            let yMax = height;
+
+            let dx = leftWidth / gridResolution;
+            let dy = height / gridResolution;
+
+            // Compute density at each grid point
+            let densityGrid = [];
+            let maxDensity = 0;
+
+            for (let i = 0; i <= gridResolution; i++) {
+                densityGrid[i] = [];
+                for (let j = 0; j <= gridResolution; j++) {
+                    let x = xMin + i * dx;
+                    let y = yMin + j * dy;
+
+                    // Sum density contributions from all GMM components
+                    let density = 0;
+                    for (let comp of gmm) {
+                        density += comp.weight * evaluateGaussian(x, y, comp);
+                    }
+
+                    densityGrid[i][j] = density;
+                    maxDensity = max(maxDensity, density);
+                }
+            }
+
+            // Draw contour lines at different density levels
+            let contourLevels = [0.1, 0.3, 0.6]; // Relative to max density
+
+            for (let levelIdx = 0; levelIdx < contourLevels.length; levelIdx++) {
+                let level = contourLevels[levelIdx] * maxDensity;
+                let opacity = alpha * (3 - levelIdx) * 35;
+
+                // Determine color based on dominant component at this level
+                let avgColor = getAverageGMMColor(gmm);
+                stroke(avgColor.r, avgColor.g, avgColor.b, opacity);
+                strokeWeight(1.5);
+
+                // March through grid and draw contour segments
+                for (let i = 0; i < gridResolution; i++) {
+                    for (let j = 0; j < gridResolution; j++) {
+                        let x = xMin + i * dx;
+                        let y = yMin + j * dy;
+
+                        // Check if contour passes through this cell
+                        let d00 = densityGrid[i][j];
+                        let d10 = densityGrid[i+1][j];
+                        let d01 = densityGrid[i][j+1];
+                        let d11 = densityGrid[i+1][j+1];
+
+                        // Simple marching squares - draw segments where level crosses
+                        drawContourSegment(x, y, dx, dy, d00, d10, d01, d11, level);
+                    }
+                }
+            }
+
+            pop();
+        }
+
+        function evaluateGaussian(x, y, comp) {
+            // Evaluate Gaussian density at (x,y) for component comp
+            let dx = x - comp.mean.x;
+            let dy = y - comp.mean.y;
+
+            // Rotate to align with principal axes
+            let cos_a = cos(-comp.angle);
+            let sin_a = sin(-comp.angle);
+            let rx = dx * cos_a - dy * sin_a;
+            let ry = dx * sin_a + dy * cos_a;
+
+            // Normalized by standard deviations
+            let zx = rx / comp.sd.x;
+            let zy = ry / comp.sd.y;
+
+            // Gaussian formula (unnormalized is fine for contours)
+            return exp(-0.5 * (zx*zx + zy*zy));
+        }
+
+        function getAverageGMMColor(gmm) {
+            // Get weighted average color of GMM components
+            let r = 0, g = 0, b = 0;
+            for (let comp of gmm) {
+                r += comp.col.levels[0] * comp.weight;
+                g += comp.col.levels[1] * comp.weight;
+                b += comp.col.levels[2] * comp.weight;
+            }
+            return {r: r, g: g, b: b};
+        }
+
+        function drawContourSegment(x, y, dx, dy, d00, d10, d01, d11, level) {
+            // Simple marching squares implementation
+            let points = [];
+
+            // Check each edge of the cell
+            if ((d00 < level && d10 >= level) || (d00 >= level && d10 < level)) {
+                let t = (level - d00) / (d10 - d00);
+                points.push({x: x + t * dx, y: y});
+            }
+            if ((d10 < level && d11 >= level) || (d10 >= level && d11 < level)) {
+                let t = (level - d10) / (d11 - d10);
+                points.push({x: x + dx, y: y + t * dy});
+            }
+            if ((d01 < level && d11 >= level) || (d01 >= level && d11 < level)) {
+                let t = (level - d01) / (d11 - d01);
+                points.push({x: x + t * dx, y: y + dy});
+            }
+            if ((d00 < level && d01 >= level) || (d00 >= level && d01 < level)) {
+                let t = (level - d00) / (d01 - d00);
+                points.push({x: x, y: y + t * dy});
+            }
+
+            // Draw line segment if we have exactly 2 intersection points
+            if (points.length === 2) {
+                line(points[0].x, points[0].y, points[1].x, points[1].y);
             }
         }
 
@@ -261,8 +459,8 @@
             }
 
             // Render as 8x8 grid
-            let rightStart = width * 0.54;
-            let rightWidth = width * 0.44;
+            let rightStart = width * 0.58;
+            let rightWidth = width * 0.40;
 
             let cols = 8;
             let rows = 8;
@@ -286,16 +484,17 @@
                 // Cell color based on state
                 let state = sequence[i];
 
+                let isDark = document.body.classList.contains('dark-theme');
                 noStroke();
                 if (state === EMPTY) {
                     // Empty - draw subtle outline only
-                    stroke(10, 10, 10, 30);
+                    stroke(isDark ? 245 : 10, isDark ? 245 : 10, isDark ? 245 : 10, 30);
                     strokeWeight(1);
                     noFill();
                     rect(x, y, cellSize - 3, cellSize - 3, 2);
                 } else if (state === MASK) {
-                    // Mask - dark grey
-                    fill(40, 40, 45, 120);
+                    // Mask - theme-aware grey
+                    fill(isDark ? 220 : 40, isDark ? 220 : 40, isDark ? 225 : 45, 120);
                     rect(x, y, cellSize - 3, cellSize - 3, 2);
                 } else {
                     // Revealed state - cooler color palette

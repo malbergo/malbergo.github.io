@@ -25,10 +25,13 @@
         const numAtoms = 5; // Atoms per molecule
         let molecules = [];
 
-        // Temperature - gentle oscillation
+        // Temperature - influenced by scroll speed
         let t = 0;
         let baseTemp = 0.2;
         let tempAmplitude = 0.3;
+        let scrollTemp = 0; // Additional temperature from scrolling
+        let lastScrollY = 0;
+        let lastScrollTime = 0;
 
         function setup() {
             createCanvas(windowWidth, windowHeight, P2D);
@@ -38,14 +41,43 @@
             for (let i = 0; i < numMolecules; i++) {
                 molecules.push(new Molecule());
             }
+
+            // Listen to scroll events from parent window
+            window.addEventListener('message', function(event) {
+                if (event.data.type === 'scroll') {
+                    handleScroll(event.data.scrollY, event.data.timestamp);
+                }
+            });
+        }
+
+        function handleScroll(scrollY, timestamp) {
+            // Calculate scroll velocity
+            let timeDelta = timestamp - lastScrollTime;
+            if (timeDelta > 0 && timeDelta < 200) {
+                let scrollDelta = Math.abs(scrollY - lastScrollY);
+                let scrollSpeed = scrollDelta / timeDelta; // pixels per ms
+
+                // Map scroll speed to temperature boost (0 to 2.0)
+                let speedBoost = Math.min(scrollSpeed * 2, 2.0);
+
+                // Smoothly increase temperature
+                scrollTemp = Math.max(scrollTemp, speedBoost);
+            }
+
+            lastScrollY = scrollY;
+            lastScrollTime = timestamp;
         }
 
         function draw() {
             clear();
 
-            // Gentle oscillating temperature
+            // Decay scroll temperature
+            scrollTemp *= 0.95;
+
+            // Combine base oscillation with scroll-induced temperature
             t += 0.003;
-            let temperature = baseTemp + tempAmplitude * (0.5 + 0.5 * sin(t));
+            let oscillation = baseTemp + tempAmplitude * (0.5 + 0.5 * sin(t));
+            let temperature = oscillation + scrollTemp;
 
             // Update and draw all molecules
             for (let mol of molecules) {
