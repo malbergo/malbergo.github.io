@@ -2,90 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Molecular Equilibrium</title>
+    <title>Background Molecules</title>
     <style>
-        :root {
-            --text: #0a0a0a;
-            --accent: #da532c;
-        }
-
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
             background-color: transparent;
-            font-family: 'IBM Plex Mono', 'Courier New', monospace;
-            color: var(--text);
         }
 
         canvas {
             display: block;
             background-color: transparent;
-            cursor: crosshair;
-        }
-
-        #temp-label {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.65rem;
-            letter-spacing: 0.05em;
-            opacity: 0.5;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
-
-    <div id="temp-label">
-        T = <span id="temp-val">1.0</span>
-    </div>
-
     <script>
-        // Molecular system configuration
-        const numMolecules = 12;
+        // Molecular system configuration for background
+        const numMolecules = 10;
         const numAtoms = 5; // Atoms per molecule
         let molecules = [];
 
-        // Temperature oscillates
+        // Temperature - gentle oscillation
         let t = 0;
-        let baseTemp = 0.3;
-        let tempAmplitude = 0.7;
+        let baseTemp = 0.2;
+        let tempAmplitude = 0.3;
 
         function setup() {
             createCanvas(windowWidth, windowHeight, P2D);
             pixelDensity(2);
 
-            // Initialize molecules
+            // Initialize molecules spread across the screen
             for (let i = 0; i < numMolecules; i++) {
                 molecules.push(new Molecule());
             }
         }
 
-        function mouseOut() {
-            // Reset mouse position when leaving canvas
-            mouseX = -1;
-            mouseY = -1;
-        }
-
         function draw() {
             clear();
 
-            // Oscillating temperature
-            t += 0.004;
+            // Gentle oscillating temperature
+            t += 0.003;
             let temperature = baseTemp + tempAmplitude * (0.5 + 0.5 * sin(t));
-
-            // Update UI
-            document.getElementById('temp-val').innerText = temperature.toFixed(2);
-
-            // Draw mouse influence area (only when hovering)
-            if (mouseX > 10 && mouseY > 10 && mouseX < width - 10 && mouseY < height - 10) {
-                noFill();
-                stroke(218, 83, 44, 50);
-                strokeWeight(1);
-                ellipse(mouseX, mouseY, 200, 200);
-            }
 
             // Update and draw all molecules
             for (let mol of molecules) {
@@ -96,9 +56,13 @@
 
         class Molecule {
             constructor() {
-                // Central position of molecule
-                this.centerX = random(width * 0.15, width * 0.85);
-                this.centerY = random(height * 0.2, height * 0.8);
+                // Random position across full screen
+                this.centerX = random(width * 0.1, width * 0.9);
+                this.centerY = random(height * 0.1, height * 0.9);
+
+                // Gentle drift velocity
+                this.vx = random(-0.3, 0.3);
+                this.vy = random(-0.3, 0.3);
 
                 // Atoms in the molecule
                 this.atoms = [];
@@ -106,7 +70,7 @@
                 // Arrange atoms in a ring around center
                 for (let i = 0; i < numAtoms; i++) {
                     let angle = (TWO_PI / numAtoms) * i;
-                    let radius = random(25, 35);
+                    let radius = random(15, 25);
 
                     this.atoms.push({
                         // Equilibrium position relative to center
@@ -119,49 +83,58 @@
                         vx: 0,
                         vy: 0,
                         // Visual properties
-                        size: random(4, 7),
+                        size: random(3, 5),
                         mass: random(0.8, 1.2)
                     });
                 }
 
-                // Color for this molecule
-                if (random(1) < 0.25) {
-                    this.col = color(218, 83, 44, 200); // Accent
+                // Color for this molecule - colorful palette
+                let colorChoice = random(1);
+                if (colorChoice < 0.25) {
+                    this.col = color(218, 83, 44, 120); // Orange accent
+                } else if (colorChoice < 0.4) {
+                    this.col = color(60, 80, 100, 120); // Blue-grey
+                } else if (colorChoice < 0.55) {
+                    this.col = color(70, 100, 120, 120); // Medium blue
+                } else if (colorChoice < 0.7) {
+                    this.col = color(80, 120, 140, 120); // Light blue
+                } else if (colorChoice < 0.85) {
+                    this.col = color(50, 70, 80, 120); // Teal
                 } else {
-                    this.col = color(10, 10, 10, 180); // Dark
+                    this.col = color(10, 10, 10, 100); // Dark
                 }
+
+                // Random initial rotation for variety
+                this.rotation = random(TWO_PI);
+                this.rotationSpeed = random(-0.002, 0.002);
             }
 
             update(temperature) {
-                // Mouse interaction - repulsive force
-                let mouseDist = dist(mouseX, mouseY, this.centerX, this.centerY);
-                let mouseForce = createVector(0, 0);
+                // Gentle drift with screen wrap
+                this.centerX += this.vx;
+                this.centerY += this.vy;
 
-                if (mouseDist < 200 && mouseX > 0 && mouseY > 0) {
-                    // Repulsive force from mouse
-                    mouseForce = createVector(
-                        this.centerX - mouseX,
-                        this.centerY - mouseY
-                    );
-                    mouseForce.setMag(map(mouseDist, 0, 200, 5.0, 0));
-                }
+                // Wrap around screen edges
+                if (this.centerX < -50) this.centerX = width + 50;
+                if (this.centerX > width + 50) this.centerX = -50;
+                if (this.centerY < -50) this.centerY = height + 50;
+                if (this.centerY > height + 50) this.centerY = -50;
+
+                // Gentle rotation
+                this.rotation += this.rotationSpeed;
 
                 // Langevin dynamics for each atom
                 for (let atom of this.atoms) {
                     // Spring force pulling back to equilibrium
-                    let springK = 0.05;
+                    let springK = 0.04;
                     let fx = -springK * atom.x;
                     let fy = -springK * atom.y;
 
-                    // Add mouse repulsion (stronger effect)
-                    fx += mouseForce.x * 0.08;
-                    fy += mouseForce.y * 0.08;
-
                     // Damping
-                    let damping = 0.95;
+                    let damping = 0.96;
 
                     // Thermal noise (Brownian motion)
-                    let noiseStrength = sqrt(temperature) * 0.15;
+                    let noiseStrength = sqrt(temperature) * 0.1;
                     let noiseX = randomGaussian(0, noiseStrength);
                     let noiseY = randomGaussian(0, noiseStrength);
 
@@ -178,10 +151,11 @@
             display() {
                 push();
                 translate(this.centerX, this.centerY);
+                rotate(this.rotation);
 
                 // Draw bonds between atoms
                 stroke(this.col);
-                strokeWeight(1);
+                strokeWeight(0.8);
                 for (let i = 0; i < this.atoms.length; i++) {
                     let a1 = this.atoms[i];
                     let a2 = this.atoms[(i + 1) % this.atoms.length];
@@ -204,8 +178,8 @@
                 }
 
                 // Draw center point (subtle)
-                fill(this.col.levels[0], this.col.levels[1], this.col.levels[2], 100);
-                ellipse(0, 0, 3, 3);
+                fill(this.col.levels[0], this.col.levels[1], this.col.levels[2], 60);
+                ellipse(0, 0, 2, 2);
 
                 pop();
             }

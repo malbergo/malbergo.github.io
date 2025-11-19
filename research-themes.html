@@ -34,34 +34,31 @@
             <h1 class="section-header">Research Themes</h1>
 
             <p style="color: var(--color-text-secondary); font-style: italic; margin-bottom: var(--space-xl);">
-                Content coming soon. This page will detail the major themes and directions of my research.
+                <!-- Content coming soon. This page will detail the major themes and directions of my research. -->
             </p>
 
             <!-- Placeholder sections for you to fill in -->
             <section class="bio-section" style="margin-bottom: var(--space-lg);">
                 <h2>Dynamical Measure Transport</h2>
 
-                <div class="animation-embed" style="margin: var(--space-lg) 0; text-align: center;">
+                <div class="animation-embed" style="margin: var(--space-lg) auto; text-align: center; max-width: 500px;">
                     <iframe
                         src="animations/measure_transport.html"
-                        width="800"
-                        height="500"
-                        style="border: 2px solid var(--color-accent); max-width: 100%; display: block; margin: 0 auto;"
+                        width="500"
+                        height="320"
+                        style="border: none; width: 100%; display: block; margin: 0 auto; background-color: transparent;"
                         title="Dynamical Measure Transport Animation">
                     </iframe>
-                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: var(--space-sm); font-style: italic;">
-                        Interactive visualization: Probability flow ODE (left) vs. continuous-time Markov chain (right)
-                    </p>
                 </div>
 
                 <p>Dynamical measure transport, continuous-in-time maps between distributions,
                     has become a central topic of contemporary large-scale generative modeling.
                     Part of my work focuses on fleshing out the mathematics of this topic in relation
                     to generative modeling, with special emphasis on how this helps us build performant, controllable tools. We have devised
-                    new algorithms, most notably what is known as flow matching^{CITE, CITE} and, more broadly, a unifying framework for connecting
+                    new algorithms, most notably what is known as flow matching and, more broadly, a unifying framework for connecting
                     flows and diffusions which we call stochastic interpolants. We are now making progress on completing the picture of this topic,
-                    deriving the equations and algorithms that allow us to make these models more efficient, but also how to make them controllable
-                    via principled approaches to fine-tuning that relate these dynamical systems to reinforcement learning algorithms. Along the way,
+                    deriving the equations and algorithms that allow us to make these models more efficient, but also controllable
+                    via principled approaches to fine-tuning. This new directional relates these dynamical systems to reinforcement learning algorithms. Along the way,
                     we have been building on the theory of measure transport to arbitrary spaces, e.g. between distributions defined on a finite (discrete)
                     state space,  with important outlooks for more efficient language modeling and new notions of reasoning.</p>
             </section>
@@ -69,17 +66,14 @@
             <section class="bio-section" style="margin-bottom: var(--space-lg);">
                 <h2>Sampling and Probabilistic Inference</h2>
 
-                <div class="animation-embed" style="margin: var(--space-lg) 0; text-align: center;">
+                <div class="animation-embed" style="margin: var(--space-lg) auto; text-align: center; max-width: 500px;">
                     <iframe
                         src="animations/annealed_langevin.html"
-                        width="600"
-                        height="500"
-                        style="border: 2px solid var(--color-accent); max-width: 100%; display: block; margin: 0 auto;"
-                        title="Annealed Langevin Dynamics Animation">
+                        width="500"
+                        height="320"
+                        style="border: none; width: 100%; display: block; margin: 0 auto; background-color: transparent; pointer-events: auto;"
+                        title="Molecular Equilibrium Dynamics">
                     </iframe>
-                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-top: var(--space-sm); font-style: italic;">
-                        Interactive visualization: Annealed Langevin dynamics sampling from a Gaussian mixture model
-                    </p>
                 </div>
 
                 <p>Algorithmic advances in generative modeling have largely been dependent on assumptions of access to an abundance of
@@ -88,12 +82,47 @@
                     circumstance is often encountered, where data is scarce and hard to obtain, but inductive structure in a learning
                     problem is available from the theory. Another branch of our work is to figure out how to learn a generative model
                     for problems in the sciences where little to no data is available, but maybe an energy function defining a molecule
-                    or physical theory is. How do we adapt our learning algorithms to effectively utilize this information?</p>
+                    or physical theory is. How do we adapt our learning algorithms to effectively utilize this information? These mathematics
+                    also play an important role in probabilistic inference, Monte Carlo, and inference-time adaptation of generative models.</p>
             </section>
 
             <section class="bio-section">
-                <h2>Theme 3</h2>
-                <p>Description coming soon...</p>
+                <h2>Biology????</h2>
+                <p>let's see...</p>
+            </section>
+
+            <!-- Join Research Group Section -->
+            <section id="join" class="join-section" aria-labelledby="join-heading">
+                <div class="join-border">
+                    <h2 id="join-heading">Want to join our research group?</h2>
+
+                    <div class="join-content">
+                        <p>I am seeking highly motivated graduate students and postdocs to join my group starting in Fall 2026.
+                            We will work on principled algorithms that make generative models scalable, understandable,
+                            and useful across the sciences and beyond.</p>
+
+                        <div class="join-highlight">
+                            <p><strong>Importantly, we aim to be interdisciplinary and very collaborative, learning a lot from each other!</strong></p>
+                            <p class="join-flow">mathematicians → computer scientists → wet lab scientists → poets → ... woo!</p>
+                            <p class="join-emphasis">Nobody is considered too far afield or behind, but you have to want to learn from and teach your peers and me.</p>
+                            <p>The joy of navigating these unprecedented research frontiers is doing it together!</p>
+                        </div>
+
+                        <div class="join-options">
+                            <div class="join-option">
+                                <h3>Graduate Students</h3>
+                                <p>Please apply at <a href="https://seas.harvard.edu/prospective-students/prospective-graduate-students/how-apply" target="_blank" rel="noopener noreferrer">this link</a> and write to me that you are applying.</p>
+                            </div>
+
+                            <div class="join-option">
+                                <h3>Postdocs</h3>
+                                <p>Please reach out to me directly and consider applying to the Kempner <a href="https://kempnerinstitute.harvard.edu/kempner-institute-research-fellowship/" target="_blank" rel="noopener noreferrer">Institute Research Fellowship</a>.</p>
+                            </div>
+                        </div>
+
+                        <p class="join-contact">Reach out detailing your interests at either email</p>
+                    </div>
+                </div>
             </section>
         </div>
     </main>

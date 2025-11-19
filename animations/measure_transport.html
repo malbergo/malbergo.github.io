@@ -2,187 +2,328 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DYNAMICAL_MEASURE_TRANSPORT // SYSTEM_01</title>
+    <title>Continuous vs Discrete Transport</title>
     <style>
+        :root {
+            --text: #0a0a0a;
+            --accent: #da532c;
+        }
+
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #050505;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: transparent;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            color: var(--text);
         }
+
         canvas {
             display: block;
+            background-color: transparent;
         }
-        /* Brutalist UI Overlay */
-        #ui-layer {
+
+        #label-container {
             position: absolute;
-            top: 0;
+            top: 10px;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
             pointer-events: none;
-            mix-blend-mode: exclusion;
-            padding: 20px;
-            box-sizing: border-box;
-            color: #00ff41;
-            z-index: 10;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            opacity: 0.6;
         }
-        .hero-text {
-            font-weight: 900;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            line-height: 0.9;
-            border-left: 10px solid #00ff41;
-            padding-left: 15px;
-        }
-        .data-block {
-            position: absolute;
-            bottom: 40px;
-            right: 40px;
-            text-align: right;
-            font-size: 0.8rem;
-            line-height: 1.4;
-        }
-        .scanline {
-            width: 100%;
-            height: 100px;
-            z-index: 10;
-            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0,0,0,0) 100%);
-            opacity: 0.1;
-            position: absolute;
-            bottom: 100%;
-            animation: scanline 10s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes scanline {
-            0% { bottom: 100%; }
-            100% { bottom: -100px; }
-        }
-        .blinking { animation: blink 1s infinite; }
-        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
 
-    <div id="ui-layer">
-        <div class="hero-text">
-            DYNAMICAL<br>
-            MEASURE<br>
-            TRANSPORT
-        </div>
-        <div class="data-block">
-            FLOW_FIELD: <span id="noise-val">PERLIN</span><br>
-            PARTICLES: <span id="p-count">2000</span><br>
-            STATUS: <span class="blinking">OPTIMIZING</span><br>
-            μ(dx) / dt
-        </div>
+    <div id="label-container">
+        <div>continuous</div>
+        <div>discrete</div>
     </div>
-    <div class="scanline"></div>
 
     <script>
+        // --- CONFIGURATION ---
+        const numParticles = 3000;
+        const sigma = 60;
+
+        // Continuous side
+        const numComp0 = 6;
+        const numComp1 = 6;
         let particles = [];
-        const numParticles = 2500;
-        const noiseScale = 0.01; // Controls chaos level
-        let gridGraphics; // For the retro grid
+        let gmm0, gmm1;
+
+        // Discrete side - CTMC on lattice
+        const N = 64; // Sequence length (8x8 grid)
+        const D = 5;  // Number of token types (states)
+        const EMPTY = -1;
+        const MASK = 0;
+        let sequence = [];
+        let targetSequence = [];
+        let insertionTimes = [];
+        let unmaskingTimes = [];
+
+        let t = 0;
+        let direction = 1;
+        let isPaused = false;
+        let pauseTimer = 0;
 
         function setup() {
-            createCanvas(windowWidth, windowHeight);
-            background(5); // Almost black
+            createCanvas(windowWidth, windowHeight, P2D);
+            pixelDensity(2);
 
-            // Initialize particles
-            for(let i = 0; i < numParticles; i ++) {
-                particles.push(createVector(random(width), random(height)));
+            // Left side: continuous GMM
+            let leftWidth = width * 0.45;
+            gmm0 = generateRandomGMM(numComp0, leftWidth * 0.1, leftWidth * 0.4);
+            gmm1 = generateRandomGMM(numComp1, leftWidth * 0.6, leftWidth * 0.9);
+
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new ContinuousParticle());
             }
 
-            // Create a static grid graphic to save performance
-            gridGraphics = createGraphics(windowWidth, windowHeight);
-            drawGrid(gridGraphics);
+            // Right side: discrete sequence
+            initializeSequence();
         }
 
         function draw() {
-            // 1. THE FADE EFFECT
-            // We draw a semi-transparent background every frame to create trails
-            noStroke();
-            fill(5, 5, 5, 20); // The 4th value (alpha) controls trail length
-            rect(0, 0, width, height);
+            clear();
 
-            // 2. DRAW THE RETRO GRID
-            image(gridGraphics, 0, 0);
+            // Time logic
+            if (!isPaused) {
+                t += direction * 0.006;
+                if (t >= 1) { t = 1; direction = -1; pause(30); }
+                else if (t <= 0) {
+                    t = 0;
+                    direction = 1;
+                    particles.forEach(p => p.resample());
+                    initializeSequence();
+                    pause(20);
+                }
+            } else {
+                if (frameCount > pauseTimer) isPaused = false;
+            }
 
-            // 3. UPDATE AND DRAW PARTICLES (The Transport)
-            // We simulate two "colors" slightly offset to create chromatic aberration
+            // Draw divider line
+            stroke(10, 10, 10, 40);
+            strokeWeight(2);
+            line(width/2, 0, width/2, height);
 
-            for(let i = 0; i < numParticles; i++) {
-                let p = particles[i];
+            // LEFT: Continuous stochastic interpolant
+            drawContinuous();
 
-                // Get the vector field value at this coordinate (The Map T)
-                // We use 3D noise (x, y, time) so the field changes slowly over time
-                let n = noise(p.x * noiseScale, p.y * noiseScale, frameCount * 0.002);
+            // RIGHT: Discrete CTMC
+            drawDiscrete();
+        }
 
-                // Map noise to an angle (0 to 2*PI)
-                // We quantize the angle slightly to give it a "robotic/brutalist" feel
-                let a = n * TWO_PI * 2;
+        function pause(frames) {
+            isPaused = true;
+            pauseTimer = frameCount + frames;
+        }
 
-                // Convert angle to vector
-                p.x += cos(a) * 2; // Velocity X
-                p.y += sin(a) * 2; // Velocity Y
+        // ============= CONTINUOUS SIDE =============
 
-                // Edge Wrapping (The Torus topology)
-                if(!onScreen(p)) {
-                    p.x = random(width);
-                    p.y = random(height);
+        function generateRandomGMM(count, minX, maxX) {
+            let components = [];
+            let totalWeight = 0;
+
+            for(let i=0; i<count; i++) {
+                let mx = random(minX, maxX);
+                let my = random(height * 0.2, height * 0.8);
+
+                let sd1 = random(15, 40);
+                let sd2 = random(8, 25);
+                let theta = random(TWO_PI);
+
+                let w = random(0.3, 1.0);
+                totalWeight += w;
+
+                let col;
+                if (random(1) < 0.2) {
+                    col = color(218, 83, 44, 140);
+                } else {
+                    col = color(10, 10, 10, 120);
                 }
 
-                // RENDER
-                // We draw the particle twice with a slight offset for RGB split effect
-
-                // Cyan Channel
-                stroke(0, 255, 255, 150);
-                strokeWeight(1.5);
-                point(p.x, p.y);
-
-                // Magenta Channel (lagging slightly behind visually)
-                stroke(255, 0, 85, 150);
-                strokeWeight(1.5);
-                point(p.x - 2, p.y - 2);
+                components.push({
+                    mean: createVector(mx, my),
+                    sd: createVector(sd1, sd2),
+                    angle: theta,
+                    weight: w,
+                    col: col
+                });
             }
 
-            // 4. ADD RANDOM GLITCH BLOCKS
-            if (frameCount % 60 === 0) {
-                fill(0, 255, 65, 20);
+            components.forEach(c => c.weight /= totalWeight);
+
+            let acc = 0;
+            for(let c of components) {
+                acc += c.weight;
+                c.cdf = acc;
+            }
+
+            return components;
+        }
+
+        class ContinuousParticle {
+            constructor() {
+                this.resample();
+            }
+
+            resample() {
+                let c0 = this.sampleComponent(gmm0);
+                this.x0 = this.sampleGaussianVector(c0);
+
+                let c1 = this.sampleComponent(gmm1);
+                this.x1 = this.sampleGaussianVector(c1);
+
+                this.z = createVector(randomGaussian(0, 1), randomGaussian(0, 1));
+                this.col = c1.col;
+            }
+
+            sampleComponent(gmm) {
+                let r = random(1);
+                for (let c of gmm) {
+                    if (r < c.cdf) return c;
+                }
+                return gmm[gmm.length - 1];
+            }
+
+            sampleGaussianVector(comp) {
+                let u1 = randomGaussian(0, 1);
+                let u2 = randomGaussian(0, 1);
+
+                let x = u1 * comp.sd.x;
+                let y = u2 * comp.sd.y;
+
+                let rx = x * cos(comp.angle) - y * sin(comp.angle);
+                let ry = x * sin(comp.angle) + y * cos(comp.angle);
+
+                return createVector(rx + comp.mean.x, ry + comp.mean.y);
+            }
+
+            render(time) {
+                let alpha = 1 - time;
+                let beta = time;
+                let gamma = sigma * Math.sqrt(time * (1 - time));
+
+                let px = alpha*this.x0.x + beta*this.x1.x + gamma*this.z.x;
+                let py = alpha*this.x0.y + beta*this.x1.y + gamma*this.z.y;
+
+                stroke(this.col);
+                point(px, py);
+            }
+        }
+
+        function drawContinuous() {
+            strokeWeight(1.5);
+            for (let p of particles) {
+                p.render(t);
+            }
+        }
+
+        // ============= DISCRETE SIDE =============
+
+        function initializeSequence() {
+            sequence = [];
+            targetSequence = [];
+            insertionTimes = [];
+            unmaskingTimes = [];
+
+            for (let i = 0; i < N; i++) {
+                // Sample insertion time T1 and unmasking time T2
+                let t1 = random(0.1, 0.5);  // Insertion happens early
+                let t2 = random(t1 + 0.1, 0.9); // Unmasking happens after insertion
+
+                insertionTimes.push(t1);
+                unmaskingTimes.push(t2);
+
+                // Target token (1 to D)
+                targetSequence.push(floor(random(1, D + 1)));
+
+                // Start empty
+                sequence.push(EMPTY);
+            }
+        }
+
+        function drawDiscrete() {
+            // Update sequence state based on current time
+            for (let i = 0; i < N; i++) {
+                if (t < insertionTimes[i]) {
+                    sequence[i] = EMPTY;
+                } else if (t < unmaskingTimes[i]) {
+                    sequence[i] = MASK;
+                } else {
+                    sequence[i] = targetSequence[i];
+                }
+            }
+
+            // Render as 8x8 grid
+            let rightStart = width * 0.52;
+            let rightWidth = width * 0.46;
+
+            let cols = 8;
+            let rows = 8;
+            let cellSize = min(rightWidth / cols, height * 0.7 / rows);
+
+            // Center the grid
+            let gridWidth = cellSize * cols;
+            let gridHeight = cellSize * rows;
+            let xOffset = rightStart + (rightWidth - gridWidth) / 2;
+            let yOffset = (height - gridHeight) / 2;
+
+            push();
+            translate(xOffset, yOffset);
+
+            for (let i = 0; i < N; i++) {
+                let col = i % cols;
+                let row = floor(i / cols);
+                let x = col * cellSize;
+                let y = row * cellSize;
+
+                // Cell color based on state
+                let state = sequence[i];
+
                 noStroke();
-                let rx = random(width);
-                let ry = random(height);
-                let rw = random(100, 300);
-                let rh = random(10, 50);
-                rect(rx, ry, rw, rh);
-            }
-        }
+                if (state === EMPTY) {
+                    // Empty - draw subtle outline only
+                    stroke(10, 10, 10, 30);
+                    strokeWeight(1);
+                    noFill();
+                    rect(x, y, cellSize - 3, cellSize - 3, 2);
+                } else if (state === MASK) {
+                    // Mask - dark grey
+                    fill(40, 40, 45, 120);
+                    rect(x, y, cellSize - 3, cellSize - 3, 2);
+                } else {
+                    // Revealed state - cooler color palette
+                    noStroke();
 
-        function onScreen(v) {
-            return v.x >= 0 && v.x <= width && v.y >= 0 && v.y <= height;
-        }
+                    // Different colors for each state (cool blues, teals, greys)
+                    if (state === 1) {
+                        fill(60, 80, 100, 180); // Dark blue-grey
+                    } else if (state === 2) {
+                        fill(70, 100, 120, 180); // Medium blue
+                    } else if (state === 3) {
+                        fill(80, 120, 140, 180); // Light blue
+                    } else if (state === 4) {
+                        fill(218, 83, 44, 180); // Accent (keep one for interest)
+                    } else {
+                        fill(50, 70, 80, 180); // Deep teal
+                    }
 
-        function drawGrid(g) {
-            g.stroke(255, 255, 255, 15); // Very faint white
-            g.strokeWeight(1);
-            let step = 50;
-            for (let x = 0; x < width; x += step) {
-                g.line(x, 0, x, height);
+                    rect(x, y, cellSize - 3, cellSize - 3, 2);
+                }
             }
-            for (let y = 0; y < height; y += step) {
-                g.line(0, y, width, y);
-            }
+
+            pop();
         }
 
         function windowResized() {
             resizeCanvas(windowWidth, windowHeight);
-            gridGraphics = createGraphics(windowWidth, windowHeight);
-            drawGrid(gridGraphics);
-            background(5);
+            setup();
         }
     </script>
 </body>
