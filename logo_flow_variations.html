@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Variations — Nature ∩ Computation</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #0a0a0a;
+            --accent: #da532c;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #f5f5f5;
+            --accent: #ff6b3d;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: background 0.3s;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 95vw;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 5rem;
+            margin: 4rem 0;
+        }
+
+        .logo-option {
+            padding: 3rem;
+            transition: all 0.3s;
+        }
+
+        .logo-option h3 {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0.7;
+        }
+
+        svg {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg);
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            cursor: pointer;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        .caption {
+            font-size: 0.65rem;
+            color: var(--text);
+            opacity: 0.5;
+            margin-top: 2rem;
+            line-height: 1.8;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--text);
+            opacity: 0.6;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-btn" onclick="toggleTheme()">Toggle</button>
+
+    <div class="container">
+        <h1>Flow — Transformation</h1>
+
+        <div class="logo-grid">
+            <!-- Option 1: Vertical Flow -->
+            <div class="logo-option">
+                <h3>01 / Vertical Transformation</h3>
+                <svg width="280" height="320" viewBox="0 0 280 320">
+                    <!-- NATURE at top (organic, loose) -->
+                    <text x="140" y="35"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="14"
+                          font-weight="400"
+                          fill="var(--text)"
+                          text-anchor="middle"
+                          letter-spacing="3"
+                          opacity="0.7">NATURE</text>
+
+                    <!-- Organic flowing curve -->
+                    <path d="M 140,50 Q 120,80 130,110 Q 140,140 135,170 Q 130,200 140,230"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="2"
+                          opacity="0.6"/>
+
+                    <!-- Parallel organic flows -->
+                    <path d="M 125,60 Q 110,90 120,125 Q 125,155 122,190"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="1"
+                          opacity="0.3"/>
+
+                    <path d="M 155,60 Q 165,95 152,130 Q 148,165 158,200"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="1"
+                          opacity="0.3"/>
+
+                    <!-- Transition zone (becoming discrete) -->
+                    <circle cx="130" cy="110" r="3" fill="var(--accent)" opacity="0.6"/>
+                    <circle cx="135" cy="170" r="3" fill="var(--accent)" opacity="0.7"/>
+
+                    <!-- Accent flow in middle -->
+                    <path d="M 135,170 Q 140,190 140,210"
+                          fill="none"
+                          stroke="var(--accent)"
+                          stroke-width="1.5"
+                          opacity="0.6"/>
+
+                    <!-- Discrete steps emerging -->
+                    <path d="M 140,230 L 140,245 L 150,245 L 150,260 L 140,260 L 140,275"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="2"
+                          opacity="0.7"
+                          stroke-linecap="square"/>
+
+                    <!-- COMPUTATION at bottom (structured) -->
+                    <text x="140" y="305"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="11"
+                          font-weight="700"
+                          fill="var(--text)"
+                          text-anchor="middle"
+                          letter-spacing="1.5"
+                          opacity="0.8">COMPUTATION</text>
+                </svg>
+                <p class="caption">vertical descent — nature's continuous flow gradually discretizing into computational steps</p>
+            </div>
+
+            <!-- Option 2: River to Grid -->
+            <div class="logo-option">
+                <h3>02 / River to Grid</h3>
+                <svg width="320" height="280" viewBox="0 0 320 280">
+                    <!-- NATURE (flowing script-like) -->
+                    <g id="nature-flow">
+                        <text x="40" y="70"
+                              font-family="IBM Plex Mono, monospace"
+                              font-size="16"
+                              font-weight="400"
+                              fill="var(--text)"
+                              letter-spacing="2"
+                              opacity="0.7">nature</text>
+
+                        <!-- Organic river flow from word -->
+                        <path d="M 110,65 Q 125,70 140,75 Q 155,82 170,90 Q 185,100 195,115"
+                              fill="none"
+                              stroke="var(--accent)"
+                              stroke-width="2.5"
+                              opacity="0.6"/>
+
+                        <!-- Tributaries -->
+                        <path d="M 125,70 Q 135,75 145,82"
+                              fill="none"
+                              stroke="var(--accent)"
+                              stroke-width="1"
+                              opacity="0.4"/>
+
+                        <path d="M 155,82 Q 168,92 178,105"
+                              fill="none"
+                              stroke="var(--accent)"
+                              stroke-width="1"
+                              opacity="0.4"/>
+                    </g>
+
+                    <!-- Transition particles -->
+                    <circle cx="140" cy="75" r="2.5" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="170" cy="90" r="2.5" fill="var(--accent)" opacity="0.6"/>
+                    <circle cx="195" cy="115" r="3" fill="var(--accent)" opacity="0.7"/>
+
+                    <!-- Grid emerging -->
+                    <g id="grid-emerge">
+                        <!-- Discrete grid structure -->
+                        <line x1="200" y1="120" x2="200" y2="150" stroke="var(--text)" stroke-width="2" opacity="0.6"/>
+                        <line x1="200" y1="150" x2="230" y2="150" stroke="var(--text)" stroke-width="2" opacity="0.6"/>
+                        <line x1="230" y1="150" x2="230" y2="180" stroke="var(--text)" stroke-width="2" opacity="0.6"/>
+
+                        <!-- Grid details -->
+                        <rect x="210" y="130" width="8" height="8"
+                              fill="none"
+                              stroke="var(--accent)"
+                              stroke-width="1"
+                              opacity="0.5"/>
+
+                        <rect x="220" y="160" width="8" height="8"
+                              fill="none"
+                              stroke="var(--accent)"
+                              stroke-width="1"
+                              opacity="0.5"/>
+                    </g>
+
+                    <!-- COMPUTATION (structured) -->
+                    <text x="140" y="220"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="13"
+                          font-weight="700"
+                          fill="var(--text)"
+                          letter-spacing="1.5"
+                          opacity="0.8">computation</text>
+                </svg>
+                <p class="caption">river becoming channel — organic flow channelized into discrete pathways</p>
+            </div>
+
+            <!-- Option 3: Breathing Text -->
+            <div class="logo-option">
+                <h3>03 / Breathing Words</h3>
+                <svg width="300" height="300" viewBox="0 0 300 300">
+                    <!-- NATURE (organic, wavy baseline) -->
+                    <path id="nature-path" d="M 40,100 Q 80,95 120,100 Q 160,105 200,100" fill="none"/>
+                    <text font-family="IBM Plex Mono, monospace"
+                          font-size="18"
+                          font-weight="400"
+                          fill="var(--text)"
+                          letter-spacing="4"
+                          opacity="0.7">
+                        <textPath href="#nature-path" startOffset="10">
+                            nature
+                        </textPath>
+                    </text>
+
+                    <!-- Flow visualization -->
+                    <path d="M 120,110 Q 125,130 130,150 Q 140,180 150,200"
+                          fill="none"
+                          stroke="var(--accent)"
+                          stroke-width="2"
+                          opacity="0.5"/>
+
+                    <!-- Particles along flow -->
+                    <circle cx="125" cy="130" r="2" fill="var(--accent)" opacity="0.6"/>
+                    <circle cx="135" cy="165" r="2.5" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="150" cy="200" r="3" fill="var(--accent)" opacity="0.8"/>
+
+                    <!-- Parallel flow hint -->
+                    <path d="M 110,115 Q 115,145 120,175"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="0.5"
+                          opacity="0.2"/>
+
+                    <path d="M 160,115 Q 158,150 155,185"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="0.5"
+                          opacity="0.2"/>
+
+                    <!-- COMPUTATION (rigid, straight baseline) -->
+                    <text x="150" y="235"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="14"
+                          font-weight="700"
+                          fill="var(--text)"
+                          text-anchor="middle"
+                          letter-spacing="1.5"
+                          opacity="0.85">computation</text>
+
+                    <!-- Grid anchor under computation -->
+                    <line x1="80" y1="240" x2="220" y2="240"
+                          stroke="var(--text)"
+                          stroke-width="0.5"
+                          opacity="0.3"/>
+
+                    <line x1="150" y1="238" x2="150" y2="242"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          opacity="0.5"/>
+                </svg>
+                <p class="caption">words themselves flow — organic letterforms transitioning to structured grid</p>
+            </div>
+
+            <!-- Option 4: Stacked Flow with Symbol -->
+            <div class="logo-option">
+                <h3>04 / Stacked with Intersection</h3>
+                <svg width="280" height="240" viewBox="0 0 280 240">
+                    <!-- NATURE -->
+                    <text x="140" y="45"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="22"
+                          font-weight="300"
+                          fill="var(--text)"
+                          text-anchor="middle"
+                          letter-spacing="6"
+                          opacity="0.7">nature</text>
+
+                    <!-- Flowing S-curve -->
+                    <path d="M 140,55 Q 125,75 125,100 Q 125,125 140,140"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="2.5"
+                          opacity="0.6"/>
+
+                    <!-- Flow companions -->
+                    <path d="M 130,60 Q 118,80 118,105 Q 118,125 130,140"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="1"
+                          opacity="0.3"/>
+
+                    <path d="M 150,60 Q 162,80 162,105 Q 162,125 150,140"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="1"
+                          opacity="0.3"/>
+
+                    <!-- Transition point with ∩ -->
+                    <circle cx="140" cy="140" r="18"
+                            fill="none"
+                            stroke="var(--accent)"
+                            stroke-width="2"
+                            opacity="0.6"/>
+
+                    <text x="140" y="148"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="20"
+                          font-weight="400"
+                          fill="var(--accent)"
+                          text-anchor="middle"
+                          opacity="0.8">∩</text>
+
+                    <!-- Discrete steps down -->
+                    <path d="M 140,158 L 140,170 L 150,170 L 150,180 L 140,180"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="2.5"
+                          opacity="0.6"
+                          stroke-linecap="square"/>
+
+                    <!-- COMPUTATION -->
+                    <text x="140" y="215"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="16"
+                          font-weight="700"
+                          fill="var(--text)"
+                          text-anchor="middle"
+                          letter-spacing="2"
+                          opacity="0.85">computation</text>
+                </svg>
+                <p class="caption">vertical flow through intersection — the ∩ marks the transformation point</p>
+            </div>
+
+            <!-- Option 5: Diagonal Becoming -->
+            <div class="logo-option">
+                <h3>05 / Diagonal Becoming</h3>
+                <svg width="340" height="260" viewBox="0 0 340 260">
+                    <!-- NATURE (top left, light) -->
+                    <text x="30" y="50"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="20"
+                          font-weight="300"
+                          fill="var(--text)"
+                          letter-spacing="5"
+                          opacity="0.6">nature</text>
+
+                    <!-- Organic diagonal flow -->
+                    <path d="M 110,45 Q 140,65 165,90 Q 190,115 210,145 Q 225,170 235,195"
+                          fill="none"
+                          stroke="var(--accent)"
+                          stroke-width="3"
+                          opacity="0.6"
+                          stroke-linecap="round"/>
+
+                    <!-- Flow particles -->
+                    <circle cx="140" cy="65" r="2.5" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="165" cy="90" r="3" fill="var(--accent)" opacity="0.6"/>
+                    <circle cx="190" cy="115" r="3" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="210" cy="145" r="3.5" fill="var(--accent)" opacity="0.8"/>
+
+                    <!-- Transition to discrete -->
+                    <path d="M 235,195 L 245,205 L 245,215 L 255,215 L 255,225"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="3"
+                          opacity="0.7"
+                          stroke-linecap="square"/>
+
+                    <!-- COMPUTATION (bottom right, strong) -->
+                    <text x="180" y="250"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="16"
+                          font-weight="700"
+                          fill="var(--text)"
+                          letter-spacing="2"
+                          opacity="0.9">computation</text>
+
+                    <!-- Subtle grid reference -->
+                    <rect x="260" y="230" width="10" height="10"
+                          fill="none"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          opacity="0.4"/>
+                </svg>
+                <p class="caption">diagonal journey — gentle ascent from organic to structured</p>
+            </div>
+
+            <!-- Option 6: Minimal Essence -->
+            <div class="logo-option">
+                <h3>06 / Minimal Essence</h3>
+                <svg width="260" height="280" viewBox="0 0 260 280">
+                    <!-- Single word "nature" -->
+                    <text x="130" y="60"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="15"
+                          font-weight="300"
+                          fill="var(--text)"
+                          text-anchor="middle"
+                          letter-spacing="4"
+                          opacity="0.65">nature</text>
+
+                    <!-- Simple flowing curve -->
+                    <path d="M 130,70 Q 115,110 120,150 Q 125,190 130,220"
+                          fill="none"
+                          stroke="var(--text)"
+                          stroke-width="2"
+                          opacity="0.5"/>
+
+                    <!-- Single accent curve -->
+                    <path d="M 120,150 Q 130,170 130,190"
+                          fill="none"
+                          stroke="var(--accent)"
+                          stroke-width="2"
+                          opacity="0.6"/>
+
+                    <!-- Transition marker -->
+                    <circle cx="120" cy="150" r="3" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="130" cy="220" r="3" fill="var(--accent)" opacity="0.7"/>
+
+                    <!-- Single word "computation" -->
+                    <text x="130" y="255"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="12"
+                          font-weight="700"
+                          fill="var(--text)"
+                          text-anchor="middle"
+                          letter-spacing="2"
+                          opacity="0.8">computation</text>
+                </svg>
+                <p class="caption">pure essence — minimal path from one to the other</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>

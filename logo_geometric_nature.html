@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N ∩ C — Geometric Nature</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #0a0a0a;
+            --accent: #da532c;
+            --accent-light: #ff6b3d;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #f5f5f5;
+            --accent: #ff6b3d;
+            --accent-light: #da532c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: background 0.3s;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 90vw;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo-option {
+            padding: 2rem;
+            border: 2px solid var(--text);
+            transition: all 0.3s;
+        }
+
+        .logo-option:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(218, 83, 44, 0.2);
+        }
+
+        .logo-option h3 {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        svg {
+            filter: drop-shadow(0 0 1px rgba(0,0,0,0.1));
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg);
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        .caption {
+            font-size: 0.7rem;
+            color: var(--text);
+            opacity: 0.6;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-btn" onclick="toggleTheme()">Toggle</button>
+
+    <div class="container">
+        <div class="logo-grid">
+            <!-- Option 1: Phyllotaxis (Golden Angle Spiral) -->
+            <div class="logo-option">
+                <h3>01 / Phyllotaxis</h3>
+                <svg width="280" height="280" viewBox="0 0 280 280">
+                    <!-- Golden angle spiral pattern (like sunflower seeds) -->
+                    <g id="phyllotaxis">
+                        <!-- Generate points using golden angle -->
+                        <script>
+                            const goldenAngle = 137.5 * Math.PI / 180;
+                            const center = 140;
+                            const numPoints = 200;
+
+                            let points = '';
+                            for (let i = 0; i < numPoints; i++) {
+                                const angle = i * goldenAngle;
+                                const radius = 3 * Math.sqrt(i);
+                                const x = center + radius * Math.cos(angle);
+                                const y = center + radius * Math.sin(angle);
+                                const size = i < 80 ? 2.5 : (i < 150 ? 1.8 : 1.2);
+
+                                // Accent color for fibonacci positions
+                                const isFib = [1,1,2,3,5,8,13,21,34,55,89,144].includes(i);
+                                const color = isFib ? 'var(--accent)' : 'var(--text)';
+                                const opacity = i < 80 ? 0.9 : (i < 150 ? 0.6 : 0.3);
+
+                                points += `<circle cx="${x}" cy="${y}" r="${size}" fill="${color}" opacity="${opacity}"/>`;
+                            }
+                            document.write(points);
+                        </script>
+                    </g>
+
+                    <!-- Central intersection symbol -->
+                    <circle cx="140" cy="140" r="28" fill="none" stroke="var(--accent)" stroke-width="3"/>
+                    <text x="140" y="153"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+                </svg>
+                <p class="caption">Golden angle phyllotaxis — the mathematical pattern of seed arrangement in sunflowers, pinecones, and spiraling galaxies</p>
+            </div>
+
+            <!-- Option 2: Voronoi / Delaunay -->
+            <div class="logo-option">
+                <h3>02 / Voronoi</h3>
+                <svg width="280" height="280" viewBox="0 0 280 280">
+                    <!-- Voronoi-inspired organic cell structure -->
+
+                    <!-- Outer organic cells -->
+                    <path d="M 40,80 L 30,120 L 50,160 L 80,180 L 100,160 L 90,120 Z"
+                          fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.4"/>
+
+                    <path d="M 100,30 L 80,50 L 90,80 L 120,90 L 150,70 L 140,40 Z"
+                          fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.4"/>
+
+                    <path d="M 200,40 L 180,60 L 190,90 L 220,100 L 240,80 L 235,50 Z"
+                          fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.4"/>
+
+                    <path d="M 240,130 L 230,160 L 240,190 L 260,200 L 270,170 L 265,140 Z"
+                          fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.4"/>
+
+                    <path d="M 200,230 L 180,240 L 170,260 L 190,275 L 220,265 L 230,240 Z"
+                          fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.4"/>
+
+                    <path d="M 80,240 L 60,250 L 50,270 L 70,280 L 100,270 L 110,245 Z"
+                          fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.4"/>
+
+                    <path d="M 20,180 L 10,210 L 20,240 L 50,250 L 60,220 L 50,190 Z"
+                          fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.4"/>
+
+                    <!-- Mid-layer cells with accent -->
+                    <path d="M 90,120 L 80,140 L 90,165 L 115,175 L 135,160 L 130,135 L 110,125 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+
+                    <path d="M 150,70 L 140,90 L 150,115 L 175,125 L 195,110 L 190,85 L 170,75 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+
+                    <path d="M 190,160 L 180,180 L 190,205 L 215,215 L 235,200 L 230,175 L 210,165 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+
+                    <path d="M 110,180 L 100,200 L 110,225 L 135,235 L 155,220 L 150,195 L 130,185 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+
+                    <!-- Central cell with intersection -->
+                    <path d="M 130,135 L 115,145 L 115,165 L 130,185 L 150,195 L 175,185 L 190,165 L 190,145 L 175,125 L 150,115 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="3" opacity="0.8"/>
+
+                    <circle cx="140" cy="140" r="32" fill="var(--accent)" opacity="0.15"/>
+                    <circle cx="140" cy="140" r="32" fill="none" stroke="var(--accent)" stroke-width="3"/>
+
+                    <text x="140" y="153"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Connection nodes -->
+                    <circle cx="90" cy="120" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="150" cy="70" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="190" cy="160" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="110" cy="180" r="3" fill="var(--text)" opacity="0.6"/>
+                </svg>
+                <p class="caption">Voronoi tessellation — the organic partition of space found in cell structures, leaf veins, and giraffe spots</p>
+            </div>
+
+            <!-- Option 3: Branching / L-System -->
+            <div class="logo-option">
+                <h3>03 / Branching</h3>
+                <svg width="280" height="280" viewBox="0 0 280 280">
+                    <!-- Fractal branching structure (like trees, blood vessels, lightning) -->
+
+                    <!-- Main trunk -->
+                    <line x1="140" y1="260" x2="140" y2="180" stroke="var(--text)" stroke-width="5" stroke-linecap="round"/>
+
+                    <!-- First generation branches -->
+                    <line x1="140" y1="180" x2="100" y2="140" stroke="var(--text)" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="140" y1="180" x2="180" y2="140" stroke="var(--text)" stroke-width="4" stroke-linecap="round"/>
+
+                    <!-- Second generation branches -->
+                    <line x1="100" y1="140" x2="70" y2="110" stroke="var(--text)" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="100" y1="140" x2="110" y2="100" stroke="var(--text)" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+                    <line x1="180" y1="140" x2="210" y2="110" stroke="var(--text)" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="180" y1="140" x2="170" y2="100" stroke="var(--text)" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+                    <!-- Third generation branches with accent -->
+                    <line x1="70" y1="110" x2="50" y2="85" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="70" y1="110" x2="75" y2="80" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+                    <line x1="110" y1="100" x2="95" y2="70" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="110" y1="100" x2="125" y2="70" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+                    <line x1="210" y1="110" x2="230" y2="85" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="210" y1="110" x2="205" y2="80" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+                    <line x1="170" y1="100" x2="185" y2="70" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="170" y1="100" x2="155" y2="70" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+                    <!-- Fourth generation (finest branches) -->
+                    <line x1="50" y1="85" x2="40" y2="65" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="50" y1="85" x2="55" y2="65" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="75" y1="80" x2="70" y2="55" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="75" y1="80" x2="85" y2="60" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+
+                    <line x1="95" y1="70" x2="85" y2="45" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="95" y1="70" x2="100" y2="50" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="125" y1="70" x2="135" y2="50" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="125" y1="70" x2="120" y2="45" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+
+                    <line x1="185" y1="70" x2="195" y2="50" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="185" y1="70" x2="180" y2="45" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="155" y1="70" x2="145" y2="50" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="155" y1="70" x2="160" y2="45" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+
+                    <line x1="230" y1="85" x2="240" y2="65" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="230" y1="85" x2="225" y2="65" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="205" y1="80" x2="210" y2="55" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="205" y1="80" x2="195" y2="60" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+
+                    <!-- Central intersection at branch point -->
+                    <circle cx="140" cy="180" r="35" fill="none" stroke="var(--accent)" stroke-width="3"/>
+                    <circle cx="140" cy="180" r="35" fill="var(--accent)" opacity="0.1"/>
+
+                    <text x="140" y="193"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Branch nodes -->
+                    <circle cx="100" cy="140" r="4" fill="var(--text)"/>
+                    <circle cx="180" cy="140" r="4" fill="var(--text)"/>
+                    <circle cx="70" cy="110" r="3" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="110" cy="100" r="3" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="210" cy="110" r="3" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="170" cy="100" r="3" fill="var(--accent)" opacity="0.8"/>
+                </svg>
+                <p class="caption">Recursive branching — the self-similar fractal structure of trees, river deltas, neural networks, and lungs</p>
+            </div>
+
+            <!-- Option 4: Fibonacci Spiral -->
+            <div class="logo-option">
+                <h3>04 / Fibonacci</h3>
+                <svg width="280" height="280" viewBox="0 0 280 280">
+                    <!-- Fibonacci spiral with golden rectangles -->
+
+                    <!-- Golden rectangles (structural) -->
+                    <rect x="140" y="140" width="89" height="89" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <rect x="85" y="85" width="144" height="144" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <rect x="85" y="51" width="233" height="233" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.2"/>
+
+                    <!-- Fibonacci spiral (continuous curve) -->
+                    <path d="M 140,140
+                             Q 140,173 162,195
+                             Q 229,229 229,140
+                             Q 229,51 85,51
+                             Q -59,51 -59,284"
+                          fill="none"
+                          stroke="var(--accent)"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          opacity="0.8"/>
+
+                    <!-- Discrete computational points along spiral -->
+                    <circle cx="140" cy="140" r="3.5" fill="var(--text)"/>
+                    <circle cx="145" cy="150" r="3.5" fill="var(--text)"/>
+                    <circle cx="155" cy="165" r="3.5" fill="var(--text)"/>
+                    <circle cx="170" cy="180" r="3.5" fill="var(--text)"/>
+                    <circle cx="190" cy="195" r="3.5" fill="var(--text)"/>
+                    <circle cx="210" cy="200" r="3.5" fill="var(--text)"/>
+                    <circle cx="225" cy="195" r="3.5" fill="var(--text)"/>
+                    <circle cx="235" cy="180" r="3.5" fill="var(--text)"/>
+                    <circle cx="238" cy="160" r="3.5" fill="var(--text)"/>
+                    <circle cx="235" cy="140" r="3.5" fill="var(--text)"/>
+                    <circle cx="230" cy="120" r="3.5" fill="var(--text)"/>
+                    <circle cx="220" cy="100" r="3.5" fill="var(--text)"/>
+                    <circle cx="205" cy="80" r="3.5" fill="var(--text)"/>
+                    <circle cx="185" cy="65" r="3.5" fill="var(--text)"/>
+
+                    <!-- Central intersection -->
+                    <circle cx="140" cy="140" r="30" fill="none" stroke="var(--accent)" stroke-width="3"/>
+                    <circle cx="140" cy="140" r="30" fill="var(--accent)" opacity="0.1"/>
+
+                    <text x="140" y="153"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Phi symbol (golden ratio) -->
+                    <text x="250" y="60"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="16"
+                          font-weight="400"
+                          fill="var(--accent)"
+                          opacity="0.5">φ</text>
+                </svg>
+                <p class="caption">Fibonacci spiral — the golden ratio appearing in nautilus shells, hurricanes, galaxies, and facial proportions</p>
+            </div>
+
+            <!-- Option 5: Hexagonal Packing -->
+            <div class="logo-option">
+                <h3>05 / Hexagonal</h3>
+                <svg width="280" height="280" viewBox="0 0 280 280">
+                    <!-- Honeycomb / hexagonal close packing -->
+
+                    <defs>
+                        <polygon id="hex" points="30,0 15,26 -15,26 -30,0 -15,-26 15,-26"/>
+                    </defs>
+
+                    <!-- Outer layer hexagons -->
+                    <use href="#hex" x="70" y="80" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="122" y="54" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="174" y="80" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="210" y="80" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="210" y="132" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="210" y="184" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="174" y="210" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="122" y="236" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="70" y="210" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="34" y="184" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="34" y="132" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+                    <use href="#hex" x="34" y="80" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.3"/>
+
+                    <!-- Middle layer hexagons (accent) -->
+                    <use href="#hex" x="122" y="106" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <use href="#hex" x="174" y="132" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <use href="#hex" x="174" y="184" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <use href="#hex" x="122" y="210" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <use href="#hex" x="70" y="184" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <use href="#hex" x="70" y="132" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+
+                    <!-- Inner layer hexagons (stronger accent) -->
+                    <use href="#hex" x="122" y="158" fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.7"/>
+                    <use href="#hex" x="122" y="106" fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.7"/>
+
+                    <!-- Central hexagon with intersection -->
+                    <use href="#hex" x="122" y="132" fill="var(--accent)" fill-opacity="0.1" stroke="var(--accent)" stroke-width="3"/>
+
+                    <circle cx="122" cy="132" r="25" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+
+                    <text x="122" y="145"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Center nodes at hexagon vertices -->
+                    <circle cx="122" cy="106" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="174" cy="132" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="174" cy="184" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="122" cy="210" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="70" cy="184" r="3" fill="var(--text)" opacity="0.6"/>
+                    <circle cx="70" cy="132" r="3" fill="var(--text)" opacity="0.6"/>
+                </svg>
+                <p class="caption">Hexagonal packing — the most efficient 2D tessellation found in honeycombs, basalt columns, and insect eyes</p>
+            </div>
+
+            <!-- Option 6: Radial Symmetry -->
+            <div class="logo-option">
+                <h3>06 / Radial</h3>
+                <svg width="280" height="280" viewBox="0 0 280 280">
+                    <!-- 5-fold radial symmetry (starfish, flowers) -->
+
+                    <!-- Outer petals/rays (pentagonal symmetry) -->
+                    <g opacity="0.4">
+                        <ellipse cx="140" cy="60" rx="18" ry="45" fill="none" stroke="var(--text)" stroke-width="1.5"/>
+                        <ellipse cx="140" cy="60" rx="18" ry="45" fill="none" stroke="var(--text)" stroke-width="1.5" transform="rotate(72 140 140)"/>
+                        <ellipse cx="140" cy="60" rx="18" ry="45" fill="none" stroke="var(--text)" stroke-width="1.5" transform="rotate(144 140 140)"/>
+                        <ellipse cx="140" cy="60" rx="18" ry="45" fill="none" stroke="var(--text)" stroke-width="1.5" transform="rotate(216 140 140)"/>
+                        <ellipse cx="140" cy="60" rx="18" ry="45" fill="none" stroke="var(--text)" stroke-width="1.5" transform="rotate(288 140 140)"/>
+                    </g>
+
+                    <!-- Mid-layer petals (accent) -->
+                    <g opacity="0.6">
+                        <ellipse cx="140" cy="80" rx="15" ry="35" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                        <ellipse cx="140" cy="80" rx="15" ry="35" fill="none" stroke="var(--accent)" stroke-width="2" transform="rotate(72 140 140)"/>
+                        <ellipse cx="140" cy="80" rx="15" ry="35" fill="none" stroke="var(--accent)" stroke-width="2" transform="rotate(144 140 140)"/>
+                        <ellipse cx="140" cy="80" rx="15" ry="35" fill="none" stroke="var(--accent)" stroke-width="2" transform="rotate(216 140 140)"/>
+                        <ellipse cx="140" cy="80" rx="15" ry="35" fill="none" stroke="var(--accent)" stroke-width="2" transform="rotate(288 140 140)"/>
+                    </g>
+
+                    <!-- Inner structural lines -->
+                    <g opacity="0.8">
+                        <line x1="140" y1="140" x2="140" y2="100" stroke="var(--accent)" stroke-width="2"/>
+                        <line x1="140" y1="140" x2="140" y2="100" stroke="var(--accent)" stroke-width="2" transform="rotate(72 140 140)"/>
+                        <line x1="140" y1="140" x2="140" y2="100" stroke="var(--accent)" stroke-width="2" transform="rotate(144 140 140)"/>
+                        <line x1="140" y1="140" x2="140" y2="100" stroke="var(--accent)" stroke-width="2" transform="rotate(216 140 140)"/>
+                        <line x1="140" y1="140" x2="140" y2="100" stroke="var(--accent)" stroke-width="2" transform="rotate(288 140 140)"/>
+                    </g>
+
+                    <!-- Concentric circles -->
+                    <circle cx="140" cy="140" r="60" fill="none" stroke="var(--text)" stroke-width="1" opacity="0.2"/>
+                    <circle cx="140" cy="140" r="45" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+
+                    <!-- Central intersection -->
+                    <circle cx="140" cy="140" r="32" fill="var(--accent)" opacity="0.15"/>
+                    <circle cx="140" cy="140" r="32" fill="none" stroke="var(--accent)" stroke-width="3"/>
+
+                    <text x="140" y="153"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Radial points -->
+                    <circle cx="140" cy="100" r="4" fill="var(--accent)"/>
+                    <circle cx="140" cy="100" r="4" fill="var(--accent)" transform="rotate(72 140 140)"/>
+                    <circle cx="140" cy="100" r="4" fill="var(--accent)" transform="rotate(144 140 140)"/>
+                    <circle cx="140" cy="100" r="4" fill="var(--accent)" transform="rotate(216 140 140)"/>
+                    <circle cx="140" cy="100" r="4" fill="var(--accent)" transform="rotate(288 140 140)"/>
+                </svg>
+                <p class="caption">Radial symmetry — the 5-fold pattern of starfish, flowers, and many marine organisms (echinoderms)</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>

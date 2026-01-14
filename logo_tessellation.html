@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N ∩ C — Tessellation</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #0a0a0a;
+            --accent: #da532c;
+            --accent-light: #ff6b3d;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #f5f5f5;
+            --accent: #ff6b3d;
+            --accent-light: #da532c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: background 0.3s;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 95vw;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo-option {
+            padding: 2rem;
+            border: 2px solid var(--text);
+            transition: all 0.3s;
+        }
+
+        .logo-option:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(218, 83, 44, 0.2);
+        }
+
+        .logo-option h3 {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        svg {
+            filter: drop-shadow(0 0 1px rgba(0,0,0,0.1));
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg);
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        .caption {
+            font-size: 0.7rem;
+            color: var(--text);
+            opacity: 0.6;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-btn" onclick="toggleTheme()">Toggle</button>
+
+    <div class="container">
+        <div class="logo-grid">
+            <!-- Option 1: Voronoi Emergence -->
+            <div class="logo-option">
+                <h3>01 / Voronoi Emergence</h3>
+                <svg width="300" height="300" viewBox="0 0 300 300">
+                    <!-- Outer layer: large organic cells -->
+                    <path d="M 30,80 L 20,140 L 40,190 L 80,210 L 120,200 L 130,160 L 100,120 L 60,100 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+
+                    <path d="M 100,30 L 80,60 L 100,120 L 130,160 L 170,150 L 190,110 L 180,60 L 150,35 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+
+                    <path d="M 190,40 L 180,60 L 190,110 L 220,140 L 260,130 L 280,90 L 270,50 L 230,35 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+
+                    <path d="M 260,130 L 280,180 L 270,230 L 230,260 L 180,250 L 170,210 L 190,170 L 220,140 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+
+                    <path d="M 80,210 L 60,240 L 70,280 L 120,295 L 180,280 L 180,250 L 150,220 L 120,200 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+
+                    <path d="M 20,140 L 10,190 L 20,240 L 60,270 L 70,280 L 60,240 L 40,190 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+
+                    <!-- Middle layer: tighter cells with accent -->
+                    <path d="M 100,120 L 85,145 L 95,175 L 125,190 L 160,180 L 175,150 L 165,125 L 135,115 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.5"/>
+
+                    <path d="M 165,125 L 180,110 L 200,125 L 210,155 L 200,185 L 175,195 L 160,180 L 165,150 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.5"/>
+
+                    <path d="M 125,115 L 135,90 L 160,85 L 185,95 L 190,110 L 180,110 L 165,125 L 135,115 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.5"/>
+
+                    <!-- Core intersection: where cells meet -->
+                    <path d="M 125,115 L 100,120 L 85,145 L 95,175 L 125,190 L 160,180 L 175,150 L 165,125 Z"
+                          fill="var(--accent)" opacity="0.12"/>
+
+                    <!-- The ∩ emerges as the intersection of cell boundaries -->
+                    <g id="intersection-zone">
+                        <!-- Bold intersection edges -->
+                        <line x1="125" y1="115" x2="165" y2="125" stroke="var(--accent)" stroke-width="4"/>
+                        <line x1="165" y1="125" x2="175" y2="150" stroke="var(--accent)" stroke-width="4"/>
+                        <line x1="175" y1="150" x2="160" y2="180" stroke="var(--accent)" stroke-width="4"/>
+                        <line x1="160" y1="180" x2="125" y2="190" stroke="var(--accent)" stroke-width="4"/>
+                        <line x1="125" y1="190" x2="95" y2="175" stroke="var(--accent)" stroke-width="4"/>
+                        <line x1="95" y1="175" x2="85" y2="145" stroke="var(--accent)" stroke-width="4"/>
+                        <line x1="85" y1="145" x2="100" y2="120" stroke="var(--accent)" stroke-width="4"/>
+                        <line x1="100" y1="120" x2="125" y2="115" stroke="var(--accent)" stroke-width="4"/>
+
+                        <!-- Central vertex points -->
+                        <circle cx="125" cy="115" r="5" fill="var(--accent)"/>
+                        <circle cx="165" cy="125" r="5" fill="var(--accent)"/>
+                        <circle cx="175" cy="150" r="5" fill="var(--accent)"/>
+                        <circle cx="160" cy="180" r="5" fill="var(--accent)"/>
+                        <circle cx="125" cy="190" r="5" fill="var(--accent)"/>
+                        <circle cx="95" cy="175" r="5" fill="var(--accent)"/>
+                        <circle cx="85" cy="145" r="5" fill="var(--accent)"/>
+                        <circle cx="100" cy="120" r="5" fill="var(--accent)"/>
+                    </g>
+
+                    <!-- ∩ symbol integrated into the center -->
+                    <text x="130" y="162"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="32"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+                </svg>
+                <p class="caption">Natural Voronoi tessellation — cells emerge and meet at a central intersection, like soap bubbles or biological tissue</p>
+            </div>
+
+            <!-- Option 2: Hexagonal Collapse -->
+            <div class="logo-option">
+                <h3>02 / Hexagonal Convergence</h3>
+                <svg width="300" height="300" viewBox="0 0 300 300">
+                    <defs>
+                        <!-- Hexagon template -->
+                        <polygon id="hex" points="30,0 15,26 -15,26 -30,0 -15,-26 15,-26"/>
+                    </defs>
+
+                    <!-- Outer hexagonal ring (light) -->
+                    <use href="#hex" x="70" y="80" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="122" y="54" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="174" y="80" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="226" y="106" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="226" y="158" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="226" y="210" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="174" y="236" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="122" y="262" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="70" y="236" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="18" y="210" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="18" y="158" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <use href="#hex" x="18" y="106" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+
+                    <!-- Middle ring (accent) -->
+                    <use href="#hex" x="122" y="106" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <use href="#hex" x="174" y="132" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <use href="#hex" x="174" y="184" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <use href="#hex" x="122" y="210" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <use href="#hex" x="70" y="184" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <use href="#hex" x="70" y="132" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+
+                    <!-- Inner converging hexagons (stronger accent) -->
+                    <use href="#hex" x="122" y="158" fill="var(--accent)" fill-opacity="0.08" stroke="var(--accent)" stroke-width="3" opacity="0.7"/>
+
+                    <!-- The center is where all hexagons meet - draw the intersection -->
+                    <g id="center-meeting">
+                        <!-- Six lines radiating from center (hexagonal symmetry) -->
+                        <line x1="122" y1="158" x2="92" y2="158" stroke="var(--accent)" stroke-width="3"/>
+                        <line x1="122" y1="158" x2="152" y2="158" stroke="var(--accent)" stroke-width="3"/>
+                        <line x1="122" y1="158" x2="107" y2="184" stroke="var(--accent)" stroke-width="3"/>
+                        <line x1="122" y1="158" x2="137" y2="184" stroke="var(--accent)" stroke-width="3"/>
+                        <line x1="122" y1="158" x2="107" y2="132" stroke="var(--accent)" stroke-width="3"/>
+                        <line x1="122" y1="158" x2="137" y2="132" stroke="var(--accent)" stroke-width="3"/>
+
+                        <!-- Center point -->
+                        <circle cx="122" cy="158" r="8" fill="var(--accent)"/>
+                    </g>
+
+                    <!-- ∩ at the convergence point -->
+                    <text x="122" y="170"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--bg)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Vertex highlights at meeting points -->
+                    <circle cx="92" cy="158" r="4" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="152" cy="158" r="4" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="107" cy="184" r="4" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="137" cy="184" r="4" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="107" cy="132" r="4" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="137" cy="132" r="4" fill="var(--accent)" opacity="0.8"/>
+                </svg>
+                <p class="caption">Hexagonal close-packing converging to a point — the most efficient tessellation in nature meeting at intersection</p>
+            </div>
+
+            <!-- Option 3: Penrose-like Aperiodic -->
+            <div class="logo-option">
+                <h3>03 / Aperiodic Tiling</h3>
+                <svg width="300" height="300" viewBox="0 0 300 300">
+                    <!-- Penrose-inspired kite and dart tiling around center -->
+
+                    <!-- Outer layer: kites (quadrilaterals with two long sides) -->
+                    <path d="M 150,50 L 120,80 L 150,120 L 180,80 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+                    <path d="M 250,150 L 220,120 L 180,150 L 220,180 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+                    <path d="M 150,250 L 180,220 L 150,180 L 120,220 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+                    <path d="M 50,150 L 80,180 L 120,150 L 80,120 Z"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.3"/>
+
+                    <!-- Mid layer: darts (concave quadrilaterals) with accent -->
+                    <path d="M 150,120 L 180,80 L 190,110 L 175,135 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 220,120 L 220,180 L 190,165 L 175,135 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 180,220 L 150,180 L 175,165 L 190,190 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 80,180 L 120,220 L 125,190 L 110,165 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 120,80 L 80,120 L 110,135 L 125,110 Z"
+                          fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+
+                    <!-- Central region: tiles converge -->
+                    <path d="M 150,120 L 175,135 L 150,165 L 125,150 Z"
+                          fill="var(--accent)" opacity="0.15" stroke="var(--accent)" stroke-width="3"/>
+                    <path d="M 175,135 L 190,150 L 175,165 L 150,165 Z"
+                          fill="var(--accent)" opacity="0.12" stroke="var(--accent)" stroke-width="3"/>
+                    <path d="M 125,135 L 150,120 L 175,135 L 150,150 Z"
+                          fill="var(--accent)" opacity="0.12" stroke="var(--accent)" stroke-width="3"/>
+                    <path d="M 110,150 L 125,135 L 150,150 L 125,165 Z"
+                          fill="var(--accent)" opacity="0.12" stroke="var(--accent)" stroke-width="3"/>
+                    <path d="M 125,165 L 150,165 L 150,180 L 125,175 Z"
+                          fill="var(--accent)" opacity="0.12" stroke="var(--accent)" stroke-width="3"/>
+
+                    <!-- Five-fold meeting point (aperiodic characteristic) -->
+                    <circle cx="150" cy="150" r="6" fill="var(--accent)"/>
+                    <line x1="150" y1="150" x2="150" y2="120" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="175" y2="135" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="175" y2="165" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="150" y2="180" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="125" y2="165" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="125" y2="135" stroke="var(--accent)" stroke-width="2.5"/>
+
+                    <!-- Vertex markers -->
+                    <circle cx="150" cy="120" r="4" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="175" cy="135" r="4" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="175" cy="165" r="4" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="150" cy="180" r="4" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="125" cy="165" r="4" fill="var(--accent)" opacity="0.7"/>
+                    <circle cx="125" cy="135" r="4" fill="var(--accent)" opacity="0.7"/>
+
+                    <!-- ∩ at the aperiodic meeting point -->
+                    <text x="150" y="163"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+                </svg>
+                <p class="caption">Aperiodic Penrose-like tiling — non-repeating pattern with five-fold symmetry, the geometry of quasicrystals</p>
+            </div>
+
+            <!-- Option 4: Triangular Delaunay -->
+            <div class="logo-option">
+                <h3>04 / Delaunay Network</h3>
+                <svg width="300" height="300" viewBox="0 0 300 300">
+                    <!-- Delaunay triangulation - dual of Voronoi -->
+
+                    <!-- Outer vertices -->
+                    <circle cx="50" cy="80" r="4" fill="var(--text)" opacity="0.3"/>
+                    <circle cx="150" cy="40" r="4" fill="var(--text)" opacity="0.3"/>
+                    <circle cx="250" cy="80" r="4" fill="var(--text)" opacity="0.3"/>
+                    <circle cx="270" cy="180" r="4" fill="var(--text)" opacity="0.3"/>
+                    <circle cx="230" cy="260" r="4" fill="var(--text)" opacity="0.3"/>
+                    <circle cx="120" cy="270" r="4" fill="var(--text)" opacity="0.3"/>
+                    <circle cx="30" cy="220" r="4" fill="var(--text)" opacity="0.3"/>
+                    <circle cx="40" cy="150" r="4" fill="var(--text)" opacity="0.3"/>
+
+                    <!-- Mid-layer vertices -->
+                    <circle cx="100" cy="100" r="5" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="200" cy="100" r="5" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="220" cy="180" r="5" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="180" cy="230" r="5" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="100" cy="220" r="5" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="70" cy="160" r="5" fill="var(--accent)" opacity="0.5"/>
+
+                    <!-- Outer triangulation (light) -->
+                    <path d="M 50,80 L 150,40 L 100,100 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 150,40 L 250,80 L 200,100 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 250,80 L 270,180 L 220,180 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 270,180 L 230,260 L 220,180 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 230,260 L 120,270 L 180,230 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 120,270 L 30,220 L 100,220 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 30,220 L 40,150 L 70,160 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 40,150 L 50,80 L 70,160 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+                    <path d="M 50,80 L 100,100 L 70,160 Z" fill="none" stroke="var(--text)" stroke-width="1.5" opacity="0.25"/>
+
+                    <!-- Inner triangulation (accent) -->
+                    <path d="M 100,100 L 200,100 L 150,150 Z" fill="var(--accent)" opacity="0.08" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 200,100 L 220,180 L 170,170 Z" fill="var(--accent)" opacity="0.06" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 220,180 L 180,230 L 150,180 Z" fill="var(--accent)" opacity="0.06" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 180,230 L 100,220 L 130,180 Z" fill="var(--accent)" opacity="0.06" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 100,220 L 70,160 L 110,170 Z" fill="var(--accent)" opacity="0.06" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                    <path d="M 70,160 L 100,100 L 110,140 Z" fill="var(--accent)" opacity="0.06" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+
+                    <!-- Central star-like convergence -->
+                    <path d="M 150,150 L 170,170 L 150,180 L 130,170 L 110,170 L 110,140 L 130,130 L 150,130 L 170,140 Z"
+                          fill="var(--accent)" opacity="0.15" stroke="var(--accent)" stroke-width="3"/>
+
+                    <!-- Core vertices (where triangles meet) -->
+                    <circle cx="150" cy="150" r="7" fill="var(--accent)"/>
+                    <circle cx="130" cy="130" r="5" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="170" cy="140" r="5" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="170" cy="170" r="5" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="150" cy="180" r="5" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="130" cy="170" r="5" fill="var(--accent)" opacity="0.8"/>
+                    <circle cx="110" cy="140" r="5" fill="var(--accent)" opacity="0.8"/>
+
+                    <!-- Edges from center -->
+                    <line x1="150" y1="150" x2="130" y2="130" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="170" y2="140" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="170" y2="170" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="150" y2="180" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="130" y2="170" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="150" y1="150" x2="110" y2="140" stroke="var(--accent)" stroke-width="2.5"/>
+
+                    <!-- ∩ at network hub -->
+                    <text x="150" y="163"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--bg)"
+                          text-anchor="middle">∩</text>
+                </svg>
+                <p class="caption">Delaunay triangulation — optimal network geometry where edges converge at a central hub, like neural pathways</p>
+            </div>
+
+            <!-- Option 5: Organic Growth Pattern -->
+            <div class="logo-option">
+                <h3>05 / Growth Rings</h3>
+                <svg width="300" height="300" viewBox="0 0 300 300">
+                    <!-- Tree ring / phyllotaxis hybrid -->
+
+                    <!-- Outer ring segments (organic, irregular) -->
+                    <path d="M 150,30 A 120,120 0 0,1 250,100"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+                    <path d="M 250,100 A 120,120 0 0,1 270,180"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+                    <path d="M 270,180 A 120,120 0 0,1 220,250"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+                    <path d="M 220,250 A 120,120 0 0,1 130,270"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+                    <path d="M 130,270 A 120,120 0 0,1 50,220"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+                    <path d="M 50,220 A 120,120 0 0,1 30,130"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+                    <path d="M 30,130 A 120,120 0 0,1 70,50"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+                    <path d="M 70,50 A 120,120 0 0,1 150,30"
+                          fill="none" stroke="var(--text)" stroke-width="2" opacity="0.25"/>
+
+                    <!-- Middle ring (accent) -->
+                    <path d="M 150,70 A 80,80 0 0,1 220,120"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+                    <path d="M 220,120 A 80,80 0 0,1 230,180"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+                    <path d="M 230,180 A 80,80 0 0,1 190,225"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+                    <path d="M 190,225 A 80,80 0 0,1 130,230"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+                    <path d="M 130,230 A 80,80 0 0,1 80,200"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+                    <path d="M 80,200 A 80,80 0 0,1 70,150"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+                    <path d="M 70,150 A 80,80 0 0,1 90,90"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+                    <path d="M 90,90 A 80,80 0 0,1 150,70"
+                          fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.4"/>
+
+                    <!-- Inner ring (stronger) -->
+                    <circle cx="150" cy="150" r="50"
+                            fill="none" stroke="var(--accent)" stroke-width="3" opacity="0.6"/>
+
+                    <!-- Radial divisions (like tree rays or cell walls) -->
+                    <line x1="150" y1="150" x2="150" y2="70" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <line x1="150" y1="150" x2="220" y2="120" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <line x1="150" y1="150" x2="230" y2="180" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <line x1="150" y1="150" x2="190" y2="225" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <line x1="150" y1="150" x2="130" y2="230" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <line x1="150" y1="150" x2="80" y2="200" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <line x1="150" y1="150" x2="70" y2="150" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                    <line x1="150" y1="150" x2="90" y2="90" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+
+                    <!-- Central core -->
+                    <circle cx="150" cy="150" r="35" fill="var(--accent)" opacity="0.12"/>
+                    <circle cx="150" cy="150" r="35" fill="none" stroke="var(--accent)" stroke-width="4"/>
+
+                    <!-- Growth direction markers on rays -->
+                    <circle cx="150" cy="110" r="4" fill="var(--accent)"/>
+                    <circle cx="185" cy="135" r="4" fill="var(--accent)"/>
+                    <circle cx="190" cy="165" r="4" fill="var(--accent)"/>
+                    <circle cx="170" cy="197" r="4" fill="var(--accent)"/>
+                    <circle cx="140" cy="190" r="4" fill="var(--accent)"/>
+                    <circle cx="115" cy="175" r="4" fill="var(--accent)"/>
+                    <circle cx="110" cy="150" r="4" fill="var(--accent)"/>
+                    <circle cx="120" cy="120" r="4" fill="var(--accent)"/>
+
+                    <!-- ∩ at the growth center -->
+                    <text x="150" y="163"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="32"
+                          font-weight="700"
+                          fill="var(--accent)"
+                          text-anchor="middle">∩</text>
+                </svg>
+                <p class="caption">Concentric growth rings with radial divisions — tree rings, cell division, and organic expansion from a center</p>
+            </div>
+
+            <!-- Option 6: Crystalline Lattice -->
+            <div class="logo-option">
+                <h3>06 / Crystal Lattice</h3>
+                <svg width="300" height="300" viewBox="0 0 300 300">
+                    <!-- Square lattice with defect at center -->
+
+                    <!-- Outer grid (regular lattice) -->
+                    <g opacity="0.25" stroke="var(--text)" stroke-width="1.5">
+                        <!-- Horizontal lines -->
+                        <line x1="40" y1="60" x2="260" y2="60"/>
+                        <line x1="40" y1="100" x2="260" y2="100"/>
+                        <line x1="40" y1="140" x2="260" y2="140"/>
+                        <line x1="40" y1="180" x2="260" y2="180"/>
+                        <line x1="40" y1="220" x2="260" y2="220"/>
+                        <line x1="40" y1="260" x2="260" y2="260"/>
+
+                        <!-- Vertical lines -->
+                        <line x1="60" y1="40" x2="60" y2="260"/>
+                        <line x1="100" y1="40" x2="100" y2="260"/>
+                        <line x1="140" y1="40" x2="140" y2="260"/>
+                        <line x1="180" y1="40" x2="180" y2="260"/>
+                        <line x1="220" y1="40" x2="220" y2="260"/>
+                        <line x1="260" y1="40" x2="260" y2="260"/>
+                    </g>
+
+                    <!-- Mid-layer with accent (distorted around center) -->
+                    <g opacity="0.5" stroke="var(--accent)" stroke-width="2">
+                        <line x1="100" y1="100" x2="200" y2="100"/>
+                        <line x1="100" y1="140" x2="200" y2="140"/>
+                        <line x1="100" y1="180" x2="200" y2="180"/>
+                        <line x1="100" y1="220" x2="200" y2="220"/>
+
+                        <line x1="100" y1="100" x2="100" y2="220"/>
+                        <line x1="140" y1="100" x2="140" y2="220"/>
+                        <line x1="180" y1="100" x2="180" y2="220"/>
+                        <line x1="220" y1="100" x2="220" y2="220"/>
+                    </g>
+
+                    <!-- Central defect/dislocation (where lattice breaks) -->
+                    <g stroke="var(--accent)" stroke-width="3">
+                        <!-- Bent lattice lines around defect -->
+                        <path d="M 140,140 L 145,145 L 150,150" fill="none"/>
+                        <path d="M 180,140 L 175,145 L 170,150" fill="none"/>
+                        <path d="M 180,180 L 175,175 L 170,170" fill="none"/>
+                        <path d="M 140,180 L 145,175 L 150,170" fill="none"/>
+
+                        <!-- Star burst from center (lattice disruption) -->
+                        <line x1="150" y1="150" x2="130" y2="130"/>
+                        <line x1="150" y1="150" x2="150" y2="120"/>
+                        <line x1="150" y1="150" x2="170" y2="130"/>
+                        <line x1="150" y1="150" x2="180" y2="150"/>
+                        <line x1="150" y1="150" x2="170" y2="170"/>
+                        <line x1="150" y1="150" x2="150" y2="180"/>
+                        <line x1="150" y1="150" x2="130" y2="170"/>
+                        <line x1="150" y1="150" x2="120" y2="150"/>
+                    </g>
+
+                    <!-- Defect region highlighted -->
+                    <path d="M 130,130 L 170,130 L 180,150 L 170,170 L 130,170 L 120,150 Z"
+                          fill="var(--accent)" opacity="0.15" stroke="var(--accent)" stroke-width="3"/>
+
+                    <!-- Lattice points around defect -->
+                    <circle cx="130" cy="130" r="5" fill="var(--accent)"/>
+                    <circle cx="150" cy="120" r="5" fill="var(--accent)"/>
+                    <circle cx="170" cy="130" r="5" fill="var(--accent)"/>
+                    <circle cx="180" cy="150" r="5" fill="var(--accent)"/>
+                    <circle cx="170" cy="170" r="5" fill="var(--accent)"/>
+                    <circle cx="150" cy="180" r="5" fill="var(--accent)"/>
+                    <circle cx="130" cy="170" r="5" fill="var(--accent)"/>
+                    <circle cx="120" cy="150" r="5" fill="var(--accent)"/>
+
+                    <!-- Central defect core -->
+                    <circle cx="150" cy="150" r="8" fill="var(--accent)"/>
+
+                    <!-- ∩ at the defect (where order meets disorder) -->
+                    <text x="150" y="163"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="28"
+                          font-weight="700"
+                          fill="var(--bg)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Outer lattice points -->
+                    <g fill="var(--text)" opacity="0.3">
+                        <circle cx="60" cy="60" r="3"/>
+                        <circle cx="100" cy="60" r="3"/>
+                        <circle cx="140" cy="60" r="3"/>
+                        <circle cx="180" cy="60" r="3"/>
+                        <circle cx="220" cy="60" r="3"/>
+                        <circle cx="260" cy="60" r="3"/>
+
+                        <circle cx="60" cy="100" r="3"/>
+                        <circle cx="260" cy="100" r="3"/>
+
+                        <circle cx="60" cy="140" r="3"/>
+                        <circle cx="260" cy="140" r="3"/>
+
+                        <circle cx="60" cy="180" r="3"/>
+                        <circle cx="260" cy="180" r="3"/>
+
+                        <circle cx="60" cy="220" r="3"/>
+                        <circle cx="260" cy="220" r="3"/>
+
+                        <circle cx="60" cy="260" r="3"/>
+                        <circle cx="100" cy="260" r="3"/>
+                        <circle cx="140" cy="260" r="3"/>
+                        <circle cx="180" cy="260" r="3"/>
+                        <circle cx="220" cy="260" r="3"/>
+                        <circle cx="260" cy="260" r="3"/>
+                    </g>
+                </svg>
+                <p class="caption">Crystal lattice with defect — perfect computational grid disrupted by organic irregularity at the intersection</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>

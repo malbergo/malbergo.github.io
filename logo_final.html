@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N∩C Mark</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #0a0a0a;
+            --accent: #da532c;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #f5f5f5;
+            --accent: #ff6b3d;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: background 0.3s;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .logo-display {
+            margin-bottom: 2rem;
+        }
+
+        svg {
+            filter: drop-shadow(0 0 1px rgba(0,0,0,0.1));
+        }
+
+        .tagline {
+            font-size: 0.875rem;
+            color: var(--text);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg);
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-btn" onclick="toggleTheme()">Toggle</button>
+
+    <div class="container">
+        <div class="logo-display">
+            <svg width="300" height="300" viewBox="0 0 300 300">
+                <!-- Simple, confident geometric construction -->
+
+                <!-- N - organic flowing construction -->
+                <path d="M 80,80 L 80,220
+                         M 80,80 C 100,140 120,160 150,150 C 180,140 200,140 220,80
+                         M 220,80 L 220,220"
+                      stroke="var(--text)"
+                      stroke-width="6"
+                      fill="none"
+                      stroke-linecap="square"/>
+
+                <!-- C - discrete geometric construction -->
+                <path d="M 220,120
+                         L 220,140 L 200,140 L 200,160 L 200,180 L 220,180 L 220,200"
+                      stroke="var(--text)"
+                      stroke-width="6"
+                      fill="none"
+                      stroke-linecap="square"
+                      opacity="0.7"/>
+
+                <!-- Central intersection -->
+                <circle cx="150" cy="150" r="35"
+                        fill="none"
+                        stroke="var(--accent)"
+                        stroke-width="4"/>
+
+                <text x="150" y="162"
+                      font-family="IBM Plex Mono, monospace"
+                      font-size="32"
+                      font-weight="700"
+                      fill="var(--accent)"
+                      text-anchor="middle">∩</text>
+
+                <!-- Subtle accent details -->
+                <circle cx="100" cy="140" r="4" fill="var(--accent)" opacity="0.5"/>
+                <circle cx="200" cy="140" r="4" fill="var(--accent)" opacity="0.5"/>
+            </svg>
+        </div>
+
+        <div class="tagline">Nature ∩ Computation</div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>

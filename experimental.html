@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael S Albergo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #fafaf8;
+            --text: #1a1a1a;
+            --accent: #2a4a3a;
+            --border: #d0d0c8;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Fixed navigation sidebar */
+        .nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 240px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border);
+            padding: 3rem 2rem;
+            z-index: 100;
+        }
+
+        .nav-sidebar h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: #6a6a6a;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 3rem;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-links a {
+            color: #6a6a6a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::before {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 240px;
+            padding: 4rem 4rem 4rem 6rem;
+            max-width: 1200px;
+        }
+
+        /* Module cards */
+        .module {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .module.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .module-number {
+            font-size: 0.75rem;
+            color: #6a6a6a;
+            font-weight: 600;
+            margin-right: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .module-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .module-content {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .module-content p {
+            margin-bottom: 1rem;
+        }
+
+        .module-content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: opacity 0.2s;
+        }
+
+        .module-content a:hover {
+            opacity: 0.6;
+        }
+
+        /* Grid layout for contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6a6a6a;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Connection lines visualization */
+        .connection-line {
+            position: fixed;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            opacity: 0.1;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover~.connection-line {
+            opacity: 0.3;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 2rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-links a::before {
+                display: none;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fixed Navigation Sidebar -->
+    <nav class="nav-sidebar">
+        <h1>Michael S Albergo</h1>
+        <p class="nav-subtitle">RESEARCHER</p>
+
+        <ul class="nav-links">
+            <li><a href="#about" class="nav-link active">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#links">Links</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Module 01: About -->
+        <section class="module" id="about" data-module="01">
+            <div class="module-header">
+                <span class="module-number">01</span>
+                <h2 class="module-title">About</h2>
+            </div>
+            <div class="module-content">
+                <p>Junior Fellow at the <a href="https://socfell.fas.harvard.edu/about">Society of Fellows</a> at
+                    Harvard and an <a href="https://iaifi.org/">IAIFI Fellow</a> at MIT.</p>
+                <p>Beginning July 2026, I will be an assistant professor of <a
+                        href="https://seas.harvard.edu/applied-mathematics">Applied Mathematics at Harvard</a> and a <a
+                        href="https://kempnerinstitute.harvard.edu/">Kempner Institute</a> Investigator.</p>
+                <p>If you are a prospective graduate student or postdoc interested in working with me, please reach out
+                    detailing your research interests.</p>
+            </div>
+        </section>
+
+        <!-- Module 02: Research -->
+        <section class="module" id="research" data-module="02">
+            <div class="module-header">
+                <span class="module-number">02</span>
+                <h2 class="module-title">Research</h2>
+            </div>
+            <div class="module-content">
+                <p>I build generative models for science and try to understand how they work.</p>
+                <p>My interests span statistical mechanics, high-dimensional probability, and the mathematical
+                    foundations of machine learning.</p>
+                <p><a href="papers.html">View publications →</a></p>
+                <p><a href="research-themes.html">Research themes →</a></p>
+            </div>
+        </section>
+
+        <!-- Module 03: News -->
+        <section class="module" id="news" data-module="03">
+            <div class="module-header">
+                <span class="module-number">03</span>
+                <h2 class="module-title">Recent Updates</h2>
+            </div>
+            <div class="module-content">
+                <p><strong>[October 2025]</strong> I am a Schmidt Sciences AI2050 <a
+                        href="https://ai2050.schmidtsciences.org/fellow/michael-albergo/">Early Career Fellow</a>.</p>
+            </div>
+        </section>
+
+        <!-- Module 04: Contact -->
+        <section class="module" id="contact" data-module="04">
+            <div class="module-header">
+                <span class="module-number">04</span>
+                <h2 class="module-title">Contact</h2>
+            </div>
+            <div class="module-content">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        michaelsalbergo@gmail.com<br>
+                        malbergo@fas.harvard.edu
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Academic</div>
+                        <a href="https://scholar.google.com/citations?user=GQyCZ4kAAAAJ">Google Scholar</a><br>
+                        CV available upon request
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 05: Links -->
+        <section class="module" id="links" data-module="05">
+            <div class="module-header">
+                <span class="module-number">05</span>
+                <h2 class="module-title">External Links</h2>
+            </div>
+            <div class="module-content">
+                <p><a href="https://twitter.com/msalbergo">Twitter/X</a></p>
+                <p><a href="potpourri.html">Potpourri →</a></p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Scroll-triggered module reveal
+        const modules = document.querySelectorAll('.module');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Update active nav link
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        modules.forEach(module => observer.observe(module));
+
+        // Smooth scroll for nav links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+
+</html>

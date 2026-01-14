@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Concepts - Nature ∩ Computation</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #0a0a0a;
+            --accent: #da532c;
+            --border: #2e2e2e;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #f5f5f5;
+            --accent: #ff6b3d;
+            --border: #d0d0d0;
+        }
+
+        body {
+            margin: 0;
+            padding: 2rem;
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 3rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .concept {
+            border: 2px solid var(--border);
+            padding: 2rem;
+            background: var(--bg);
+            transition: all 0.2s;
+        }
+
+        .concept:hover {
+            border-color: var(--accent);
+            box-shadow: 4px 4px 0 var(--accent);
+            transform: translate(-2px, -2px);
+        }
+
+        .concept h2 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            margin: 1rem 0;
+        }
+
+        .description {
+            font-size: 0.75rem;
+            line-height: 1.6;
+            color: var(--text);
+            opacity: 0.7;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg);
+            border: 2px solid var(--text);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+    <h1>Logo Concepts v2</h1>
+    <p class="subtitle">Nature ∩ Computation • Text + Image Integration</p>
+
+    <div class="grid">
+        <!-- Concept 7: Stacked Transition -->
+        <div class="concept">
+            <h2>07 / Stacked Transform</h2>
+            <div class="logo-container">
+                <svg width="240" height="160" viewBox="0 0 240 160">
+                    <!-- NATURE text with organic flow -->
+                    <text x="20" y="40"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="20"
+                          font-weight="700"
+                          fill="var(--text)"
+                          letter-spacing="2">NATURE</text>
+
+                    <!-- Flowing organic line from NATURE -->
+                    <path d="M 140,35 Q 160,40 180,50 Q 200,60 210,75"
+                          stroke="var(--accent)"
+                          stroke-width="2"
+                          fill="none"/>
+
+                    <!-- Transition symbol -->
+                    <circle cx="120" cy="80" r="6" fill="var(--accent)"/>
+                    <line x1="115" y1="75" x2="125" y2="85" stroke="var(--text)" stroke-width="2"/>
+                    <line x1="125" y1="75" x2="115" y2="85" stroke="var(--text)" stroke-width="2"/>
+
+                    <!-- COMPUTATION text with geometric grid -->
+                    <text x="20" y="120"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="20"
+                          font-weight="700"
+                          fill="var(--text)"
+                          letter-spacing="2">COMPUTATION</text>
+
+                    <!-- Discrete grid lines from COMPUTATION -->
+                    <line x1="20" y1="125" x2="60" y2="125" stroke="var(--accent)" stroke-width="1"/>
+                    <line x1="20" y1="135" x2="80" y2="135" stroke="var(--accent)" stroke-width="1"/>
+                    <line x1="20" y1="145" x2="50" y2="145" stroke="var(--accent)" stroke-width="1"/>
+                </svg>
+            </div>
+            <p class="description">
+                Words stacked with visual metaphors. Organic curves flow from NATURE,
+                geometric grids anchor COMPUTATION. Clean typography meets visual code.
+            </p>
+        </div>
+
+        <!-- Concept 8: Interleaved Letters -->
+        <div class="concept">
+            <h2>08 / Character Morph</h2>
+            <div class="logo-container">
+                <svg width="200" height="180" viewBox="0 0 200 180">
+                    <!-- Top: NATURE with organic elements -->
+                    <g id="nature-letters">
+                        <text x="20" y="30"
+                              font-family="IBM Plex Mono, monospace"
+                              font-size="16"
+                              font-weight="700"
+                              fill="var(--text)">N</text>
+                        <!-- Organic molecule behind N -->
+                        <circle cx="27" cy="20" r="3" stroke="var(--accent)" stroke-width="1" fill="none"/>
+
+                        <text x="45" y="30"
+                              font-family="IBM Plex Mono, monospace"
+                              font-size="16"
+                              font-weight="700"
+                              fill="var(--text)">A T U R E</text>
+                    </g>
+
+                    <!-- Middle: Intersection symbol -->
+                    <text x="75" y="90"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="24"
+                          font-weight="700"
+                          fill="var(--accent)">∩</text>
+
+                    <!-- Bottom: COMPUTATION with grid -->
+                    <g id="comp-letters">
+                        <text x="20" y="150"
+                              font-family="IBM Plex Mono, monospace"
+                              font-size="16"
+                              font-weight="700"
+                              fill="var(--text)">C O M P U T</text>
+
+                        <!-- Grid behind some letters -->
+                        <rect x="108" y="135" width="8" height="8" stroke="var(--accent)" stroke-width="1" fill="none"/>
+                        <rect x="116" y="135" width="8" height="8" stroke="var(--accent)" stroke-width="1" fill="none"/>
+
+                        <text x="130" y="150"
+                              font-family="IBM Plex Mono, monospace"
+                              font-size="16"
+                              font-weight="700"
+                              fill="var(--text)">A T I O N</text>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                Letters become containers for their meaning. Molecules grow from NATURE,
+                grids structure COMPUTATION. Typography as diagram.
+            </p>
+        </div>
+
+        <!-- Concept 9: Circular Wordmark REFINED -->
+        <div class="concept">
+            <h2>09 / Orbital Badge (Refined)</h2>
+            <div class="logo-container">
+                <svg width="240" height="240" viewBox="0 0 240 240">
+                    <defs>
+                        <!-- Paths for curved text -->
+                        <path id="natureArc" d="M 60,120 A 80,80 0 0,1 180,120" fill="none"/>
+                        <path id="compArc" d="M 180,120 A 80,80 0 0,1 60,120" fill="none"/>
+                    </defs>
+
+                    <!-- Outer organic circle (dashed, breathing) -->
+                    <circle cx="120" cy="120" r="85"
+                            stroke="var(--text)"
+                            stroke-width="2"
+                            fill="none"
+                            stroke-dasharray="5,3"
+                            opacity="0.6"/>
+
+                    <!-- NATURE text on top arc -->
+                    <text font-family="IBM Plex Mono, monospace"
+                          font-size="16"
+                          font-weight="700"
+                          fill="var(--text)"
+                          letter-spacing="3">
+                        <textPath href="#natureArc" startOffset="50%" text-anchor="middle">
+                            NATURE
+                        </textPath>
+                    </text>
+
+                    <!-- Organic detail particles near NATURE -->
+                    <circle cx="80" cy="80" r="3" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="160" cy="80" r="3" fill="var(--accent)" opacity="0.5"/>
+                    <circle cx="70" cy="95" r="2" fill="var(--accent)" opacity="0.3"/>
+                    <circle cx="170" cy="95" r="2" fill="var(--accent)" opacity="0.3"/>
+
+                    <!-- Inner geometric square (computation) -->
+                    <rect x="85" y="85" width="70" height="70"
+                          stroke="var(--text)"
+                          stroke-width="2.5"
+                          fill="none"/>
+
+                    <!-- Grid detail on square corners -->
+                    <rect x="85" y="85" width="12" height="12"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          fill="none"
+                          opacity="0.6"/>
+                    <rect x="143" y="85" width="12" height="12"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          fill="none"
+                          opacity="0.6"/>
+                    <rect x="85" y="143" width="12" height="12"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          fill="none"
+                          opacity="0.6"/>
+                    <rect x="143" y="143" width="12" height="12"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          fill="none"
+                          opacity="0.6"/>
+
+                    <!-- COMPUTATION text on bottom arc -->
+                    <text font-family="IBM Plex Mono, monospace"
+                          font-size="16"
+                          font-weight="700"
+                          fill="var(--text)"
+                          letter-spacing="3">
+                        <textPath href="#compArc" startOffset="50%" text-anchor="middle">
+                            COMPUTATION
+                        </textPath>
+                    </text>
+
+                    <!-- Central intersection symbol -->
+                    <circle cx="120" cy="120" r="18"
+                            fill="var(--accent)"
+                            opacity="0.9"/>
+                    <text x="120" y="128"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="20"
+                          font-weight="700"
+                          fill="var(--bg)"
+                          text-anchor="middle">∩</text>
+
+                    <!-- Connecting lines from center to corners (subtle) -->
+                    <line x1="120" y1="120" x2="85" y2="85"
+                          stroke="var(--accent)"
+                          stroke-width="0.5"
+                          opacity="0.3"/>
+                    <line x1="120" y1="120" x2="155" y2="85"
+                          stroke="var(--accent)"
+                          stroke-width="0.5"
+                          opacity="0.3"/>
+                    <line x1="120" y1="120" x2="85" y2="155"
+                          stroke="var(--accent)"
+                          stroke-width="0.5"
+                          opacity="0.3"/>
+                    <line x1="120" y1="120" x2="155" y2="155"
+                          stroke="var(--accent)"
+                          stroke-width="0.5"
+                          opacity="0.3"/>
+                </svg>
+            </div>
+            <p class="description">
+                Complete orbital badge. NATURE flows organically around the top (dashed circle, floating particles),
+                COMPUTATION anchors the bottom (rigid square grid). Central ∩ unites them. Works as standalone mark.
+            </p>
+        </div>
+
+        <!-- Concept 10: Vertical Split -->
+        <div class="concept">
+            <h2>10 / Split Identity</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Left half: NATURE (vertical) -->
+                    <g id="left-nature">
+                        <text x="30" y="50"
+                              font-family="IBM Plex Mono, monospace"
+                              font-size="18"
+                              font-weight="700"
+                              fill="var(--text)"
+                              writing-mode="tb">NATURE</text>
+
+                        <!-- Organic elements on left -->
+                        <path d="M 55,60 Q 65,80 55,100 Q 45,120 55,140"
+                              stroke="var(--accent)"
+                              stroke-width="1.5"
+                              fill="none"/>
+                        <circle cx="55" cy="70" r="3" fill="var(--accent)" opacity="0.6"/>
+                        <circle cx="55" cy="110" r="3" fill="var(--accent)" opacity="0.6"/>
+                    </g>
+
+                    <!-- Center divider with intersection -->
+                    <line x1="100" y1="30" x2="100" y2="170"
+                          stroke="var(--text)"
+                          stroke-width="3"/>
+                    <circle cx="100" cy="100" r="10" fill="var(--accent)"/>
+                    <text x="95" y="106"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="14"
+                          font-weight="700"
+                          fill="var(--bg)">∩</text>
+
+                    <!-- Right half: COMPUTATION (vertical) -->
+                    <g id="right-computation">
+                        <text x="145" y="40"
+                              font-family="IBM Plex Mono, monospace"
+                              font-size="18"
+                              font-weight="700"
+                              fill="var(--text)"
+                              writing-mode="tb">COMPUTATION</text>
+
+                        <!-- Geometric grid on right -->
+                        <rect x="120" y="60" width="15" height="15"
+                              stroke="var(--accent)"
+                              stroke-width="1.5"
+                              fill="none"/>
+                        <rect x="120" y="85" width="15" height="15"
+                              stroke="var(--accent)"
+                              stroke-width="1.5"
+                              fill="none"/>
+                        <rect x="120" y="110" width="15" height="15"
+                              stroke="var(--accent)"
+                              stroke-width="1.5"
+                              fill="none"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                Vertical split identity. Two worlds divided by a center line,
+                united at the intersection point. Strong bilateral symmetry.
+            </p>
+        </div>
+
+        <!-- Concept 11: Diagonal Transition -->
+        <div class="concept">
+            <h2>11 / Diagonal Flow</h2>
+            <div class="logo-container">
+                <svg width="220" height="180" viewBox="0 0 220 180">
+                    <!-- Top left: NATURE (organic, flowing) -->
+                    <text x="10" y="40"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="22"
+                          font-weight="700"
+                          fill="var(--text)">NATURE</text>
+
+                    <!-- Organic flowing line -->
+                    <path d="M 95,30 Q 110,50 120,70 Q 130,90 145,105"
+                          stroke="var(--accent)"
+                          stroke-width="3"
+                          fill="none"
+                          stroke-linecap="round"/>
+
+                    <!-- Transition particles along diagonal -->
+                    <circle cx="105" cy="45" r="2.5" fill="var(--accent)"/>
+                    <circle cx="125" cy="75" r="2.5" fill="var(--accent)"/>
+                    <circle cx="135" cy="95" r="2.5" fill="var(--accent)"/>
+
+                    <!-- Geometric discrete line -->
+                    <path d="M 145,105 L 155,115 L 155,125 L 165,125 L 165,135 L 175,135"
+                          stroke="var(--text)"
+                          stroke-width="3"
+                          fill="none"
+                          stroke-linecap="square"/>
+
+                    <!-- Bottom right: COMPUTATION (geometric, rigid) -->
+                    <text x="55" y="165"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="22"
+                          font-weight="700"
+                          fill="var(--text)">COMPUTATION</text>
+                </svg>
+            </div>
+            <p class="description">
+                Diagonal transition from organic to discrete. Words anchor the corners,
+                visual transformation happens in the middle. Dynamic, directional.
+            </p>
+        </div>
+
+        <!-- Concept 12: Monogram Hybrid -->
+        <div class="concept">
+            <h2>12 / N∩C Monogram</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Large N (organic construction) -->
+                    <path d="M 60,60 L 60,140 M 60,60 Q 80,100 100,100 Q 120,100 140,60 M 140,60 L 140,140"
+                          stroke="var(--text)"
+                          stroke-width="4"
+                          fill="none"
+                          stroke-linecap="square"/>
+
+                    <!-- Organic detail on N -->
+                    <circle cx="80" cy="90" r="4" fill="var(--accent)" opacity="0.6"/>
+                    <circle cx="120" cy="90" r="4" fill="var(--accent)" opacity="0.6"/>
+
+                    <!-- Intersection symbol in center -->
+                    <circle cx="100" cy="100" r="25"
+                            stroke="var(--accent)"
+                            stroke-width="3"
+                            fill="none"/>
+
+                    <!-- C (geometric construction) -->
+                    <path d="M 125,75 A 25,25 0 1,0 125,125"
+                          stroke="var(--text)"
+                          stroke-width="4"
+                          fill="none"
+                          stroke-linecap="square"/>
+
+                    <!-- Grid detail on C -->
+                    <rect x="128" y="90" width="8" height="8"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          fill="none"/>
+                    <rect x="136" y="98" width="8" height="8"
+                          stroke="var(--accent)"
+                          stroke-width="1"
+                          fill="none"/>
+
+                    <!-- Text below -->
+                    <text x="45" y="175"
+                          font-family="IBM Plex Mono, monospace"
+                          font-size="12"
+                          font-weight="700"
+                          fill="var(--text)"
+                          letter-spacing="1">NATURE ∩ COMPUTATION</text>
+                </svg>
+            </div>
+            <p class="description">
+                N∩C monogram. The letterforms become the concept.
+                N rendered organically, C geometrically, unified by the intersection symbol.
+            </p>
+        </div>
+    </div>
+
+    <h1 style="margin-top: 4rem;">Original Concepts</h1>
+    <p class="subtitle">Pure Visual Metaphors</p>
+
+    <div class="grid">
+        <!-- Concept 1: The Folding -->
+        <div class="concept">
+            <h2>01 / The Folding</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Continuous smooth curve transforming into discrete steps -->
+                    <g id="folding">
+                        <!-- Left side: smooth curve (continuous) -->
+                        <path d="M 30,170 Q 40,140 50,110 T 70,50"
+                              stroke="var(--text)"
+                              stroke-width="3"
+                              fill="none"
+                              stroke-linecap="square"/>
+
+                        <!-- Transition zone with accent -->
+                        <circle cx="70" cy="50" r="4" fill="var(--accent)"/>
+
+                        <!-- Right side: discrete steps -->
+                        <path d="M 70,50 L 90,50 L 90,35 L 110,35 L 110,25 L 130,25 L 130,20 L 150,20 L 150,18 L 170,18"
+                              stroke="var(--text)"
+                              stroke-width="3"
+                              fill="none"
+                              stroke-linecap="square"/>
+
+                        <!-- Accent dots on steps -->
+                        <circle cx="90" cy="35" r="2.5" fill="var(--accent)"/>
+                        <circle cx="110" cy="25" r="2.5" fill="var(--accent)"/>
+                        <circle cx="130" cy="20" r="2.5" fill="var(--accent)"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                A single continuous line folding into discrete steps.
+                Represents the transformation from continuous measure transport to discrete optimization.
+                Ultra minimal, works at any size.
+            </p>
+        </div>
+
+        <!-- Concept 2: Molecular Network -->
+        <div class="concept">
+            <h2>02 / Molecular Graph</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Left: molecule, Right: computation graph -->
+                    <g id="molecular-network">
+                        <!-- Molecular ring (organic) -->
+                        <circle cx="60" cy="100" r="8" stroke="var(--text)" stroke-width="2" fill="none"/>
+                        <circle cx="80" cy="80" r="8" stroke="var(--text)" stroke-width="2" fill="none"/>
+                        <circle cx="80" cy="120" r="8" stroke="var(--text)" stroke-width="2" fill="none"/>
+
+                        <!-- Bonds -->
+                        <line x1="60" y1="100" x2="80" y2="80" stroke="var(--text)" stroke-width="2"/>
+                        <line x1="60" y1="100" x2="80" y2="120" stroke="var(--text)" stroke-width="2"/>
+                        <line x1="80" y1="80" x2="80" y2="120" stroke="var(--text)" stroke-width="1" stroke-dasharray="3,3"/>
+
+                        <!-- Transition with accent -->
+                        <rect x="95" y="95" width="10" height="10" fill="var(--accent)"/>
+
+                        <!-- Computational nodes (geometric) -->
+                        <rect x="115" y="70" width="12" height="12" stroke="var(--text)" stroke-width="2" fill="none"/>
+                        <rect x="115" y="108" width="12" height="12" stroke="var(--text)" stroke-width="2" fill="none"/>
+                        <rect x="145" y="89" width="12" height="12" stroke="var(--text)" stroke-width="2" fill="none"/>
+
+                        <!-- Directed edges -->
+                        <line x1="127" y1="76" x2="145" y2="95" stroke="var(--text)" stroke-width="2"/>
+                        <line x1="127" y1="114" x2="145" y2="95" stroke="var(--text)" stroke-width="2"/>
+
+                        <!-- Arrow heads -->
+                        <polygon points="143,93 145,95 143,97" fill="var(--text)"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                Molecular structure morphing into computation graph.
+                Organic chemistry meets neural networks. Clean scientific diagram aesthetic.
+            </p>
+        </div>
+
+        <!-- Concept 3: Fibonacci Pixels -->
+        <div class="concept">
+            <h2>03 / Growth Pattern</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Fibonacci spiral made of discrete cells -->
+                    <g id="fibonacci-pixels">
+                        <!-- Golden ratio spiral with pixelated construction -->
+                        <rect x="90" y="90" width="20" height="20" stroke="var(--text)" stroke-width="2" fill="none"/>
+                        <rect x="110" y="90" width="20" height="20" stroke="var(--text)" stroke-width="2" fill="var(--accent)" opacity="0.3"/>
+                        <rect x="110" y="70" width="33" height="33" stroke="var(--text)" stroke-width="2" fill="none"/>
+                        <rect x="77" y="70" width="33" height="53" stroke="var(--text)" stroke-width="2" fill="none"/>
+                        <rect x="77" y="123" width="66" height="53" stroke="var(--text)" stroke-width="2" fill="none"/>
+
+                        <!-- Accent cells showing growth -->
+                        <rect x="90" y="90" width="20" height="20" fill="var(--accent)" opacity="0.5"/>
+
+                        <!-- Discrete grid overlay -->
+                        <line x1="100" y1="90" x2="100" y2="110" stroke="var(--text)" stroke-width="0.5"/>
+                        <line x1="90" y1="100" x2="110" y2="100" stroke="var(--text)" stroke-width="0.5"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                Fibonacci growth pattern constructed from discrete computational units.
+                Nature's mathematics rendered in digital grid. Zine-y geometric vibe.
+            </p>
+        </div>
+
+        <!-- Concept 4: Particle Chamber -->
+        <div class="concept">
+            <h2>04 / Collision Chamber</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Minimalist particle collision -->
+                    <g id="particle-chamber">
+                        <!-- Containment frame -->
+                        <rect x="50" y="50" width="100" height="100"
+                              stroke="var(--text)"
+                              stroke-width="3"
+                              fill="none"
+                              stroke-linejoin="miter"/>
+
+                        <!-- Particles -->
+                        <circle cx="80" cy="80" r="6" fill="var(--text)"/>
+                        <circle cx="120" cy="80" r="6" fill="var(--text)"/>
+                        <circle cx="100" cy="110" r="6" fill="var(--text)"/>
+                        <circle cx="90" cy="130" r="5" fill="var(--text)" opacity="0.5"/>
+                        <circle cx="130" cy="120" r="5" fill="var(--text)" opacity="0.5"/>
+
+                        <!-- Motion trails (vectorized paths) -->
+                        <line x1="60" y1="70" x2="80" y2="80"
+                              stroke="var(--accent)"
+                              stroke-width="2"
+                              opacity="0.6"
+                              stroke-linecap="square"/>
+                        <line x1="140" y1="70" x2="120" y2="80"
+                              stroke="var(--accent)"
+                              stroke-width="2"
+                              opacity="0.6"
+                              stroke-linecap="square"/>
+
+                        <!-- Collision point -->
+                        <circle cx="100" cy="100" r="8"
+                                stroke="var(--accent)"
+                                stroke-width="2"
+                                fill="none"
+                                opacity="0.8"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                Particles representing both atoms and data points in a collision chamber.
+                Physics experiment meets stochastic optimization. Brutalist containment.
+            </p>
+        </div>
+
+        <!-- Concept 5: DNA Gradient -->
+        <div class="concept">
+            <h2>05 / Helix Flow</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- DNA transforming into flow -->
+                    <g id="dna-flow">
+                        <!-- Left: DNA double helix (discrete) -->
+                        <ellipse cx="70" cy="60" rx="20" ry="5"
+                                 stroke="var(--text)"
+                                 stroke-width="2"
+                                 fill="none"/>
+                        <ellipse cx="70" cy="80" rx="20" ry="5"
+                                 stroke="var(--text)"
+                                 stroke-width="2"
+                                 fill="none"/>
+                        <ellipse cx="70" cy="100" rx="20" ry="5"
+                                 stroke="var(--text)"
+                                 stroke-width="2"
+                                 fill="none"/>
+                        <ellipse cx="70" cy="120" rx="20" ry="5"
+                                 stroke="var(--text)"
+                                 stroke-width="2"
+                                 fill="none"/>
+
+                        <!-- Connecting strands -->
+                        <path d="M 50,60 Q 50,70 50,80 Q 50,90 50,100 Q 50,110 50,120"
+                              stroke="var(--text)"
+                              stroke-width="2"
+                              fill="none"/>
+                        <path d="M 90,60 Q 90,70 90,80 Q 90,90 90,100 Q 90,110 90,120"
+                              stroke="var(--text)"
+                              stroke-width="2"
+                              fill="none"/>
+
+                        <!-- Transition -->
+                        <circle cx="100" cy="90" r="5" fill="var(--accent)"/>
+
+                        <!-- Right: smooth gradient flow -->
+                        <path d="M 110,70 Q 130,75 140,85 Q 150,95 155,110"
+                              stroke="var(--accent)"
+                              stroke-width="3"
+                              fill="none"
+                              stroke-linecap="round"/>
+                        <path d="M 110,75 Q 130,80 140,90 Q 150,100 155,115"
+                              stroke="var(--accent)"
+                              stroke-width="2"
+                              fill="none"
+                              opacity="0.6"
+                              stroke-linecap="round"/>
+                        <path d="M 110,80 Q 130,85 140,95 Q 150,105 155,120"
+                              stroke="var(--accent)"
+                              stroke-width="1.5"
+                              fill="none"
+                              opacity="0.4"
+                              stroke-linecap="round"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                DNA helix transforming into gradient flow.
+                Genetic code meets optimization dynamics. The discrete becoming continuous.
+            </p>
+        </div>
+
+        <!-- Concept 6: Seed Automaton -->
+        <div class="concept">
+            <h2>06 / Cellular Growth</h2>
+            <div class="logo-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Cellular automaton radiating from seed -->
+                    <g id="cellular-automaton">
+                        <!-- Center seed -->
+                        <circle cx="100" cy="100" r="8" fill="var(--accent)"/>
+
+                        <!-- First generation (inner ring) -->
+                        <rect x="95" y="80" width="10" height="10" stroke="var(--text)" stroke-width="1.5" fill="none"/>
+                        <rect x="110" y="95" width="10" height="10" stroke="var(--text)" stroke-width="1.5" fill="none"/>
+                        <rect x="95" y="110" width="10" height="10" stroke="var(--text)" stroke-width="1.5" fill="none"/>
+                        <rect x="80" y="95" width="10" height="10" stroke="var(--text)" stroke-width="1.5" fill="none"/>
+
+                        <!-- Second generation (middle ring) -->
+                        <rect x="110" y="75" width="8" height="8" stroke="var(--text)" stroke-width="1" fill="var(--text)" opacity="0.3"/>
+                        <rect x="125" y="95" width="8" height="8" stroke="var(--text)" stroke-width="1" fill="none"/>
+                        <rect x="110" y="115" width="8" height="8" stroke="var(--text)" stroke-width="1" fill="none"/>
+                        <rect x="75" y="75" width="8" height="8" stroke="var(--text)" stroke-width="1" fill="none"/>
+                        <rect x="65" y="95" width="8" height="8" stroke="var(--text)" stroke-width="1" fill="var(--text)" opacity="0.3"/>
+                        <rect x="75" y="115" width="8" height="8" stroke="var(--text)" stroke-width="1" fill="none"/>
+
+                        <!-- Third generation (outer ring, sparse) -->
+                        <rect x="130" y="70" width="6" height="6" stroke="var(--text)" stroke-width="0.5" fill="none" opacity="0.5"/>
+                        <rect x="145" y="95" width="6" height="6" stroke="var(--text)" stroke-width="0.5" fill="none" opacity="0.5"/>
+                        <rect x="50" y="70" width="6" height="6" stroke="var(--text)" stroke-width="0.5" fill="none" opacity="0.5"/>
+                        <rect x="50" y="125" width="6" height="6" stroke="var(--text)" stroke-width="0.5" fill="none" opacity="0.5"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="description">
+                Single seed growing via computational rules (Conway-style).
+                Deterministic algorithms producing organic-looking emergence.
+                Pure brutalist geometry.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // Theme toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        }
+
+        // Check system preference on load
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>
