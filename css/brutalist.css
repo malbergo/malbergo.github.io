@@ -5,15 +5,15 @@
 
 /* ========== CSS Custom Properties ========== */
 :root {
-  /* Light Mode - Near monochrome with red accents */
-  --color-bg: #fafafa;
-  --color-text: #0a0a0a;
-  --color-text-secondary: #4a4a4a;
-  --color-border: #2e2e2e;
-  --color-accent: #da532c; /* Utrecht red */
-  --color-accent-light: rgba(218, 83, 44, 0.1);
-  --color-link: #0a0a0a;
-  --color-link-hover: #da532c;
+  /* Light Mode - Teal-green palette */
+  --color-bg: #f2eee0;
+  --color-text: #2e4552;
+  --color-text-secondary: #90a0aa;
+  --color-border: #c3c3c3;
+  --color-accent: #2f533f;
+  --color-accent-light: rgba(47, 83, 63, 0.1);
+  --color-link: #2e4552;
+  --color-link-hover: #965c58;
 
   /* Typography Scale */
   --font-size-base: 16px;
@@ -44,16 +44,16 @@
   --line-height-relaxed: 1.8;
 }
 
-/* Dark Mode - Inverted brutalist palette */
+/* Dark Mode - Teal-green palette */
 [data-theme="dark"] {
-  --color-bg: #0a0a0a;
-  --color-text: #f5f5f5;
-  --color-text-secondary: #b0b0b0;
-  --color-border: #d0d0d0;
-  --color-accent: #ff6b3d; /* Brighter orange for dark bg */
-  --color-accent-light: rgba(255, 107, 61, 0.15);
-  --color-link: #f5f5f5;
-  --color-link-hover: #ff6b3d;
+  --color-bg: #1a2026;
+  --color-text: #d8dcd0;
+  --color-text-secondary: #7a8a8e;
+  --color-border: #3a4a50;
+  --color-accent: #4c6b5a;
+  --color-accent-light: rgba(76, 107, 90, 0.15);
+  --color-link: #d8dcd0;
+  --color-link-hover: #c4877e;
 }
 
 /* ========== Reset & Base ========== */
@@ -160,11 +160,11 @@ em, i {
 
 /* Dynamic nav background based on theme */
 :root .nav {
-  background-color: rgba(250, 250, 250, 0.95);
+  background-color: rgba(242, 238, 224, 0.95);
 }
 
 [data-theme="dark"] .nav {
-  background-color: rgba(10, 10, 10, 0.95);
+  background-color: rgba(26, 32, 38, 0.95);
 }
 
 .nav-inner {
@@ -714,10 +714,10 @@ em, i {
 /* 4. Quantum Flicker (Probabilistic states) */
 @keyframes quantumFlicker {
   0%, 100% {
-    box-shadow: 0 0 0 rgba(218, 83, 44, 0);
+    box-shadow: 0 0 0 rgba(45, 90, 61, 0);
   }
   50% {
-    box-shadow: 0 0 20px rgba(218, 83, 44, 0.1);
+    box-shadow: 0 0 20px rgba(45, 90, 61, 0.1);
   }
 }
 
@@ -813,7 +813,7 @@ a:hover {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(218, 83, 44, 0.05) 50%,
+    rgba(45, 90, 61, 0.05) 50%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -851,7 +851,7 @@ h1:hover {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(218, 83, 44, 0.2),
+    rgba(45, 90, 61, 0.2),
     transparent
   );
   transition: left 0.5s ease;
@@ -888,15 +888,15 @@ h1:hover {
       0deg,
       transparent,
       transparent 49px,
-      rgba(218, 83, 44, 0.05) 49px,
-      rgba(218, 83, 44, 0.05) 50px
+      rgba(45, 90, 61, 0.05) 49px,
+      rgba(45, 90, 61, 0.05) 50px
     ),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 49px,
-      rgba(218, 83, 44, 0.05) 49px,
-      rgba(218, 83, 44, 0.05) 50px
+      rgba(45, 90, 61, 0.05) 49px,
+      rgba(45, 90, 61, 0.05) 50px
     );
   animation: gridFadeIn 2s ease-in forwards, gridShift 20s linear infinite 2s;
 }
@@ -937,7 +937,7 @@ h1:hover {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(218, 83, 44, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(45, 90, 61, 0.3) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   animation: collisionPulse 8s ease-in-out infinite;
   pointer-events: none;
