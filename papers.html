@@ -17,6 +17,9 @@
         })();
     </script>
 
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
     <!-- Brutalist Stylesheet -->
     <link rel="stylesheet" href="css/brutalist.css">
 
@@ -67,7 +70,7 @@
                 </div>
 
                 <div class="paper-abstract">
-                    <p><em>Coming soon</em> &mdash; It turns out that the flow map going to a simplex can be characterized by a mean denoiser that always stays on the simplex: <em>X<sub>s,t</sub>(x<sub>s</sub>) = ((1&minus;t)/(1&minus;s)) x<sub>s</sub> + ((t&minus;s)/(1&minus;s)) &psi;<sub>s,t</sub>(x<sub>s</sub>)</em>.</p>
+                    <p><em>Coming soon</em> &mdash; It turns out that the flow map going to a simplex can be characterized by a mean denoiser that always stays on the simplex: $$X_{s,t}(x_s) = \frac{1-t}{1-s}\,x_s + \frac{t-s}{1-s}\,\psi_{s,t}(x_s)$$</p>
                 </div>
 
                 <div class="paper-links">
@@ -622,6 +625,11 @@
 
     <!-- Altmetric Badge Script -->
     <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+
+    <!-- KaTeX Auto-Render -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
 
     <!-- Discrete Flow Maps Animation -->
     <script src="js/dfm-paper-anim.js"></script>
