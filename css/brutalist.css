@@ -6,7 +6,7 @@
 /* ========== CSS Custom Properties ========== */
 :root {
   /* Light Mode - Teal-green palette */
-  --color-bg: #f2eee0;
+  --color-bg: #f7f6f1;
   --color-text: #2e4552;
   --color-text-secondary: #90a0aa;
   --color-border: #c3c3c3;
@@ -160,7 +160,7 @@ em, i {
 
 /* Dynamic nav background based on theme */
 :root .nav {
-  background-color: rgba(242, 238, 224, 0.95);
+  background-color: rgba(247, 246, 241, 0.95);
 }
 
 [data-theme="dark"] .nav {
