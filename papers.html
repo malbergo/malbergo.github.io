@@ -61,6 +61,24 @@
         <div class="content">
             <h1 class="section-header">Research Papers</h1>
 
+            <!-- Paper: Discrete Tilt Matching -->
+            <article class="paper-item">
+                <h2 class="paper-title">Discrete Tilt Matching</h2>
+                <p class="paper-authors">with Yuyuan Chen, Shiyi Wang, Peter Potaptchik, and Jaeyeon Kim</p>
+
+                <div class="paper-media">
+                    <img src="docs/papers/dtm.png" alt="Discrete Tilt Matching">
+                </div>
+
+                <div class="paper-abstract">
+                    <p>Masked diffusion large language models (dLLMs) are a promising alternative to autoregressive generation. While reinforcement learning (RL) methods have recently been adapted to dLLM fine-tuning, their objectives typically depend on sequence-level marginal likelihoods, which are intractable for masked diffusion models. To address this, we derive Discrete Tilt Matching (DTM), a likelihood-free method that recasts dLLM fine-tuning as state-level matching of local unmasking posteriors under reward tilting. DTM takes the form of a weighted cross-entropy objective with explicit minimizer, and admits control variates that improve training stability. On a synthetic maze-planning task, we analyze how DTM's annealing schedule and control variates affect training stability and prevent mode collapse. At scale, fine-tuning LLaDA-8B-Instruct with DTM yields strong gains on Sudoku and Countdown while remaining competitive on MATH500 and GSM8K.</p>
+                </div>
+
+                <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2604.18739v1" target="_blank" rel="noopener noreferrer">arXiv</a>
+                </div>
+            </article>
+
             <!-- Paper: Discrete Flow Maps -->
             <article class="paper-item">
                 <h2 class="paper-title">Discrete Flow Maps</h2>
@@ -71,10 +89,11 @@
                 </div>
 
                 <div class="paper-abstract">
-                    <p><em>Coming soon</em> &mdash; It turns out that the flow map going to a simplex can be characterized by a mean denoiser that always stays on the simplex: $$X_{s,t}(x_s) = \frac{1-t}{1-s}\,x_s + \frac{t-s}{1-s}\,\psi_{s,t}(x_s)$$ where $\psi_{s,t}(x_s) = \int_s^t w(u)\,\mathbb{E}[I_1 \mid I_u = x_u]\,du$ is a weighted average of instantaneous denoisers along the trajectory.</p>
+                    <p>The sequential nature of autoregressive next-token prediction imposes a fundamental speed limit on large language models. While continuous flow models offer a path to parallel generation, they traditionally demand expensive iterative integration. Flow Maps bypass this bottleneck by compressing generative trajectories into single-step mappings, theoretically enabling the generation of full text sequences from noise in a single forward pass. However, standard formulations rely on Euclidean regression losses that are geometrically ill-suited for discrete data. In this work, we resolve this conflict with Discrete Flow Maps, a framework that reconciles trajectory compression with the geometry of the probability simplex. We recast standard flow map training for the discrete domain, aligning the training dynamics with the discrete nature of language. Empirically, this strict geometric alignment allows our method to surpass previous state-of-the-art results in discrete flow modeling.</p>
                 </div>
 
                 <div class="paper-links">
+                    <a href="https://arxiv.org/abs/2604.09784" target="_blank" rel="noopener noreferrer">arXiv</a>
                     <a href="https://malbergo.me/discrete-flow-maps.github.io/" target="_blank" rel="noopener noreferrer">Project</a>
                 </div>
             </article>
