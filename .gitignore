@@ -1,0 +1,10 @@
+# macOS metadata
+.DS_Store
+
+# Local GIF capture tooling (not part of the site)
+node_modules/
+package.json
+package-lock.json
+tools/
+dfm.gif
+.dfm-frames/
