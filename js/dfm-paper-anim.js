@@ -149,7 +149,7 @@
     var tanEnd = [xs[0] + tanUx * tanLen, xs[1] + tanUy * tanLen];
 
     // Animated sweep: xₜ moves from near xₛ to xtP
-    var sw = (Math.sin(now / 3500 - 1.5708) + 1) / 2;
+    var sw = (Math.sin(now / 1500 - 1.5708) + 1) / 2;
     var tP = lerp(xsP + .04, xtP, sw);
     var xCur = cbez(x0, cp1, cp2, x1, tP);
 
